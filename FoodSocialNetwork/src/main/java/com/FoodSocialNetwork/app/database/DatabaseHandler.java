@@ -96,7 +96,8 @@ public class DatabaseHandler {
 	  }
 	  
 	  public String[] getNames() throws SQLException
-	  {		  
+	  {		 
+		  
 		  String sql = "Select * from pet";
 		 
 		  PreparedStatement ps = connection.prepareStatement(sql);
