@@ -1,4 +1,5 @@
 package com.FoodSocialNetwork.app.database;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -88,17 +89,22 @@ public class DatabaseHandler {
 		  ps.setString(1, name);
 		  
 		  ps.execute();
+		  
+		  ps.setString(1, "GOOGLE");
+		  ps.execute();
+		  
 	  }
 	  
 	  public String[] getNames() throws SQLException
 	  {		  
 		  String sql = "Select * from pet";
-		  
+		 
 		  PreparedStatement ps = connection.prepareStatement(sql);
+		  
 		  ResultSet rs = ps.executeQuery();
 		  String temp = "";
 		  while(rs.next())
-		  {
+		  {				 
 			  temp += rs.getString("name") + " ";
 		  }
 		  

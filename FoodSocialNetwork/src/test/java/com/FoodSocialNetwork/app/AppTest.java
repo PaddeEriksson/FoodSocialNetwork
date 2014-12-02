@@ -1,5 +1,7 @@
 package com.FoodSocialNetwork.app;
 
+import com.FoodSocialNetwork.app.Controllers.KasimsClass;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -34,4 +36,11 @@ public class AppTest
     {
         assertTrue( true );
     }
+    
+    public void testKasim()
+    {
+  
+    	assertEquals(9, new KasimsClass(2).getKasim().getMyInt());
+    }
+    
 }

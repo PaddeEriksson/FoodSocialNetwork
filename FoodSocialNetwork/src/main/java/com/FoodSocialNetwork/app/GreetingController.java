@@ -1,6 +1,7 @@
 package com.FoodSocialNetwork.app;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.DatabaseHandler;
+
 
 
 @RestController
@@ -28,13 +30,24 @@ public class GreetingController {
     	return new Responce(0, "Succes");    }
     
     @RequestMapping("/insert")
-    public Responce insert(@RequestParam(value="name", defaultValue="patrik") String name) {
+    public Responce insert(@RequestParam(value="name", defaultValue="patrik") String name){
     	try {
 			new DatabaseHandler().createName(name);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	int x = 100;
+    	String[] s = new String[x];
+    	ArrayList<String> a = new ArrayList<String>();
+    	
+    	
+    	
+    	for(int i = 0; i < s.length; i++)
+    	{
+    		
+    	}
     	
     	return new Responce(0, "Succes");
     	

@@ -1,0 +1,9 @@
+Create TABLE user(
+	userName VARCHAR(100), 
+    password VARCHAR(100), 
+    email VARCHAR(100),
+	country VARCHAR(100),
+    profilePicurePath VARCHAR(100),
+    sessionID VARCHAR(100),
+    primary KEY (email)
+);

@@ -1,6 +1,6 @@
 package com.FoodSocialNetwork.app;
 
-public class Responce {
+public class Responce{
     private final long id;
     private final String content;
 
@@ -16,4 +16,5 @@ public class Responce {
     public String getContent() {
         return content;
     }
+   
 }
