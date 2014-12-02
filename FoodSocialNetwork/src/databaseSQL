@@ -7,3 +7,49 @@ Create TABLE user(
     sessionID VARCHAR(100),
     primary KEY (email)
 );
+
+Create TABLE category(
+	id INT, 
+    name VARCHAR(100), 
+    primary KEY (id)
+);
+
+Create TABLE recipe(
+	recipeTitle VARCHAR(100),
+	instruction VARCHAR(100),
+	time INT,
+	category INT,
+	creator VARCHAR(100),
+	IMG VARCHAR(100),
+	primary KEY (recipeTitle)
+);
+
+Create TABLE ingredient(
+	recipeTitle VARCHAR(100),
+	name VARCHAR(100),
+	isOptional INT,
+	amount FLOAT,
+	amountType VARCHAR(100),
+	primary KEY (recipeTitle,name)
+);
+
+Create TABLE tool(
+	recipeTitle VARCHAR(100),
+	name VARCHAR(100),
+	primary KEY (recipeTitle,name)
+);
+
+Create TABLE favorite(
+	recipeTitle VARCHAR(100),
+	user VARCHAR(100),
+	primary KEY (recipeTitle,user)
+);
+
+Create TABLE comment(
+	title VARCHAR(100),
+	user VARCHAR(100),
+	score INT,
+	commentText VARCHAR(100),
+	recipeTitle VARCHAR(100),
+	primary KEY (user,recipeTitle)
+);
