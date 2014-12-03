@@ -10,7 +10,7 @@ UserInfo.controller('Login',function($scope)
 });
 UserInfo.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
+  $scope.items = ['Username:', 'Password:'];
 
   $scope.open = function (size) {
 

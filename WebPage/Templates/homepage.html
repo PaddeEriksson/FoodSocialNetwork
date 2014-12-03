@@ -23,27 +23,27 @@ SocialFoodNetwork
 <div ng-controller="ModalDemoCtrl">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
-            <h3 class="modal-title">I m a modal!</h3>
+            <h3 class="modal-title">Welcome!</h3>
         </div>
         <div class="modal-body">
             <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
+                Username <input type='text' ng-model = 'setInfo.name'>
+                Password <input type= 'text' ng-model = 'setInfo.Password'>
             </ul>
-            Selected: <b>{{ selected.item }}</b>
+            Selected: <b>{{ setInfo.name }}</b>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-primary" ng-click="Forgot password?()">Forgot Password?</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </script>
 
-    <button class="btn btn-default" ng-click="open()">Open me!</button>
-    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-    <button id="myModalContent.html" class="btn btn-default" ng-click="open('sm')">Small modal</button>
+    <button class="btn btn-default" ng-click="open()">Login</button>
+    <button class="btn btn-default" ng-click="open('lg')">Create new account</button>
+    <button id="myModalContent.html" class="btn btn-default" ng-click="open('sm')">Search</button>
 
-    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+    <div ng-show="selected">Selection from a modal: {{ setInfo.name }}</div>
 </div>
 
 </body>
