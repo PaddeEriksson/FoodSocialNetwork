@@ -1,6 +1,6 @@
 <!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<link rel="stylesheet" type="learning.css" href="">
-<html ng-app ='happy' >
+
+<html ng-app ='UserInfo' >
 <title>
 SocialFoodNetwork
 </title>
@@ -8,28 +8,54 @@ SocialFoodNetwork
 <head>
 	<h2>WebApplication</h2>
 	<link rel="stylesheet" type="text/css" href="../Layouts/learning.css">
+  <link rel="stylesheet" type="text/css" href= "../dist/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	<script src="../JS/help.js"></script>
+	<script src="../JS/User_Info.js"></script>
  
 
 </head>
 <body>
-	
-   <p><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById
 
-('fade').style.display='block'">login</a></p> 
+<div ng-controller = "Login">	
+   <p><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById
+('fade').style.display='block'"><button>Login</button></a></p> 
         <div id="light" class="white_content">Please login to proceed to your account. <a href = "javascript:void(0)" onclick = "document.getElementById
 
 ('light').style.display='none';document.getElementById('fade').style.display='none'">click to close</a> 
-        <p>Username <input></p>
-        <p>Password <input></p>
+        <p>Username <input type ="text" name = "user.name" ng-model="setInfo.Name" ></p>
+        <p>Password <input type ="text" name = "user.pword" ng-model="setInfo.PWord" ></p>
         <BUTTON>submit</BUTTON>
+        <p>
+<BUTTON> Forgot password?</BUTTON>
+        </p>
 
       </div>
+      <div><p><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById
+      ('fade').style.display='block'"><button>create new account</button></a></p> 
+        <div id="light" class="white_content">Please create a new account. <a href = "javascript:void(0)" onclick = "document.getElementById
+
+('light').style.display='none';document.getElementById('fade').style.display='none'">click to close</a> 
+        <p>Email Address <input></p>
+        <p> Username <input></p>
+        <p>Password <input></p>
+        <BUTTON>submit</BUTTON>
+        <p>
+
+        </p>
+
+      </div>
+    </div>
         <div id="fade" class="black_overlay"></div> 
+<<<<<<< HEAD
 <h2>
 	Username: <input>
 	Password: <input>
 </h2>    	
+=======
+    	
+<modal-dialog show='modalShown' width='750px' height='90%'>
+  <p>Modal Content Goes here<p>
+</modal-dialog>
+>>>>>>> 424ff2175766f3a65967756c1c3921b9a06e3642
 </body>
 </html>
