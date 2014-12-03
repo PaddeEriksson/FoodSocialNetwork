@@ -1,56 +1,51 @@
 <!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html ng-app ='UserInfo' >
+<html ng-app ='UserInfo'>
 <title>
 SocialFoodNetwork
 </title>
 
-<head>
-	<h2>Food Social Network</h2>
-	<link rel="stylesheet" type="text/css" href= "../dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../Layouts/learning.css">
-  
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	<script src="../JS/User_Info.js"></script>
- 
 
+	<h2>WebApplication</h2>
+  <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../Layouts/learning.css">
+
+
+	<script src="../ExternalLib/angular.min.js"></script>
+  <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+	<script src="../JS/User_Info.js"></script>
+  <script src="../JS/TestBS.js"></script>
+ 
 </head>
 <body>
 
-<div ng-controller = "Login">	
-   <p><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById
-('fade').style.display='block'"><button>Login</button></a></p> 
-        <div id="light" class="white_content">Please login to proceed to your account. <a href = "javascript:void(0)" onclick = "document.getElementById
 
-('light').style.display='none';document.getElementById('fade').style.display='none'">click to close</a> 
-        <p>Username <input type ="text" name = "user.name" ng-model="setInfo.Name" ></p>
-        <p>Password <input type ="text" name = "user.pword" ng-model="setInfo.PWord" ></p>
-        <BUTTON>submit</BUTTON>
-        <p>
-<BUTTON> Forgot password?</BUTTON>
-        </p>
+<div ng-controller="ModalDemoCtrl">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I m a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
 
-      </div>
-      <div><p><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById
-      ('fade').style.display='block'"><button>create new account</button></a></p> 
-        <div id="light" class="white_content">Please create a new account. <a href = "javascript:void(0)" onclick = "document.getElementById
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
+    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+    <button id="myModalContent.html" class="btn btn-default" ng-click="open('sm')">Small modal</button>
 
-('light').style.display='none';document.getElementById('fade').style.display='none'">close</a> 
-        <p>Email Address <input></p>
-        <p>Username <input></p>
-        <p>Password <input></p>
-        <p>Country <input></p>
-       <p> 
-       	<BUTTON>submit</BUTTON>
-        
-        </p>
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+</div>
 
-      </div>
-    </div>
-        <div id="fade" class="black_overlay"></div> 
-    	
-<modal-dialog show='modalShown' width='750px' height='90%'>
-  <p>Modal Content Goes here<p>
-</modal-dialog>
+>>>>>>> cabedb493df3e0a61cb405f3aef8a3d765577bab
 </body>
 </html>
