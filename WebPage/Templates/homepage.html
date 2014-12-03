@@ -23,7 +23,7 @@ SocialFoodNetwork
 <div ng-controller="ModalDemoCtrl">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
-            <h3 class="modal-title">Welcome!</h3>
+            <h3 class="modal-title">Welcome :) !</h3>
         </div>
         <div class="modal-body">
             <ul>
@@ -37,12 +37,16 @@ SocialFoodNetwork
             <button class="btn btn-primary" ng-click="Forgot password?()">Forgot Password?</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
+
     </script>
 
     <button class="btn btn-default" ng-click="open()">Login</button>
     <button class="btn btn-default" ng-click="open('lg')">Create new account</button>
     <button id="myModalContent.html" class="btn btn-default" ng-click="open('sm')">Search</button>
-
+<div>
+    <br>
+    <button class="btn btn-default" ng-click="Open()">Upload Recipe</button>
+</div>
     <div ng-show="selected">Selection from a modal: {{ setInfo.name }}</div>
 </div>
 
