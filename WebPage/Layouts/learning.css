@@ -26,3 +26,16 @@ body {background: rgb(255,204,102);}
             z-index:1002; 
             overflow: auto; 
         } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 15%; 
+            left: 30%; 
+            width: 40%; 
+            height: 300px; 
+            padding: 20px; 
+            border: 10px solid orange; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
