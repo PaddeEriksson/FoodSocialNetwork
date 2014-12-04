@@ -1,6 +1,13 @@
 package com.FoodSocialNetwork.app.responce;
 
-public class CreateAccountResponce {
+
+/**
+ * THe default response contains a boolean with that tells if the login was success full and a error with the error if any
+ * 
+ * @author Toshiba
+ *
+ */
+public class DefaultResponse {
 	private boolean success;
 	private String error;
 	public boolean isSuccess() {
