@@ -25,6 +25,7 @@ body {background: rgb(255,204,102);}
             background-color: white; 
             z-index:1002; 
             overflow: auto; 
+            word-spacing: 10;
         } 
         .white_content { 
             display: none; 
