@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.FoodSocialNetwork.app.responce.CreateAccountResponce;
+import com.FoodSocialNetwork.app.responce.DefaultResponce;
 
 
 public class DatabaseHandler {
@@ -22,9 +22,7 @@ public class DatabaseHandler {
 			e.printStackTrace();
 			return;
 		}
-	 
-		System.out.println("MySQL JDBC Driver Registered!");
-	 
+	 	 
 		try {
 			connection = DriverManager
 			.getConnection("jdbc:mysql://localhost:3306/test","root", "abc123");
@@ -36,12 +34,10 @@ public class DatabaseHandler {
 		}
 	}
 	
-	public CreateAccountResponce createAccount(String userName,String password,String email,String country)
+	public void createAccount(String userName,String password,String email,String country) throws SQLException
 	{
 		String sql = "Insert into user(username,password,email,country) value(?,?,?,?)";
-		CreateAccountResponce CAR = new CreateAccountResponce();
-		try
-		{
+
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, userName);
 			ps.setString(2, password);
@@ -49,15 +45,21 @@ public class DatabaseHandler {
 			ps.setString(4, country);
 			
 			ps.execute();
-			CAR.setSuccess(true);
-		}
-		catch(Exception e)
-		{
-			CAR.setSuccess(false);
-			CAR.setError(e.getMessage());
-		}
+
 		
-		return CAR;
+	}
+	
+	public boolean login(String email,String password) throws SQLException
+	{
+		String sql = "Select * from users where email = ? AND password = ?";
+		
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setString(1, email);
+		ps.setString(2, password);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		return rs.next();
 	}
 	
 	public void createName(String name) throws SQLException
