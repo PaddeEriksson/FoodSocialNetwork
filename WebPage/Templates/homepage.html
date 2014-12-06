@@ -18,19 +18,23 @@ SocialFoodNetwork
  
 </head>
 <body>
-
+<h4> "Meat your Pears"</h4>
+<P>
+Welcome to the food social network. <br> Food social network is a website where you can upload, view and share your favorite recipes or even search any new recipes that you would like to try out. <br> Have a nice meal :)
+</P>
 
 <div ng-controller="ModalDemoCtrl">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title">Welcome :) !</h3>
+<P> Please login your credentials to proceed to your  user homepage </P>
         </div>
         <div class="modal-body">
             <ul>
                 Username <input type='text' ng-model = 'setInfo.name'>
                 Password <input type= 'text' ng-model = 'setInfo.Password'>
             </ul>
-            Selected: <b>{{ setInfo.name }}</b>
+            
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>
@@ -42,13 +46,22 @@ SocialFoodNetwork
 
     <button class="btn btn-default" ng-click="open()">Login</button>
     <button class="btn btn-default" ng-click="open('lg')">Create new account</button>
-    <button id="myModalContent.html" class="btn btn-default" ng-click="open('sm')">Search</button>
+   
 <div>
     <br>
-    <button class="btn btn-default" ng-click="Open()">Upload Recipe</button>
-</div>
-    <div ng-show="selected">Selection from a modal: {{ setInfo.name }}</div>
-</div>
+  <h1>
+Browse For Recipes Here
+  </h1> 
+    
+    <div> <input><button>Search</button> </div>
 
+</div>
+ 
+</div>
+<h1>
+
+Need to share a recipe with your friends?
+<br>
+ <button class="btn btn-default" ng-click="Open()">Upload Recipe</button> 
 </body>
 </html>

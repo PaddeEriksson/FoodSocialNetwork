@@ -1,17 +1,18 @@
 <!doctype html>
 
 <html>
-<html lang="se">
+
 <head>
 <title>
 User Home Page
 </title>
 
 
-	<h2>Welcome Back</h2>
- <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../Layouts/learning.css">
+	<h1>Welcome Back "Victoria" (UserName)</h1>
+  <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../Layouts/user layout.css">
 
+<h2> 'Meat' your 'Pears' </h2>
 
 	<script src="../ExternalLib/angular.min.js"></script>
   <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
@@ -20,11 +21,26 @@ User Home Page
  
 </head>
 <body>
-<button>
- Upload a receipe
-</button>
-<div>
-<button> Submit </button> <br> <button> Cancel </button>
+	<p>
+	Hello "Victoria (User Name)", find what your friends have been up to here in the food social network. You can also upload a new recipe for them to try out. Dont forget to click on the 'submit' button after. Enjoy optical nutrition while going through the different recipes!
+	</p>
+	<br>
+	
+
+<div class="dropdown">
+  <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+    Upload Recipe <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby-vertically="dLabel">
+    <li><a id="Menu1" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" ng-click="open()" > upload Recipe</a></li>
+    <li><a type="button" id="Menu2" class="dropdown-toggle" data-toggle="dropdown" >Ingredients and Tips</a></li>
+    <li class="divider"></li>
+  </ul>
 </div>
+  
+
+
+
+
 </body>
 </html>

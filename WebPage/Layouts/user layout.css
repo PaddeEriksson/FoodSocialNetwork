@@ -1,0 +1,27 @@
+body
+{ background-color: rgb(255,204,102); 
+	text-align: left; 
+ 
+}
+h1 {
+
+font: serif;
+font-size: 24;
+font-family: sans-serif;
+text-shadow: 5px 5px 5px #FF0000;
+color: black;
+text-transform: capitalize;
+}
+h2 {font: italic;
+	font-family: "Times New Romans, Times, serif"
+	font-size: 18;
+	text-align: center;
+	color: yellow;
+	text-decoration: underline;
+}
+p {
+	color: 255,0,255;
+	font-size: 14
+	text-align:left;
+
+}

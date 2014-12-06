@@ -1,4 +1,5 @@
 h2 {color: yellow; font-size: 44px}
+h1 {color: rgb(204,153,204); font-size: 22px; font-style: italic;}
 body {background: rgb(255,204,102);}
 .black_overlay{ 
             display: none; 
@@ -27,16 +28,13 @@ body {background: rgb(255,204,102);}
             overflow: auto; 
             word-spacing: 10;
         } 
-        .white_content { 
-            display: none; 
-            position: absolute; 
-            top: 15%; 
-            left: 30%; 
-            width: 40%; 
-            height: 300px; 
-            padding: 20px; 
-            border: 10px solid orange; 
-            background-color: white; 
-            z-index:1002; 
-            overflow: auto; 
-        } 
+        
+        button {
+            margin: 5px;
+            background-color: rgb(204,153,204);
+            font-style: italic;
+        }
+button.btn {
+    background-color: rgb(204,153,204);
+    border: groove;
+}
