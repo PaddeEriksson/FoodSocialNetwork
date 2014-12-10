@@ -16,14 +16,7 @@ public class UserDAO {
 	
 	@Resource
 	private JdbcOperations jdbcOperations;
-	@Resource
-	private DataSource dataSource;
 	
-	
-	public void testIfWorking()
-	{
-		System.out.println("Database is " + jdbcOperations.queryForObject("SELECT CURRENT_TIMESTAMP", Date.class)); 
-	}
 	
 	public boolean createUser(User user)
 	{
@@ -74,6 +67,25 @@ public class UserDAO {
 		int value = jdbcOperations.update(sql, params);
 
 		return value != 0;
+	}
+	
+	public User getUserFromSession(String session)
+	{
+		User user = null;
+		
+		String sql = "Select * from user where sessionID = ?";
+		
+		Object[] params = { session };
+		
+		try
+		{
+			user = jdbcOperations.queryForObject(sql, params, new UserMapper());
+		}
+		catch(Exception e)
+		{
+			
+		}
+		return user;
 	}
 	
 }

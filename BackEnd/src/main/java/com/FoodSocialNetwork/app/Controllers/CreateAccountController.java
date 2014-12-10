@@ -14,13 +14,18 @@ import com.FoodSocialNetwork.app.database.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 @RestController
-public class CreateUserController {
+public class CreateAccountController {
 	
 	@Resource
 	private UserDAO userDAO;
 	
+	public void setDAO(UserDAO dao)
+	{
+		this.userDAO = dao;
+	}
+	
     @RequestMapping("/createAccount")
-    public DefaultResponse createAccount(HttpServletResponse resp, @RequestParam(value="username") String name,@RequestParam(value="password") String password, @RequestParam(value="email") String email,@RequestParam(value="country") String country) {
+    public DefaultResponse createAccount(@RequestParam(value="username") String name,@RequestParam(value="password") String password, @RequestParam(value="email") String email,@RequestParam(value="country") String country) {
     	DefaultResponse returnValue = new DefaultResponse();	
     	User user = new User();
     	user.setUserName(name);
