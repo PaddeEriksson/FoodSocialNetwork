@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.DatabaseHandler;
+import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
@@ -73,8 +74,16 @@ public class GreetingController {
     @RequestMapping("/test")
     public DefaultResponse selectAll(@RequestParam(value = "ingridient") String ds)
     {
+    	boolean resp = dao.createUser(new User());
+    	DefaultResponse dr = new DefaultResponse();
+    	dr.setSuccess(resp);
+    	if(!resp)
+    	{
+    		dr.setError("Error in creating User");
+    	}
     	
-    	return new DefaultResponse(ds);
+    	
+    	return dr;
     }
     
     @Autowired

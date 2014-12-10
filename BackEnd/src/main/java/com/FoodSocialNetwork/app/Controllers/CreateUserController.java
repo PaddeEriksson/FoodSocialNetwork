@@ -1,6 +1,7 @@
 package com.FoodSocialNetwork.app.Controllers;
 
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,28 +9,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.DatabaseHandler;
+import com.FoodSocialNetwork.app.database.User;
+import com.FoodSocialNetwork.app.database.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 @RestController
 public class CreateUserController {
 	
+	@Resource
+	private UserDAO userDAO;
+	
     @RequestMapping("/createAccount")
     public DefaultResponse createAccount(HttpServletResponse resp, @RequestParam(value="username") String name,@RequestParam(value="password") String password, @RequestParam(value="email") String email,@RequestParam(value="country") String country) {
-    	    	
+    	DefaultResponse returnValue = new DefaultResponse();	
+    	User user = new User();
+    	user.setUserName(name);
+    	user.setEmail(email);
+    	user.setPassword(password);
+    	user.setCountry(country);
     	
-    	DefaultResponse dr = new DefaultResponse();
-    	
-    	try
+    	if(userDAO.createUser(user))
     	{
-    		new DatabaseHandler().createAccount(name, password, email, country);
-    		dr.setSuccess(true);
+    		returnValue.setSuccess(true);
     	}
-    	catch(Exception e)
+    	else 
     	{
-    		dr.setSuccess(false);
-    		dr.setError(e.getMessage());
+    		returnValue.setSuccess(false);
+    		if(email.compareTo("") == 0)
+    		{
+    			returnValue.setError("Email cannot be empty");
+    		}
+    		else
+    		{
+    			returnValue.setError("Email already in use");
+    		}
     	}
-    	
-    	return dr;
+
+    	return returnValue;
     }
 }
