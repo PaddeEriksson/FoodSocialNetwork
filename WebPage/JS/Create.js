@@ -1,13 +1,13 @@
-var Create = angular.module('MyAccount',['ui.bootstrap']);
+var Create = angular.module('UserInfo');
 Create.controller('ModalDemoCtrl', function ($scope, $modal, $log, $http) {
 
 
-  $scope.items = {username :'name', password :'pass', email :'the-Email', country:'SE'};
+  $scope.items = {username :'', password :'', email :'', country:'country'};
 
-  $scope.open = function (size) {
+  $scope.Account = function (size) {
 
-    var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
+    var AccountInstance = $modal.open({
+      templateUrl: 'createAccount.html',
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
@@ -17,7 +17,7 @@ Create.controller('ModalDemoCtrl', function ($scope, $modal, $log, $http) {
       }
     });
 
-    modalInstance.result.then(function (selectedItem) {
+    AccountInstance.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
@@ -32,7 +32,7 @@ Create.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, 
 
   $scope.items = items;
  
-  
+  console.log($scope);
   $scope.selected = {
     item: $scope.items[0]
   };
@@ -44,9 +44,9 @@ url: "http://83.254.221.239:9000/createAccount",
 method:"GET",
 params: $scope.items
 }).success(function(data){
-  		console.log("data "+data.error);
+
       if (!data.success)
-       {alert("You Fail");
+       {alert(data.error);
        
       }
       else
@@ -69,7 +69,7 @@ params: $scope.items
 
 
 Create.controller('TimepickerDemoCtrl', function ($scope,$log) {
-  $scope.hstep = "country";
+  $scope.country = "country";
   $scope.options = {
     hstep: ["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola",
       "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria",
@@ -115,4 +115,6 @@ Create.controller('TimepickerDemoCtrl', function ($scope,$log) {
   
  
 });
+
+
 

@@ -8,7 +8,7 @@ UserInfo.controller('ModalUserI', function ($scope, $modal, $log) {
 
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
+      controller: 'ModalInstanceUserI',
       size: size,
       resolve: {
         items: function () {

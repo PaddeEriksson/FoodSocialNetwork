@@ -1,6 +1,6 @@
 <!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html ng-app ='UserInfo' ng-app='Create'>
+<html ng-app ='UserInfo'>
 <title>
 SocialFoodNetwork
 </title>
@@ -23,7 +23,7 @@ SocialFoodNetwork
 Welcome to the food social network. <br> Food social network is a website where you can upload, view and share your favorite recipes or even search any new recipes that you would like to try out. <br> Have a nice meal :)
 </P>
 
-<div ng-controller="ModalDemoCtrl">
+<div ng-controller="ModalUserI">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title">Welcome :) !</h3>
@@ -38,16 +38,16 @@ Welcome to the food social network. <br> Food social network is a website where 
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-primary" ng-click="Forgot password?()">Forgot Password?</button>
+            <button class="btn btn-primary">Forgot Password?</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
 
     </script>
 
     <button class="btn btn-default" ng-click="open()">Login</button>
-    <button class="btn btn-default" ng-click="open('lg')">Create new account</button>
+   </div> 
     <div ng-controller="ModalDemoCtrl"  >
-    <script type="text/ng-template" id="myModalContent.html">
+    <script type="text/ng-template" id="createAccount.html">
      <div class="createaccount">
         <div>
             <h3 class="modaltitle">Create Account
@@ -60,7 +60,7 @@ Welcome to the food social network. <br> Food social network is a website where 
        <div >
        <label> Userame: &nbsp;
        </label>
-        <p><input name='name' type="text" required ng-model="username" ng-minlength=3 
+        <p><input name='name' type="text" required ng-model="items.username" ng-minlength=3 
         ng-maxlength=20 placeholder="User Name" /><br />
          <div class="error" 
         ng-show="myForm.name.$dirty && myForm.name.$invalid">
@@ -82,7 +82,7 @@ Welcome to the food social network. <br> Food social network is a website where 
     </div>     <div>
        <label>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        </label>
-        <p><input name='email' type="email" required ng-model="email"  placeholder="E-mail Address" /><br />
+        <p><input name='email' type="email" required ng-model="items.email"  placeholder="E-mail Address" /><br />
           <div class="error" 
          ng-show="myForm.email.$dirty && myForm.email.$invalid">
       <small class="error" 
@@ -99,7 +99,7 @@ Welcome to the food social network. <br> Food social network is a website where 
        <label> 
        Password:
        </label>
-        <p><input name='password' type="text" required ng-model="password" ng-minlength=3 
+        <p><input name='password' type="text" required ng-model="items.password" ng-minlength=3 
         ng-maxlength=20 placeholder="Password" /><br />
          <div class="error" 
         ng-show="myForm.password.$dirty && myForm.password.$invalid">
@@ -121,7 +121,7 @@ Welcome to the food social network. <br> Food social network is a website where 
     <div class="col-xs-6">
     <div ng-controller="TimepickerDemoCtrl">
        <label>Country:</label>
-      <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+      <select class="form-control" ng-model="items.country" ng-options="opt for opt in options.hstep"></select>
     </div>
     
     </div>
@@ -138,11 +138,11 @@ Welcome to the food social network. <br> Food social network is a website where 
             <button class="btn btn-primary" ng-click="ok()">OK</button>
 
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-             <h2>status:{{lala}}</h2>
+         
         </div>
 
     </script>
-    <button class="btn btn-default" ng-click="open()">Create Account</button>
+    <button class="btn btn-default" ng-click="Account()">Create Account</button>
  
     <div ng-show="selected">Selection from a modal: {{ slected }}</div>
 </div>
