@@ -1,9 +1,3 @@
-BackEnd/.classpath
-BackEnd/.project
-BackEnd/target/*
-
-/local.properties
-/.idea/workspace.xml
 /build
 
 ### Android template
@@ -35,7 +29,8 @@ Thumbs.db
 .project
 
 # Android Studio
-.idea
+.idea/
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
+
