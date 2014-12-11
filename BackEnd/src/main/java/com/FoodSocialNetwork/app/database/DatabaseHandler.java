@@ -1,37 +1,53 @@
 package com.FoodSocialNetwork.app.database;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.FoodSocialNetwork.app.responce.DefaultResponce;
+import java.util.Scanner;
 
 
 public class DatabaseHandler {
 	
 	private Connection connection;
 	
-	public DatabaseHandler()
+	public DatabaseHandler() throws SQLException, ClassNotFoundException
 	{
+			
+		Class.forName("com.mysql.jdbc.Driver");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root", "abc123");
+	 }
+	
+	public boolean initDatabase()
+	{
+		
+		boolean returnValue = false;
+		String sql = "";
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
+			Scanner scan = new Scanner(new File("databaseSQL"));
+			while(scan.hasNext())
+			{
+				sql += scan.nextLine();
+			}
+			
+			PreparedStatement ps = connection.prepareStatement(sql.replace("\t", ""));
+			ps.execute();
+			
+			returnValue = true;
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return;
-		}
-	 	 
-		try {
-			connection = DriverManager
-			.getConnection("jdbc:mysql://localhost:3306/test","root", "abc123");
-	 
 		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return;
 		}
+		return returnValue;
+		
 	}
 	
 	public void createAccount(String userName,String password,String email,String country) throws SQLException
