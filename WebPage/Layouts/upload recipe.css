@@ -1,0 +1,14 @@
+body
+{ background-color: rgb(255,204,102); 
+	text-align: left; 
+ 
+}
+h1 {
+
+font: serif;
+font-size: 24;
+font-family: sans-serif;
+text-shadow: 5px 5px 5px #FF0000;
+color: black;
+text-transform: capitalize;
+}
