@@ -1,40 +1,10 @@
-<<<<<<< HEAD
 h2 {color: yellow; font-size: 44px}
 h1 {color: rgb(204,153,204); font-size: 22px; font-style: italic;}
+<<<<<<< HEAD
 body {background: rgb(255,204,102);}
-.black_overlay{ 
-            display: none; 
-            position: absolute; 
-            top: 0%; 
-            left: 0%; 
-            width: 100%; 
-            height: 100%; 
-            background-color: black; 
-            z-index:1001; 
-            -moz-opacity: 0.8; 
-            opacity:.80; 
-            filter: alpha(opacity=88); 
-        } 
-        .white_content { 
-            display: none; 
-            position: absolute; 
-            top: 15%; 
-            left: 30%; 
-            width: 40%; 
-            height: 300px; 
-            padding: 20px; 
-            border: 10px solid orange; 
-            background-color: white; 
-            z-index:1002; 
-            overflow: auto; 
-            word-spacing: 10;
-        } 
-        
-        button {
-            margin: 5px;
-            background-color: rgb(204,153,204);
-            font-style: italic;
-        }
+=======
+>>>>>>> b041f04f54cbaf2a2082b7825ece1fc4fd17b43d
+
 button.btn {
     background-color: rgb(204,153,204);
     border: groove;
@@ -46,3 +16,15 @@ body
     background: rgb(255,204,102);
 }
 
+input.ng-invalid {
+  border: 1px solid red;
+}
+input.ng-valid {
+  border: 1px solid green;
+}
+div.createaccount{
+     height: 500px;
+     
+     background-color: ;
+}
+h3.modaltitle{color:red; font-size: 44px}

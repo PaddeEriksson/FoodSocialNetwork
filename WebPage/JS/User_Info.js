@@ -1,6 +1,6 @@
 var UserInfo = angular.module('UserInfo',['ui.bootstrap']);
 
-UserInfo.controller('ModalUserI', function ($scope, $modal, $log) {
+UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log) {
 
   $scope.items = ['Username:', 'Password:'];
 
@@ -8,7 +8,11 @@ UserInfo.controller('ModalUserI', function ($scope, $modal, $log) {
 
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
+
+      controller: 'ModalInstanceUserI',
+
+      controller: 'ModalInstanceUserInfo',
+
       size: size,
       resolve: {
         items: function () {
@@ -28,7 +32,7 @@ UserInfo.controller('ModalUserI', function ($scope, $modal, $log) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-UserInfo.controller('ModalInstanceUserI', function ($scope, $modalInstance, items) {
+UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items) {
 
   $scope.items = items;
   $scope.selected = {
