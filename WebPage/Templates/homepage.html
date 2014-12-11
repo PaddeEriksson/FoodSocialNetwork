@@ -23,7 +23,7 @@ SocialFoodNetwork
 Welcome to the food social network. <br> Food social network is a website where you can upload, view and share your favorite recipes or even search any new recipes that you would like to try out. <br> Have a nice meal :)
 </P>
 
-<div ng-controller="ModalUserI">
+<div ng-controller="ModalUserInfo">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title">Welcome :) !</h3>
@@ -31,7 +31,7 @@ Welcome to the food social network. <br> Food social network is a website where 
         </div>
         <div class="modal-body">
             <ul>
-                Username <input type='text' ng-model = 'setInfo.name'>
+                Username <input type='text' ng-model = 'setInfo.Username'>
                 Password <input type= 'text' ng-model = 'setInfo.Password'>
             </ul>
             
@@ -40,11 +40,16 @@ Welcome to the food social network. <br> Food social network is a website where 
             <button class="btn btn-primary" ng-click="ok()">OK</button>
             <button class="btn btn-primary">Forgot Password?</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+
         </div>
 
     </script>
 
+
     <button class="btn btn-default" ng-click="open()">Login</button>
+
+
+
    </div> 
     <div ng-controller="ModalDemoCtrl"  >
     <script type="text/ng-template" id="createAccount.html">
@@ -146,6 +151,7 @@ Welcome to the food social network. <br> Food social network is a website where 
  
     <div ng-show="selected">Selection from a modal: {{ slected }}</div>
 </div>
+
    
 <div>
     <br>

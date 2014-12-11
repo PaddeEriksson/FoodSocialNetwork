@@ -1,6 +1,9 @@
 h2 {color: yellow; font-size: 44px}
 h1 {color: rgb(204,153,204); font-size: 22px; font-style: italic;}
+<<<<<<< HEAD
 body {background: rgb(255,204,102);}
+=======
+>>>>>>> b041f04f54cbaf2a2082b7825ece1fc4fd17b43d
 
 button.btn {
     background-color: rgb(204,153,204);
