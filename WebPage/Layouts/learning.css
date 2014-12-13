@@ -1,19 +1,17 @@
-h2 {color: yellow; font-size: 44px}
-h1 {color: rgb(204,153,204); font-size: 22px; font-style: italic;}
-<<<<<<< HEAD
-body {background: rgb(255,204,102);}
-=======
->>>>>>> b041f04f54cbaf2a2082b7825ece1fc4fd17b43d
+h2 {color: yellow; font-size: 44px; text-align: center; }
+h1 {color: rgb(204,153,204); font-size: 22px; font-style: italic; text-align: center;}
+
 
 button.btn {
     background-color: rgb(204,153,204);
     border: groove;
+    margin: 10px;
 }
 
 
 body 
 {
-    background: rgb(255,204,102);
+    background: rgb(255,204,102); text-align: center;
 }
 
 input.ng-invalid {

@@ -1,18 +1,58 @@
-<html>
+<html ng-app="UserInfo">
 <title>
 NEW RECIPE
 </title>
 <head>
-	<h1>UPLOAD YOUR RECIPE</h1>
+	<h1>POST YOUR RECIPE here</h1>
 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../Layouts/upload recipe.css">
+<link rel="stylesheet" type="text/css" href="../Layouts/post recipe.css">
+<script src="../ExternalLib/angular.min.js"></script>
+<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+<script src="../JS/User_Info.js"></script>
 </head>
 <body>
-<p>
-This section helps you upload your recipe to the website page
+
+
+<div ng-controller="ModalUserInfo">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+<h2> UPLOAD RECIPE </h2>
+        </div>
+        <div 
+          <p>
+This section helps you post your recipe online so your friends and other users can view, rate or share it.
 </p>
+<label> Title <div><input>
+</div>
+<label>Instruction 
+	<div>
+<textarea class="uploadtx"> </textarea></div>
+<label>Time<div><input> </div>
+	<br>
+<div><br><label>Ingredients<input><br><label>Amount<input><br><label>Unit<input>
+</div>
+<form action="Ingredients">
+<input type="checkbox" name="ingredient" value="optional">Optional<br>
+<input type="checkbox" name="ingredients" value="compulsory">Compulsory
+</form>
+<div><button class="upload">ADD</button><textarea></textarea> </div>
+ 
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">Post Recipe</button>
+            
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+
+        </div>
+
+    </script>
 
 
+    <button class="btn btn-default" ng-click="open()">Upload Recipe</button>
+
+
+
+   </div> 
 </body>
 
 </html>
