@@ -5,6 +5,7 @@
 SocialFoodNetwork
 </title>
 
+<a ng-href="#/{{myPathVariable}}"/></a>
 
 	<h2>WebApplication</h2>
 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
@@ -30,13 +31,13 @@ Welcome to the food social network. <br> Food social network is a website where 
         </div>
         <div class="modal-body">
             <ul>
-                Username <input type='text' ng-model = 'setInfo.Username'>
-                Password <input type= 'text' ng-model = 'setInfo.Password'>
+                Username <input type='text' ng-model = 'setInfo.email'>
+                Password <input type= 'text' ng-model = 'setInfo.password'>
             </ul>
             
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-primary" ng-click="login()">Login</button>
             <button class="btn btn-primary">Forgot Password?</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 
