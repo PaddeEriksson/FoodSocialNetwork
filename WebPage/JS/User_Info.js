@@ -1,8 +1,8 @@
 var UserInfo = angular.module('UserInfo',['ui.bootstrap']);
 
-UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log) {
+UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log, $http) {
 
-  $scope.items = ['Username:', 'Password:'];
+  $scope.setInfo = {email:'', password:''};
 
   $scope.open = function (size) {
 
@@ -16,7 +16,7 @@ UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log) {
       size: size,
       resolve: {
         items: function () {
-          return $scope.items;
+          return $scope.setInfo;
         }
       }
     });
@@ -32,16 +32,32 @@ UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items) {
+UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items, $http) {
 
-  $scope.items = items;
+  $scope.setInfo = items;
   $scope.selected = {
-    item: $scope.items[0]
+    item: $scope.setInfo[0]
   };
 
-  $scope.ok = function () {
+  $scope.login = function () { 
+    $http({
+      url: "http://83.254.221.239:9000/login",
+      method:"GET",
+      params: $scope.setInfo
+    }).success(function(data){
+      if (!data.success)
+       {alert(data.error);
+       
+      }
+      else
+      {
+        sessionStorage.whatever=data.sessionID;
+      }
+    });
+
     $modalInstance.close($scope.selected.item);
   };
+
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
