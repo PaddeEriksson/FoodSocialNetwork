@@ -32,12 +32,15 @@ UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log, $http) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items, $http) {
+UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items, $http, $location) {
+
+  $scope.myPathVariable = '../Templates/upload recipe.html';
 
   $scope.setInfo = items;
   $scope.selected = {
     item: $scope.setInfo[0]
   };
+
 
   $scope.login = function () { 
     $http({
@@ -52,6 +55,7 @@ UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, i
       else
       {
         sessionStorage.whatever=data.sessionID;
+        window.location= $scope.myPathVariable;
       }
     });
 
