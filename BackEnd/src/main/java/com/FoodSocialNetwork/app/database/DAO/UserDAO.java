@@ -10,7 +10,7 @@ import com.FoodSocialNetwork.app.database.Mapper.UserMapper;
 
 
 @Service
-public class UserDAO {
+public class UserDAO{
 	
 	@Resource
 	private JdbcOperations jdbcOperations;
