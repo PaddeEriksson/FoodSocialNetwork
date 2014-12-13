@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.DatabaseHandler;
 import com.FoodSocialNetwork.app.database.User;
-import com.FoodSocialNetwork.app.database.UserDAO;
+import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 

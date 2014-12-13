@@ -1,7 +1,7 @@
 package com.FoodSocialNetwork.app;
 
 import com.FoodSocialNetwork.app.database.User;
-import com.FoodSocialNetwork.app.database.UserDAO;
+import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 
 public class MockUserDAO extends UserDAO{
 
