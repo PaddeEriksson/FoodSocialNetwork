@@ -9,12 +9,14 @@ NEW RECIPE
 <script src="../ExternalLib/angular.min.js"></script>
 <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
 <script src="../JS/User_Info.js"></script>
+<script src="../JS/Post_recipe.js"></script>
+
 </head>
 <body>
 
 
-<div ng-controller="ModalUserInfo">
-    <script type="text/ng-template" id="myModalContent.html">
+<div ng-controller="PostRecipe">
+    <script type="text/ng-template" id="postrecipe.html">
         <div class="modal-header">
 <h2> UPLOAD RECIPE </h2>
         </div>
@@ -22,7 +24,8 @@ NEW RECIPE
           <p>
 This section helps you post your recipe online so your friends and other users can view, rate or share it.
 </p>
-<label> Title <div><input>
+<label> Title <div><input type="text" ng-model='items.title'>
+input: {{items.title}}
 </div>
 <label>Instruction 
 	<div>
@@ -48,7 +51,7 @@ This section helps you post your recipe online so your friends and other users c
     </script>
 
 
-    <button class="btn btn-default" ng-click="open()">Upload Recipe</button>
+    <button class="btn btn-default" ng-click="RecepieWO()">Upload Recipe</button>
 
 
 
