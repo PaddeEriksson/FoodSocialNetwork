@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.FoodSocialNetwork.app.database.Ingredient;
 import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.User;
+import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.*;
@@ -29,6 +30,16 @@ public class CreateRecipeController {
 	@Resource
 	private RecipeDAO recipeDAO;
 	
+	@Resource
+	private IngredientDAO ingridientDAO;
+	
+	public void setDAOS(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingridientDAO)
+	{
+		this.userDAO = userDAO;
+		this.recipeDAO = recipeDAO;
+		this.ingridientDAO = ingridientDAO;
+	}
+	
 	@RequestMapping("/createRecipe")
 	public DefaultResponse createRecipe(
 			@RequestParam(value = "session") String session,
@@ -41,15 +52,15 @@ public class CreateRecipeController {
 			@RequestParam(value = "tools") String[] tools)
 	{
 		DefaultResponse dr = new DefaultResponse();
-		System.out.println((recipeDAO.doesRecipeExist(title)));
 		User user = userDAO.getUserFromSession(session);
 		
+		dr.setSuccess(true);
 		
 		
 		if(user != null)//Session is not working
 		{
 			//Test if title already exist
-			if(recipeDAO.doesRecipeExist(title))
+			if(!recipeDAO.doesRecipeExist(title))
 			{
 				Recipe r = new Recipe();
 				r.setRecipeTitle(title);
@@ -59,7 +70,7 @@ public class CreateRecipeController {
 				r.setTime((int) time);
 				PrintWriter pw;
 				try {
-					File file = new File("/recipe/" + title + ".txt");
+					File file = new File(title + ".txt");
 					pw = new PrintWriter(file);
 					pw.write(instruction);
 					pw.flush();
@@ -69,7 +80,6 @@ public class CreateRecipeController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				r.setInstruction(instruction);
 				if(recipeDAO.createRecipe(r))
 				{
 					for(int i = 0; i < ingridients.length(); i++)
@@ -90,6 +100,9 @@ public class CreateRecipeController {
 							ingridient.setAmount((float) obj.getDouble("amount"));
 							ingridient.setAmountType(obj.getString("amountType"));
 							//TODO Create the ingridients
+							
+							
+							ingridientDAO.createIngridient(ingridient);
 							
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -112,7 +125,7 @@ public class CreateRecipeController {
 		else 
 		{
 			dr.setSuccess(false);
-			dr.setError("User session is not availabel");
+			dr.setError("Session does not exist");
 		}
 		return dr;
 	}
