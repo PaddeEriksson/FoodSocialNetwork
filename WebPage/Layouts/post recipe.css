@@ -1,29 +1,40 @@
-body
-{ background-color: rgb(255,204,102); 
+body{
+	background-color: rgb(255,204,102); 
 	text-align: center; 
- 
 }
-h1 {
 
-font: serif;
-font-size: 24;
-font-family: sans-serif;
-color: black;
-text-transform: capitalize;
-text-align: center;
+h1 {
+	font: serif;
+	font-size: 24;
+	font-family: sans-serif;
+	color: black;
+	text-transform: capitalize;
+	text-align: center;
 }
 button.upload {
 	background-color: rgb(204,153,204);
     border: groove;
     text-decoration: inherit;
     margin: 10px;
-
 }
 textarea.uploadtx {
 	border-style: solid;
     border-width: 5px;
-   min-height: 200px;
-   min-width: 70px;
-
+    min-height: 200px;
+    min-width: 70px;
 }
-but
+input.small_Input{
+    width: 100px;
+}
+ul.ListFormat {
+    display: inline;
+    list-style-type: none;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+li{
+	display: inline;
+}

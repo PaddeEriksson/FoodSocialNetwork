@@ -1,13 +1,12 @@
-<!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html PUBLIC>
 
 <html ng-app ='UserInfo'>
 <title>
 SocialFoodNetwork
 </title>
-
+<head>
 <a ng-href="#/{{myPathVariable}}"/></a>
-
-	<h2>WebApplication</h2>
+<h2>WebApplication</h2>
 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../Layouts/learning.css">
 
@@ -22,122 +21,88 @@ SocialFoodNetwork
 <P>
 Welcome to the food social network. <br> Food social network is a website where you can upload, view and share your favorite recipes or even search any new recipes that you would like to try out. <br> Have a nice meal :)
 </P>
-
 <div ng-controller="ModalUserInfo">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
-            <h3 class="modal-title">Welcome :) !</h3>
-<P> Please login your credentials to proceed to your  user homepage </P>
+          <h3 class="modal-title">Welcome :) !</h3>
+          <P> Please login your credentials to proceed to your  user homepage </P>
         </div>
         <div class="modal-body">
-            <ul>
-                Username <input type='text' ng-model = 'setInfo.email'>
-                Password <input type= 'text' ng-model = 'setInfo.password'>
-            </ul>
-            
+          <ul>
+            Username <input type='text' ng-model = 'setInfo.email'>
+            Password <input type= 'text' ng-model = 'setInfo.password'>
+          </ul>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="login()">Login</button>
             <button class="btn btn-primary">Forgot Password?</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-
         </div>
-
     </script>
-
-
     <button class="btn btn-default" ng-click="open()">Login</button>
+</div> 
 
-
-
-   </div> 
-    <div ng-controller="ModalDemoCtrl"  >
-    <script type="text/ng-template" id="createAccount.html">
-     <div class="createaccount">
-        <div>
-            <h3 class="modaltitle">Create Account
-            </h3>
-        </div>
-        
-        <div class="modal-body">
+<div ng-controller="ModalDemoCtrl"  >
+  <script type="text/ng-template" id="createAccount.html">
+    <div class="createaccount">
+      <div>
+        <h3 class="modaltitle">Create Account</h3>
+      </div>
+      <div class="modal-body">
         <form name="myForm">
-            <ul>
-       <div >
-       <label> Userame: &nbsp;
-       </label>
-        <p><input name='name' type="text" required ng-model="items.username" ng-minlength=3 
-        ng-maxlength=20 placeholder="User Name" /><br />
-         <div class="error" 
-        ng-show="myForm.name.$dirty && myForm.name.$invalid">
-    <small class="error" 
-        ng-show="myForm.name.$error.required">
-        Your name is required.
-    </small>
-          <small class="error" 
-            ng-show="myForm.name.$error.minlength">
+        <ul>
+          <label> Userame: &nbsp;
+          </label>
+          <p><input name='name' type="text" required ng-model="items.username" ng-minlength=3 ng-maxlength=20 placeholder="User Name" /><br> </p>
+          <div class="error" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+            <small class="error" ng-show="myForm.name.$error.required">
+            Your name is required.
+            </small>
+            <small class="error" ng-show="myForm.name.$error.minlength">
             Your name is required to be at least 3 characters
-    </small>
-    <small class="error" 
-            ng-show="myForm.name.$error.maxlength">
+            </small>
+            <small class="error" ng-show="myForm.name.$error.maxlength">
             Your name cannot be longer than 20 characters
-    </small>
-      
-    </small>
-    </div>
-    </div>     <div>
-       <label>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       </label>
-        <p><input name='email' type="email" required ng-model="items.email"  placeholder="E-mail Address" /><br />
-          <div class="error" 
-         ng-show="myForm.email.$dirty && myForm.email.$invalid">
-      <small class="error" 
-             ng-show="myForm.email.$error.required">
-             Your email is required.
-      </small>
-       <small class="error" 
-             ng-show="myForm.email.$error.email">
-             That is not a valid email. Please input a valid email.
-             </small>
+            </small>
           </div>
-            </div>
-        <div >
-       <label> 
-       Password:
-       </label>
-        <p><input name='password' type="text" required ng-model="items.password" ng-minlength=3 
-        ng-maxlength=20 placeholder="Password" /><br />
-         <div class="error" 
-        ng-show="myForm.password.$dirty && myForm.password.$invalid">
-    <small class="error" 
-        ng-show="myForm.password.$error.required">
-        Your password is required.
-    </small>
-          <small class="error" 
-            ng-show="myForm.password.$error.minlength">
+
+          <label>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </label>
+          <p><input name='email' type="email" required ng-model="items.email"  placeholder="E-mail Address" /><br />
+          <div class="error" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+            <small class="error" ng-show="myForm.email.$error.required">
+              Your email is required.
+            </small>
+            <small class="error" ng-show="myForm.email.$error.email">
+             That is not a valid email. Please input a valid email.
+            </small>
+          </div>
+
+        <label> Password:
+        </label>
+        <p><input name='password' type="text" required ng-model="items.password" ng-minlength=3 ng-maxlength=20 placeholder="Password" />
+        <br> </p>
+        <div class="error" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+          <small class="error" ng-show="myForm.password.$error.required">
+            Your password is required.
+          </small>
+          <small class="error" ng-show="myForm.password.$error.minlength">
             Your password is required to be at least 3 characters
-    </small>
-    <small class="error" 
-            ng-show="myForm.password.$error.maxlength">
+          </small>
+          <small class="error" ng-show="myForm.password.$error.maxlength">
             Your password cannot be longer than 20 characters
-    </small>
-    </div>
-    </div>
-    <div class="row"> 
-    <div class="col-xs-6">
-    <div ng-controller="TimepickerDemoCtrl">
-       <label>Country:</label>
-      <select class="form-control" ng-model="items.country" ng-options="opt for opt in options.hstep"></select>
-    </div>
-    
-    </div>
-     </ul>
-         
-
-  
- 
-  
-
+          </small>
         </div>
+
+        <div class="row"> 
+          <div class="col-xs-6">
+            <div ng-controller="TimepickerDemoCtrl">
+              <label>Country:</label>
+              <select class="form-control" ng-model="items.country" ng-options="opt for opt in options.hstep"></select>
+            </div>
+          </div>
+      </ul>
+         
         <div class="modal-footer" ng-controller="ModalDemoCtrl">
 
             <button class="btn btn-primary" ng-click="ok()">OK</button>
