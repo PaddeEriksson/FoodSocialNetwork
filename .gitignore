@@ -1,7 +1,7 @@
 BackEnd/.classpath
 BackEnd/.project
 BackEnd/target/*
-
+BackEnd/bin/*
 /local.properties
 /.idea/workspace.xml
 /build
