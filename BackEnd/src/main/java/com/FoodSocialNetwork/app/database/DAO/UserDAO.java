@@ -46,6 +46,7 @@ public class UserDAO{
 		
 		try
 		{
+			jdbcOperations.query(sql, params, new UserMapper());
 			User returnUser = jdbcOperations.queryForObject(sql, params, new UserMapper());
 			returnValue = returnUser != null;
 		}

@@ -1,0 +1,24 @@
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html ng-app="app">
+<head>
+
+<script src="../ExternalLib/angular.min.js"></script>
+<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+<script src="../JS/angular-file-upload.js"></script>
+<script src="../JS/testFileUplaod.js"></script>
+
+</head>
+<body>
+<div>
+    <div ng-controller="AppController">
+        <input type="file" nv-file-select uploader="uploader"/><br/>
+        <ul>
+            <li ng-repeat="item in uploader.queue">
+                Name: <span ng-bind="item.file.name"></span><br/>
+                <button ng-click="item.upload()">upload</button>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
