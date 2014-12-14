@@ -22,25 +22,18 @@ NEW RECIPE
 
             <p> This section helps you post your recipe online so your friends and other users can view, rate or share it.
             </p>
-
             <label> Title<br>
-
             <input type="text" ng-model='items.title'><br>
-
             <label>Instruction<br> 
-
             <textarea class="uploadtx"> </textarea><br>
-
             <label>Time<br>
-
             <input><br>
 
             <ul class="ListFormat">
             <li>
-            <label>Ingredients<br>
+            <label>Ingredient<br>
             <input class="small_Input">
             </li>
-            <li>
             <li>
             <label>Amount:<br>
             <input class="small_Input">
@@ -49,15 +42,16 @@ NEW RECIPE
             <label>Unit:<br>
             <input class="small_Input">
             </li>
-                        <label>Optional<br>
+            <li>
+            <label>Optional<br>
             <input class="small_Input" type="checkbox" name="ingredient" value="optional">
             </li>
             </ul><br>
             <button class="upload">ADD</button><br>
 
             <textarea></textarea><br>
-
         </div> 
+        
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">Post Recipe</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
