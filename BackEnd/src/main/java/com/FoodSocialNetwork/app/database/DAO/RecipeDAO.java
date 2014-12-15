@@ -1,5 +1,7 @@
 package com.FoodSocialNetwork.app.database.DAO;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.JdbcOperations;
@@ -54,4 +56,24 @@ public class RecipeDAO {
 		return returnValue;
 	}
 	
+	
+	public Recipe[] getAllRecipe(){
+		String sql = "Select * from Recipe";
+		Recipe[] returnValue = null;
+		try
+		{
+			List<Recipe> list = jdbcOperations.query(sql,new RecipeMapper());
+			returnValue = new Recipe[list.size()];
+			list.toArray(returnValue);
+		}
+		catch(Exception e){
+			System.out.println("Eror" + e.getMessage());
+		}
+		return returnValue;
+		
+	}
+	
 }
+
+
+	
