@@ -1,15 +1,5 @@
  
-body.generalB{
-
-	background: rgb(255,204,102);
-	text-align: center; 
-}
- 
-h2.generalT{
-	text-align:center; 
-}
-
-div.AllRecepies{
+ div.AllRecepies{
 	
 	padding: 10px;
 	border: 5px solid;

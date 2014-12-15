@@ -1,46 +1,45 @@
 <!doctype html>
 
-<html>
-
+<html ng-app ='UserInfo'>
 <head>
 <title>
 User Home Page
 </title>
-
-
-	<h1>Welcome Back "Victoria" (UserName)</h1>
   <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../Layouts/user layout.css">
-
-<h2> 'Meat' your 'Pears' </h2>
+	<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
 
 	<script src="../ExternalLib/angular.min.js"></script>
-  <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+  <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
 	<script src="../JS/User_Info.js"></script>
-  <script src="../JS/TestBS.js"></script>
+  <script src="../JS/Bas_Home_Funcs.js"></script>
  
 </head>
-<body>
-	<p>
-	Hello "Victoria (User Name)", find what your friends have been up to here in the food social network. You can also upload a new recipe for them to try out. Dont forget to click on the 'submit' button after. Enjoy optical nutrition while going through the different recipes!
-	</p>
-	<br>
-	
+<body class="generalBG">
+  <div class="FSN_Head">
+    <h1>Welcome Back "Victoria" (UserName)</h1>
+    <h2> 'Meat' your 'Pears' </h2>
+    <p>Hello "Victoria (User Name)", find what your friends have been up to here in the food social network. You can also upload a new recipe for them to try out. Dont forget to click on the 'submit' button after. Enjoy optical nutrition while going through the different recipes!
+    </p>
+    <br>
 
-<div class="dropdown">
-  <button id="dLabel" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-    Upload Recipe <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby-vertically="dLabel">
-    <li><a id="Menu1" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" ng-click="open()" > Instructions</a></li>
-    <li><a type="button" id="Menu2" class="dropdown-toggle" data-toggle="dropdown" >Ingredients and Tips</a></li>
-    <li class="divider"></li>
-  </ul>
-</div>
-  
-
-
-
+  </div>
+     
+  <div ng-controller="CollapseField">
+     <div class="input-group input-group-lg">
+      <span class="input-group-btn">
+        <button class="btn" ng-click="Home_Collapse = !Home_Collapse">Home</button>
+        <button class="btn" ng-click="URecipes_Collapse = !URecipes_Collapse">My Recipes</button>
+        <button class="btn" >Logout</button>
+        <button class="btn" >Search</button>
+      </span>
+       <input type="text" class="form-control">
+      </div>
+    <div class ="AllRecepies">
+      <div collapse="Home_Collapse">
+          <div class="well well-lg">Some content</div> 
+        </div>
+    </div>
+  </div>
 
 </body>
 </html>
