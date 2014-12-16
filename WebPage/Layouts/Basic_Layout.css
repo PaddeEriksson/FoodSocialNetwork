@@ -34,25 +34,22 @@ ul.ListFormat {
 li.Buttons{
 	display: inline;
 }
-div.Main_Buttons{
-	width:960px;
-	margin:0 auto;
-}
 .btn{
+	width:30%;
 	background: rgb(204, 153, 204);
 	border-style: none;
 	margin:0 auto;
 }
 .btn.focus, .btn:focus {
-
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+	background: rgb(184, 133, 184);
+	outline: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
-.btn-group>.btn:active{
+.input-group-btn>.btn:active{
     outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    -webkit-box-shadow: 0px 0px 3px rgb(184, 133, 184);
+    box-shadow: 0px 0px 3px rgb(184, 133, 184);
 }
 .input-group{
 	width:960px;

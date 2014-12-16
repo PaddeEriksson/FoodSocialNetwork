@@ -26,17 +26,17 @@ User Home Page
      
   <div ng-controller="CollapseField">
      <div class="input-group input-group-lg">
-      <span class="input-group-btn">
+      <div class="input-group-btn">
         <button class="btn" ng-click="Home_Collapse = !Home_Collapse">Home</button>
         <button class="btn" ng-click="URecipes_Collapse = !URecipes_Collapse">My Recipes</button>
         <button class="btn" >Logout</button>
         <button class="btn" >Search</button>
-      </span>
-       <input type="text" class="form-control">
+      </div>
+        <input type="text" class="form-control">
       </div>
     <div class ="AllRecepies">
-      <div collapse="Home_Collapse">
-          <div class="well well-lg">Some content</div> 
+      <div collapse="URecipes_Collapse">
+          <div class="well well-lg">Display user own recipes</div> 
         </div>
     </div>
   </div>
