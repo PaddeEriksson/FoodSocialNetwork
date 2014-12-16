@@ -34,7 +34,7 @@ UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log, $http) {
 
 UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items, $http, $location) {
 
-  $scope.myPathVariable = '../Templates/upload recipe.html';
+  $scope.myPathVariable = 'post recipe.html';
 
   $scope.setInfo = items;
   $scope.selected = {

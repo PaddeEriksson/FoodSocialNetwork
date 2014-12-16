@@ -6,6 +6,8 @@ NEW RECIPE
 	<h1>POST YOUR RECIPE here</h1>
 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../Layouts/post recipe.css">
+<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+
 <script src="../ExternalLib/angular.min.js"></script>
 <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
 <script src="../JS/User_Info.js"></script>
@@ -47,17 +49,17 @@ NEW RECIPE
             <input class="small_Input" type="checkbox" name="ingredient" value="optional">
             </li>
             </ul><br>
-            <button class="upload">ADD</button><br>
+            <button class="btn">ADD</button><br>
 
             <textarea></textarea><br>
         </div> 
         
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">Post Recipe</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            <button class="btn" ng-click="ok()">Post Recipe</button>
+            <button class="btn" ng-click="cancel()">Cancel</button>
         </div>
     </script>
-    <button class="btn btn-default" ng-click="RecepieWO()">Upload Recipe</button>
+    <button class="btn" ng-click="RecepieWO()">Upload Recipe</button>
    </div> 
 </body>
 
