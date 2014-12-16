@@ -25,7 +25,7 @@ NEW RECIPE
             <p> This section helps you post your recipe online so your friends and other users can view, rate or share it.
             </p>
             <label> Title<br>
-            <input type="text" ng-model='items.title'><br>
+            <input type="text" ng-model='recipeInfo.title'><br>
             <label>Instruction<br> 
             <textarea class="uploadtx"> </textarea><br>
             <label>Time<br>
@@ -33,20 +33,30 @@ NEW RECIPE
 
             <ul class="ListFormat">
             <li>
-            <label>Ingredient<br>
-            <input class="small_Input">
+            <label>Ingredients<br>
+           <input class="small_Input" ng-model='ingredientsInfo.Ingredients' type="text">
             </li>
-            <li>
-            <label>Amount:<br>
-            <input class="small_Input">
+
+            <li><label>Amount:<br>
+            <input class="small_Input" ng-model='ingredientsInfo.amount' type="number">
             </li>
             <li>
             <label>Unit:<br>
-            <input class="small_Input">
+            <!-- Split button -->
+            <div class="btn-group" dropdown ng-controller="PostRecipe">
+              <button type="button" class="btn dropdown-toggle" dropdown-toggle>{{tempname}}
+                <span class="caret"></span>
+                <span class="sr-only">Split button!</span>
+              </button>
+              <ul class="dropdown-menu" >
+               <li ng-repeat="un in unitsSgs"> 
+               <a href ng-click="ChngBtnName(un)">{{un}}</a> </li>
+              </ul>
+            </div>
             </li>
             <li>
             <label>Optional<br>
-            <input class="small_Input" type="checkbox" name="ingredient" value="optional">
+            <input class="small_Input" type="checkbox" name="ingredients" value="optional">
             </li>
             </ul><br>
             <button class="btn">ADD</button><br>
@@ -58,6 +68,7 @@ NEW RECIPE
             <button class="btn" ng-click="ok()">Post Recipe</button>
             <button class="btn" ng-click="cancel()">Cancel</button>
         </div>
+
     </script>
     <button class="btn" ng-click="RecepieWO()">Upload Recipe</button>
    </div> 
