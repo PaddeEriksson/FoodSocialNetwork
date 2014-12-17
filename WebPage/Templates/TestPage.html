@@ -10,7 +10,7 @@
 
   <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href= "../Layouts/CreateRecepie.css">
-  <link rel="stylesheet" type="text/css" href= "../Layouts/CreateRecepie.css">
+  <link rel="stylesheet" type="text/css" href= "../Layouts/Basic_Layout.css">
 
 	<script src="../ExternalLib/angular.min.js"></script>
   <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
@@ -29,5 +29,24 @@
     <div class="col-xs-6">.col-xs-6<br>Subsequent columns continue along the new line.</div>
 
 </div>
+
+
+<div ng-controller="DropdownCtrl"><!-- Single button -->
+<div class="btn-group" dropdown>
+      <button type="button" class="btn btn-danger">Action</button>
+      <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+</div>
+
 </body>
 </html>
