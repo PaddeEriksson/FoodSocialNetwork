@@ -55,6 +55,48 @@ public class RecipeDAO {
 		
 		return returnValue;
 	}
+
+
+	public Recipe getRecipe(String recipeTitle) {
+		Recipe returnValue = null;
+		
+		String sql = "Select * from recipe where recipetitle = ?";
+		
+		Object[] params = { recipeTitle };
+		
+		try
+		{
+			returnValue = jdbcOperations.queryForObject(sql,params,new RecipeMapper());
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		
+		return returnValue;
+	}
+	
+	public boolean deleteRecipe(String recipeTitle)
+	{
+		String sql = "Delete from Recipe where recipeTitle = ?";
+		Object[] params = {recipeTitle};
+		boolean returnValue = false;
+		
+		try
+		{
+			jdbcOperations.update(sql,params);
+			returnValue = true;
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return returnValue;
+	}
+	
 	
 	
 	public Recipe[] getAllRecipe(){

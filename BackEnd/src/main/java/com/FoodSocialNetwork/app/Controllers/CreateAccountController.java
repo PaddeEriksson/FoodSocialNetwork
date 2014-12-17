@@ -2,13 +2,11 @@ package com.FoodSocialNetwork.app.Controllers;
 
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.FoodSocialNetwork.app.database.DatabaseHandler;
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;

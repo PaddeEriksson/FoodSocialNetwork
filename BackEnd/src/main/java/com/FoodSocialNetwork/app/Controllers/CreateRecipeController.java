@@ -31,13 +31,13 @@ public class CreateRecipeController {
 	private RecipeDAO recipeDAO;
 	
 	@Resource
-	private IngredientDAO ingridientDAO;
+	private IngredientDAO ingredientDAO;
 	
 	public void setDAOS(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingridientDAO)
 	{
 		this.userDAO = userDAO;
 		this.recipeDAO = recipeDAO;
-		this.ingridientDAO = ingridientDAO;
+		this.ingredientDAO = ingridientDAO;
 	}
 	
 	@RequestMapping("/createRecipe")
@@ -48,7 +48,7 @@ public class CreateRecipeController {
 			@RequestParam(value = "instruction") String instruction,
 			@RequestParam(value = "category") long category,
 			@RequestParam(value = "image") String image,
-			@RequestParam(value = "ingridients") JSONArray ingridients,
+			@RequestParam(value = "ingredients") JSONArray ingridients,
 			@RequestParam(value = "tools") String[] tools)
 	{
 		DefaultResponse dr = new DefaultResponse();
@@ -102,7 +102,7 @@ public class CreateRecipeController {
 							//TODO Create the ingridients
 							
 							
-							ingridientDAO.createIngridient(ingridient);
+							ingredientDAO.createIngridient(ingridient);
 							
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block

@@ -72,17 +72,20 @@ public class UserDAO{
 	{
 		User user = null;
 		
-		String sql = "Select * from user where sessionID = ?";
-		
-		Object[] params = { session };
-		
-		try
-		{
-			user = jdbcOperations.queryForObject(sql, params, new UserMapper());
-		}
-		catch(Exception e)
-		{
+		if(session != null)
+		{	
+			String sql = "Select * from user where sessionID = ?";
 			
+			Object[] params = { session };
+			
+			try
+			{
+				user = jdbcOperations.queryForObject(sql, params, new UserMapper());
+			}
+			catch(Exception e)
+			{
+				
+			}
 		}
 		return user;
 	}

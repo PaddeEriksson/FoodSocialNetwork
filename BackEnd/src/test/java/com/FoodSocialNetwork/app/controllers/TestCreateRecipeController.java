@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.FoodSocialNetwork.app.Controllers.CreateRecipeController;
-import com.FoodSocialNetwork.app.database.Ingredient;
 import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
@@ -24,8 +23,7 @@ public class TestCreateRecipeController {
 	private UserDAO userDAO = Mockito.mock(UserDAO.class);
 	private RecipeDAO recDAO = Mockito.mock(RecipeDAO.class);
 	private IngredientDAO ingredDAO = Mockito.mock(IngredientDAO.class);
-	
-	
+		
 	@Before
 	public void setUp()
 	{

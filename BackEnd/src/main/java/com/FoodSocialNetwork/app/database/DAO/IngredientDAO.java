@@ -36,4 +36,23 @@ public class IngredientDAO {
 		
 		return returnValue;
 	}
+	
+	public boolean deleteIngredientsFromRecipe(String recipeTitle)
+	{
+		boolean returnValue = false;
+		
+		String sql = "Delete from ingredient where recipeTitle = ?";
+		Object[] params = {recipeTitle};
+		
+		try
+		{
+			jdbcOperations.update(sql,params);
+			returnValue = false;
+		}
+		catch(Exception e)
+		{
+			
+		}
+		return returnValue;
+	}
 }
