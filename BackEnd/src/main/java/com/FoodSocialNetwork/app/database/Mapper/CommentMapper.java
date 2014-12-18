@@ -12,6 +12,7 @@ public class CommentMapper implements RowMapper<Comment>{
 	@Override
 	public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Comment comment = new Comment();
+		comment.setRecipeID(rs.getLong("recipeID"));
 		comment.setTitle(rs.getString("title"));
 		comment.setUser(rs.getString("user"));
 		comment.setScore(rs.getInt("score"));

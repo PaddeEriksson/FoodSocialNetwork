@@ -3,7 +3,7 @@ package com.FoodSocialNetwork.app.database;
 public class Recipe {
 
 	
-	
+	private long id;
 	private String recipeTitle;
 	private String instruction;
 	private int time;
@@ -45,6 +45,12 @@ public class Recipe {
 	}
 	public void setIMG(String iMG) {
 		IMG = iMG;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }

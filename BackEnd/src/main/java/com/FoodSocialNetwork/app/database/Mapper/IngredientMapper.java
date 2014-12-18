@@ -12,6 +12,7 @@ public class IngredientMapper implements RowMapper<Ingredient>{
 	@Override
 	public Ingredient mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Ingredient ingredient = new Ingredient();
+		ingredient.setRecipeID(rs.getLong("recipeID"));
 		ingredient.setRecipeTitle(rs.getString("recipeTitle"));
 		ingredient.setName(rs.getString("name"));
 		ingredient.setIsOptional(rs.getInt("isOptional"));

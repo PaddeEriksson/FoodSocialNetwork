@@ -17,12 +17,12 @@ public class RecipeDAO {
 	private JdbcOperations jdbcOperations;
 	
 	
-	public boolean doesRecipeExist(String title)
+	public boolean doesRecipeExist(long recipeID)
 	{
 		boolean returnValue = false;
-		String sql = "Select * from recipe where recipeTitle = ?";
+		String sql = "Select * from recipe where id = ?";
 		
-		Object[] params = { title };
+		Object[] params = { recipeID };
 		
 		try
 		{
@@ -57,12 +57,12 @@ public class RecipeDAO {
 	}
 
 
-	public Recipe getRecipe(String recipeTitle) {
+	public Recipe getRecipe(long recipeID) {
 		Recipe returnValue = null;
 		
-		String sql = "Select * from recipe where recipetitle = ?";
+		String sql = "Select * from recipe where id = ?";
 		
-		Object[] params = { recipeTitle };
+		Object[] params = { recipeID };
 		
 		try
 		{
@@ -78,10 +78,10 @@ public class RecipeDAO {
 		return returnValue;
 	}
 	
-	public boolean deleteRecipe(String recipeTitle)
+	public boolean deleteRecipe(long recipeID)
 	{
-		String sql = "Delete from Recipe where recipeTitle = ?";
-		Object[] params = {recipeTitle};
+		String sql = "Delete from Recipe where id = ?";
+		Object[] params = {recipeID};
 		boolean returnValue = false;
 		
 		try

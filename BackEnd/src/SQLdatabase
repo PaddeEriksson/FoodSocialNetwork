@@ -15,34 +15,38 @@ Create TABLE category(
 );
 
 Create TABLE recipe(
-	recipeTitle VARCHAR(100),
+	id MEDIUMINT NOT NULL AUTO_INCREMENT,	recipeTitle VARCHAR(100),
 	instruction VARCHAR(100),
 	time INT,
 	category INT,
 	creator VARCHAR(100),
 	IMG VARCHAR(100),
-	primary KEY (recipeTitle)
+	creationTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	primary KEY (id)
 );
 
 Create TABLE ingredient(
+	recipeID MEDIUMINT,
 	recipeTitle VARCHAR(100),
 	name VARCHAR(100),
 	isOptional INT,
 	amount FLOAT,
 	amountType VARCHAR(100),
-	primary KEY (recipeTitle,name)
+	primary KEY (recipeID,name)
 );
 
 Create TABLE tool(
+	recipeID MEDIUMINT,
 	recipeTitle VARCHAR(100),
 	name VARCHAR(100),
-	primary KEY (recipeTitle,name)
+	primary KEY (recipeID,name)
 );
 
 Create TABLE favorite(
+	recipeID MEDIUMINT,
 	recipeTitle VARCHAR(100),
 	user VARCHAR(100),
-	primary KEY (recipeTitle,user)
+	primary KEY (recipeID,user)
 );
 
 Create TABLE comment(
@@ -50,6 +54,7 @@ Create TABLE comment(
 	user VARCHAR(100),
 	score INT,
 	commentText VARCHAR(100),
+	recipeID MEDIUMINT,
 	recipeTitle VARCHAR(100),
-	primary KEY (user,recipeTitle)
+	primary KEY (user,recipeID)
 );

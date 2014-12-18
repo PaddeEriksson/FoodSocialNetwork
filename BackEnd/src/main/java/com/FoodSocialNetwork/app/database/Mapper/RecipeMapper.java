@@ -12,6 +12,7 @@ public class RecipeMapper implements RowMapper<Recipe>{
 	@Override
 	public Recipe mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Recipe recipe = new Recipe();
+		recipe.setId(rs.getLong("id"));
 		recipe.setRecipeTitle(rs.getString("recipeTitle"));
 		recipe.setInstruction(rs.getString("instruction"));
 		recipe.setTime(rs.getInt("time"));

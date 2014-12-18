@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.Recipe;
-import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.ShowAllResponse;
@@ -34,11 +33,10 @@ public class ShowAllController {
 			ShowRecipeListResponse[] filler = new ShowRecipeListResponse[ar.length];
 			for(int i = 0; i < ar.length; i++)
 			{
-				System.out.println(ar[i].getCreator());
-				System.out.println(ar[i].getRecipeTitle());
 				ShowRecipeListResponse temp = new ShowRecipeListResponse();
 				temp.setCreator(ar[i].getCreator());
 				temp.setRecipeTitle(ar[i].getRecipeTitle());
+				temp.setRecipeID(ar[i].getId());
 				filler[i] = temp;
 				
 			}

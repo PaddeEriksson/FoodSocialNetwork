@@ -9,10 +9,8 @@ import org.mockito.Mockito;
 import com.FoodSocialNetwork.app.Controllers.ShowSingleRecipeController;
 import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.User;
-import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
-import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
-import com.FoodSocialNetwork.app.database.DAO.UserDAO;
-import com.FoodSocialNetwork.app.responce.ShowSingleRecipeResponse;
+import com.FoodSocialNetwork.app.database.DAO.*;
+import com.FoodSocialNetwork.app.responce.*;
 
 public class TestShowSingleRecipeController {
 	
@@ -34,11 +32,11 @@ public class TestShowSingleRecipeController {
 	public void testShowRecipe()
 	{
 		Mockito.when(userDAO.getUserFromSession("session")).thenReturn(new User());
-		Mockito.when(recDAO.doesRecipeExist("recipeTitle")).thenReturn(true);
+		Mockito.when(recDAO.doesRecipeExist(2)).thenReturn(true);
 		Mockito.when(rec.getInstruction()).thenReturn("title.txt","whatever");
-		Mockito.when(recDAO.getRecipe("recipeTitle")).thenReturn(rec);
+		Mockito.when(recDAO.getRecipe(2)).thenReturn(rec);
 		
-		ShowSingleRecipeResponse ssrr = (ShowSingleRecipeResponse) ssrc.showSingleRecipe("session", "recipeTitle");
+		ShowSingleRecipeResponse ssrr = (ShowSingleRecipeResponse) ssrc.showSingleRecipe("session", 2);
 		
 		
 		

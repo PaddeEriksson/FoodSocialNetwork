@@ -37,12 +37,12 @@ public class IngredientDAO {
 		return returnValue;
 	}
 	
-	public boolean deleteIngredientsFromRecipe(String recipeTitle)
+	public boolean deleteIngredientsFromRecipe(long recipeID)
 	{
 		boolean returnValue = false;
 		
-		String sql = "Delete from ingredient where recipeTitle = ?";
-		Object[] params = {recipeTitle};
+		String sql = "Delete from ingredient where id = ?";
+		Object[] params = {recipeID};
 		
 		try
 		{

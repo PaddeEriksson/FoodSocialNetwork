@@ -38,17 +38,17 @@ public class ShowSingleRecipeController {
 		this.ingredientDAO = ingredientDAO;
 	}
 	
-	@RequestMapping("/recipe/{recipeTitle}")
-	public DefaultResponse showSingleRecipe(@RequestParam(value = "sessionID") String session, @PathVariable String recipeTitle)
+	@RequestMapping("/recipe/{recipeID}")
+	public DefaultResponse showSingleRecipe(@RequestParam(value = "sessionID") String session, @PathVariable long recipeID)
 	{ 
 		
 		ShowSingleRecipeResponse response = new ShowSingleRecipeResponse();
 		
 		if(userDAO.getUserFromSession(session) != null)
 		{
-			if(recipeDAO.doesRecipeExist(recipeTitle))
+			if(recipeDAO.doesRecipeExist(recipeID))
 			{
-				Recipe rec = recipeDAO.getRecipe(recipeTitle);
+				Recipe rec = recipeDAO.getRecipe(recipeID);
 				
 				try {
 					Scanner scan = new Scanner(new File(rec.getInstruction()));

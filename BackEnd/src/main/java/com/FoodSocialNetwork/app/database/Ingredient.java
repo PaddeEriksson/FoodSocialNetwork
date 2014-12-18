@@ -4,6 +4,7 @@ public class Ingredient {
 
 	
 	
+	private long recipeID;
 	private String recipeTitle;
 	private String name;
 	private int isOptional;
@@ -38,6 +39,12 @@ public class Ingredient {
 	}
 	public void setAmountType(String amountType) {
 		this.amountType = amountType;
+	}
+	public long getRecipeID() {
+		return recipeID;
+	}
+	public void setRecipeID(long recipeID) {
+		this.recipeID = recipeID;
 	}
 	
 }

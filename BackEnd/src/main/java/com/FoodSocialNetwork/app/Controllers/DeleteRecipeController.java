@@ -32,16 +32,16 @@ public class DeleteRecipeController {
 	
 	@RequestMapping("/deleteRecipe")
 	public DefaultResponse deleteRecipe(@RequestParam(value = "sessionID") String session,
-										@RequestParam(value = "recipeTitle") String recipeTitle)
+										@RequestParam(value = "recipeID") long recipeID)
 	{
 		DefaultResponse dr = new DefaultResponse();
 		
 		if(userDAO.getUserFromSession(session) != null)
 		{
-			if(recDAO.doesRecipeExist(recipeTitle))
+			if(recDAO.doesRecipeExist(recipeID))
 			{				
-				recDAO.deleteRecipe(recipeTitle);
-				ingredientDAO.deleteIngredientsFromRecipe(recipeTitle);
+				recDAO.deleteRecipe(recipeID);
+				ingredientDAO.deleteIngredientsFromRecipe(recipeID);
 				dr.setSuccess(true);
 			}
 			else

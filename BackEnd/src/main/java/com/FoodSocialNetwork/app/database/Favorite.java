@@ -3,7 +3,7 @@ package com.FoodSocialNetwork.app.database;
 public class Favorite {
 
 	
-	
+	private long recipeID;
 	private String recipeTitle;
 	private String user;
 	public String getRecipeTitle() {
@@ -17,5 +17,11 @@ public class Favorite {
 	}
 	public void setUser(String user) {
 		this.user = user;
+	}
+	public long getRecipeID() {
+		return recipeID;
+	}
+	public void setRecipeID(long recipeID) {
+		this.recipeID = recipeID;
 	}
 }

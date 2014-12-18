@@ -8,6 +8,7 @@ public class Comment {
 	private String user;
 	private int score;
 	private String commentText;
+	private long recipeID;
 	private String recipeTitle;
 	public String getTitle() {
 		return title;
@@ -38,5 +39,11 @@ public class Comment {
 	}
 	public void setRecipeTitle(String recipeTitle) {
 		this.recipeTitle = recipeTitle;
+	}
+	public long getRecipeID() {
+		return recipeID;
+	}
+	public void setRecipeID(long recipeID) {
+		this.recipeID = recipeID;
 	}
 }

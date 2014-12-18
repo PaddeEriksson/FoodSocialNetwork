@@ -1,6 +1,6 @@
 package com.FoodSocialNetwork.app.database;
 
-public class User implements Comparable<User>{
+public class User {
 
 	
 	
@@ -45,9 +45,5 @@ public class User implements Comparable<User>{
 	}
 	public void setSessionID(String sessionID) {
 		this.sessionID = sessionID;
-	}
-	@Override
-	public int compareTo(User o) {
-		return this.userName.compareTo(o.userName);
 	}
 }

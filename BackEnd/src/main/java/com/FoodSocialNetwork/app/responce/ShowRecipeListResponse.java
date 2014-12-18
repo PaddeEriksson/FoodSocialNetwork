@@ -2,6 +2,7 @@ package com.FoodSocialNetwork.app.responce;
 
 public class ShowRecipeListResponse {
 	
+	private long recipeID;
 	private String recipeTitle;
 	private String creator;
 	public String getRecipeTitle() {
@@ -15,6 +16,12 @@ public class ShowRecipeListResponse {
 	}
 	public void setCreator(String creator) {
 		this.creator = creator;
+	}
+	public long getRecipeID() {
+		return recipeID;
+	}
+	public void setRecipeID(long recipeID) {
+		this.recipeID = recipeID;
 	}
 
 

@@ -53,29 +53,4 @@ public class TestCreateRecipeController {
 		assertEquals("Session does not exist", dr.getError());
 
 	}
-	
-	@Test
-	public void testSameTitle()
-	{
-		Mockito.when(userDAO.getUserFromSession("session")).thenReturn(new User());
-		Mockito.when(recDAO.doesRecipeExist("title")).thenReturn(true);
-		
-		DefaultResponse  dr = crc.createRecipe("session", "title", 2L, "instruction", 2L, "image", new JSONArray(), "tool tool2".split(" "));
-		
-		assertEquals(false, dr.isSuccess());
-		assertEquals("Recipe Already exist", dr.getError());
-	}
-	
-	@Test
-	public void testDatabaseCreationError()
-	{
-		Mockito.when(userDAO.getUserFromSession("session")).thenReturn(new User());
-		Mockito.when(recDAO.doesRecipeExist("title")).thenReturn(true);
-
-		DefaultResponse  dr = crc.createRecipe("session", "title", 2L, "instruction", 2L, "image", new JSONArray(), "tool tool2".split(" "));
-		
-		assertEquals(false, dr.isSuccess());
-		assertEquals("Recipe Already exist", dr.getError());
-	}
-	
 }
