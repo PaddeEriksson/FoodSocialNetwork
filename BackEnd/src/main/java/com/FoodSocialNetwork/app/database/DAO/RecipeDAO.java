@@ -145,7 +145,7 @@ public class RecipeDAO {
 			list.toArray(returnValue);
 		}
 		catch(Exception e){
-			System.out.println("Eror" + e.getMessage());
+			System.out.println("Error" + e.getMessage());
 		}
 		return returnValue;	
 	}
