@@ -32,10 +32,11 @@ User Home Page
   <div ng-controller="ButtonsControles">
      <div class="input-group input-group-lg">
       <div class="input-group-btn">
-        <button class="btn" ng-click="Home_Collapse = !Home_Collapse">Home</button>
-        <button class="btn" ng-click="URecipes_Collapse = !URecipes_Collapse">My Recipes</button>
+        <button class="btn" ng-click="GetAllRecipes()">Home</button>
+        <button class="btn" ng-click="GetAllMyRecipes(URecipes_Collapse = !URecipes_Collapse)">My Recipes</button>
         <button class="btn" ng-click="logout()">Logout</button>
         <button class="btn" ng-click="GetUserInfo()">Settings</button>
+        <button class="btn">Favorites</button>
         <buttpm class="btn" ng-include src="template.url"></bitton>
       </div>
         <input type="text" class="form-control">
@@ -43,6 +44,14 @@ User Home Page
         <button class="btn" >Search</button>
       </div>
       </div>
+      <div class="AllRecepies">
+      <ul>
+      <!--Show all recipes-->
+      <li ng-repeat= "R in AllRecipes" >{{R.recipeTitle}}</li>
+      bla bla bla 
+      </ul>
+    </div>
+    <!--Show All User Recipes-->
       <div collapse="URecipes_Collapse">
         <div class ="row singleRecipe">
           <div class="col-xs-10"> Recipe name</div>
@@ -58,12 +67,10 @@ User Home Page
           </div>
           <div class="col-xs-10">.Instructions</div>
         </div> 
+      <!--Show All Favorites-->
     </div>
   </div>
 
-  <div ng-controller="ButtonsControles">
-
-  </div>
 
 
 </body>

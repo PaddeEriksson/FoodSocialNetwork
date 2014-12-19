@@ -40,10 +40,10 @@ Create.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, 
   $scope.ok = function () {
   	console.log($scope.items);
   	$http({
-url: "http://83.254.221.239:9000/createAccount",
-method:"POST",
-data: $scope.items
-}).success(function(data){
+    url: "http://83.254.221.239:9000/createAccount",
+    method:"GET",
+    params: $scope.items
+    }).success(function(data){
 
       if (!data.success)
        {alert(data.error);

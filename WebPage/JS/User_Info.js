@@ -53,6 +53,7 @@ UserInfo.controller('OpenUserInfo', function ($scope, $modalInstance, items, $ht
       else
       {
         sessionStorage.whatever=data.sessionID;
+        sessionStorage.email=$scope.setInfo.email;
         window.location= $scope.myPathVariable;
       }
     });

@@ -10,17 +10,19 @@ var UserRcipes, Userinfo;
 BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
 	$scope.URecipes_Collapse = false;
-
+    $scope.AllUserRecipes={};
+    $scope.AllRecipes={};
 	$scope.template = templates[0];
 
-	var temp = sessionStorage.whatever;
-	
+    var mySession={sessionID: ""};
+    mySession.sessionID = sessionStorage.whatever;
 	$scope.logout = function(){
-	//The Server request for logout	
-		/*$http({
+	//The Server request for logout
+    console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
+		$http({
       	url: "http://83.254.221.239:9000/logout",
         method:"GET",
-        params: temp
+        params:{sessionID:mySession.sessionID} 
         }).success(function(data){
 
             if (!data.success)
@@ -29,21 +31,22 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
             else
             {
-            	alert("login successful");
-            	 window.location='homepage.html';
+                alert("Logout Success");
+                window.location='homepage.html';
             }
-        });*/
+        });
     };
 
     $scope.GetUserInfo = function()
     {
-    	temp.session = sessionStorage.whatever;
-    		//The Server request for Geting User info	
+    	
+    	//The Server request for Geting User info
+        /*console.log(sessionStorage.whatever);
 		$http
 		({
-      	url: "http://83.254.221.239:9000/profile/{dkajhanidis@hotmail.com}",
+      	url: "http://83.254.221.239:9000/profile/"+ $scope.setInfo.email,
         method:"GET",
-        params: temp.session
+        params: {sessionID:mySession.sessionID} 
         })
         .success(function(data)
         {
@@ -56,9 +59,80 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             {
             	alert("login successful");
             	console.log(data)
-            	window.location='homepage.html';
+                //Store UserInfo
+            }
+        });*/
+    };
+    $scope.GetAllMyRecipes=function(isOpen){
+        $scope.URecipes_Collapse = isOpen;
+        //The Server request for Geting User info
+        $http
+        ({
+        url: "http://83.254.221.239:9000/showMyRecipes",
+        method:"GET",
+        params: {sessionID:mySession.sessionID} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                console.log(data)
+                //Store MyRecipes
+                AllUserRecipes=data.recipe;
+                console.log(AllUserRecipes);
             }
         });
     };
-
+    $scope.GetAllMyFavorites=function(isOpen){
+        $scope.URecipes_Collapse = isOpen;
+        //The Server request for Geting User info
+        /*$http
+        ({
+        url: "http://83.254.221.239:9000/showMyRecipes",
+        method:"GET",
+        params: {sessionID:mySession.sessionID} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                console.log(data)
+                //Store MyRecipes
+                AllUserRecipes=data.recipes;
+                console.log(AllUserRecipes);
+            }
+        });*/
+    };
+    $scope.GetAllRecipes=function(isOpen){
+        $scope.URecipes_Collapse = isOpen;
+        //The Server request for Geting User info
+        $http
+        ({
+        url: "http://83.254.221.239:9000/ShowAll",
+        method:"GET",
+        params: {sessionID:mySession.sessionID} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                console.log(data)
+                //Store MyRecipes
+                $scope.AllRecipes = data.recipes;
+                console.log($scope.AllRecipes);
+            }
+        });
+    };
 });

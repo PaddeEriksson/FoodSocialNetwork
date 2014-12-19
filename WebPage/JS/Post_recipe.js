@@ -79,7 +79,7 @@ Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, Rec
   temp.session = sessionStorage.whatever;
   
   $scope.ok = function () {
-  temp.ingredients = JSON.stringify(ingredients);;
+  temp.ingredients = JSON.stringify(ingredients);
   	$http({
       url: "http://83.254.221.239:9000/createRecipe",
         method:"GET",
