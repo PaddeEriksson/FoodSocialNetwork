@@ -3,7 +3,6 @@
 NEW RECIPE
 </title>
 <head>
-	<h1>POST YOUR RECIPE here</h1>
 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../Layouts/post recipe.css">
 <link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
@@ -19,15 +18,13 @@ NEW RECIPE
     <script type="text/ng-template" id="postrecipe.html">
         <div class="modal-header">
             <h2> UPLOAD RECIPE </h2>
-
-            <p> This section helps you post your recipe online so your friends and other users can view, rate or share it.
-            </p>
+            
             <label> Title<br>
             <input type="text" ng-model='recipeInfo.title'></input><br>
             <label>Instruction<br> 
-            <textarea class="uploadtx"> </textarea><br>
+            <textarea class="uploadtx" ng-model="recipeInfo.info"> </textarea><br>
             <label>Time<br>
-            <input><br>
+            <input type="int" ng-model='recipeInfo.Time'><br>
 
             <ul class="ListFormat" ng-controller="PostRecipe">
             <li>
@@ -40,7 +37,7 @@ NEW RECIPE
             </li>
             <li>
             <label>Optional<br>
-            <input class="small_Input" type="checkbox" name="ingredients" value="optional"></input>
+            <input class="small_Input" type="checkbox" ng-click="ingredientsInfo.isOptional = !ingredientsInfo.isOptional"></input>
             </li>
             <li>
             <label>Unit:<br>
@@ -49,6 +46,7 @@ NEW RECIPE
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" >
+              <!-- A forloop that chooses the names and the unites-->
                <li ng-repeat="un in UinitsPr"> <a href ng-click="ChngBtnName(un)">{{un}}</a> </li>
               </ul>
             </div>

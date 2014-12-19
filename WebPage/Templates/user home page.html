@@ -12,6 +12,7 @@ User Home Page
   <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
 	<script src="../JS/User_Info.js"></script>
   <script src="../JS/Bas_Home_Funcs.js"></script>
+  <script src="../js/Post_recipe.js"></script>
  
 </head>
 <body class="generalBG">
@@ -23,13 +24,19 @@ User Home Page
     <br>
 
   </div>
+  <!--The Modal For Creating Recipe-->
 
-  <div ng-controller="CollapseField">
+
+
+   <!--The Toolbar-->
+  <div ng-controller="ButtonsControles">
      <div class="input-group input-group-lg">
       <div class="input-group-btn">
         <button class="btn" ng-click="Home_Collapse = !Home_Collapse">Home</button>
         <button class="btn" ng-click="URecipes_Collapse = !URecipes_Collapse">My Recipes</button>
-        <button class="btn" >Logout</button>
+        <button class="btn" ng-click="logout()">Logout</button>
+        <button class="btn" ng-click="GetUserInfo()">Settings</button>
+        <buttpm class="btn" ng-include src="template.url"></bitton>
       </div>
         <input type="text" class="form-control">
       <div class="input-group-btn">
@@ -53,5 +60,11 @@ User Home Page
         </div> 
     </div>
   </div>
+
+  <div ng-controller="ButtonsControles">
+
+  </div>
+
+
 </body>
 </html>

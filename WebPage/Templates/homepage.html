@@ -21,7 +21,7 @@ SocialFoodNetwork
 <P>
 Welcome to the food social network. <br> Food social network is a website where you can upload, view and share your favorite recipes or even search any new recipes that you would like to try out. <br> Have a nice meal :)
 </P>
-<div ng-controller="ModalUserInfo">
+<div ng-controller="SetUserInfo">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
           <h3 class="modal-title">Welcome :) !</h3>
@@ -117,22 +117,4 @@ Welcome to the food social network. <br> Food social network is a website where 
     <div ng-show="selected">Selection from a modal: {{ slected }}</div>
 </div>
 
-   
-<div>
-    <br>
-  <h1>
-Browse For Recipes Here
-  </h1> 
-    
-    <div> <input><button>Search</button> </div>
-
-</div>
- 
-</div>
-<h1>
-
-Need to share a recipe with your friends?
-<br>
- <button class="btn btn-default" ng-click="Open()">Upload Recipe</button> 
-</body>
 </html>

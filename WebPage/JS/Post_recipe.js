@@ -4,7 +4,7 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
 
   $scope.tempName = 'Units';
   $scope.ingredientsInfo = {name:'', isOptional: false, amount:'', amountType:''};
-  $scope.recipeInfo = {title:'', instruction:'BLA BLA BLA', time: 0};
+  $scope.recipeInfo = {title:'', instruction:'', time: 0};
   $scope.UinitsPr={
     Kg:'Kg',
     Mg:'Mg',
@@ -66,20 +66,20 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
   }; 
 
 });
+
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
 Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, RecepieN, $http) {
+  
+  //prepare a Temporare Variable to combine information in the same object
+  //in order to send it all in the same request
   $scope.recipeInfo=RecepieN;
   var temp = $scope.recipeInfo;
   temp.session = sessionStorage.whatever;
   
-  //console.log(temp);
-
   $scope.ok = function () {
   temp.ingredients = JSON.stringify(ingredients);;
- 	console.log($scope.items);
-  console.log(temp.ingredients);
   	$http({
       url: "http://83.254.221.239:9000/createRecipe",
         method:"GET",

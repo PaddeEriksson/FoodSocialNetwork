@@ -46,6 +46,7 @@ li.Buttons{
 	background: rgb(204, 153, 204);
 	border-style: none;
 	margin:0 auto;
+	border-radius: 0px;
 }
 
 .btn.focus, .btn:focus {
@@ -69,13 +70,18 @@ li.Buttons{
     box-shadow: 0px 0px 0px rgb(184, 133, 184);
 }
 
+
 .input-group-btn>.btn:active{
 	background: rgb(184, 133, 184);
     outline: none;
-    -webkit-box-shadow: 0px 0px 3px rgb(184, 133, 184);
-    box-shadow: 0px 0px 3px rgb(184, 133, 184);
+    -webkit-box-shadow: 0px 0px 0px rgb(184, 133, 184);
+    box-shadow: 0px 0px 0px rgb(184, 133, 184);
 }
+
+
+
 .input-group{
+	//background: rgb(184, 133, 184);
 	width:960px;
 	margin:0 auto;
 }
@@ -89,7 +95,7 @@ li.Buttons{
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-	background: rgb(184, 133, 184);
+	
 	outline: thin dotted;
 	outline: 0px auto -webkit-focus-ring-color;
 	outline-offset: 0px;

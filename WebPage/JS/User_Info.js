@@ -1,6 +1,8 @@
 var UserInfo = angular.module('UserInfo',['ui.bootstrap']);
 
-UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log, $http) {
+
+
+UserInfo.controller('SetUserInfo', function ($scope, $modal, $log, $http) {
 
   $scope.setInfo = {email:'', password:''};
 
@@ -8,11 +10,7 @@ UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log, $http) {
 
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
-
-      controller: 'ModalInstanceUserI',
-
-      controller: 'ModalInstanceUserInfo',
-
+      controller: 'OpenUserInfo',
       size: size,
       resolve: {
         items: function () {
@@ -32,9 +30,9 @@ UserInfo.controller('ModalUserInfo', function ($scope, $modal, $log, $http) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-UserInfo.controller('ModalInstanceUserInfo', function ($scope, $modalInstance, items, $http, $location) {
+UserInfo.controller('OpenUserInfo', function ($scope, $modalInstance, items, $http, $location) {
 
-  $scope.myPathVariable = 'post recipe.html';
+  $scope.myPathVariable = 'user home page.html';
 
   $scope.setInfo = items;
   $scope.selected = {
