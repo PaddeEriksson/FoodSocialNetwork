@@ -39,7 +39,6 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
     $scope.GetUserInfo = function()
     {
-    	
     	//The Server request for Geting User info
         /*console.log(sessionStorage.whatever);
 		$http
@@ -65,7 +64,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     };
     $scope.GetAllMyRecipes=function(isOpen){
         $scope.URecipes_Collapse = isOpen;
-        //The Server request for Geting User info
+        //The Server request for Geting All user specific recipes
         $http
         ({
         url: "http://83.254.221.239:9000/showMyRecipes",
@@ -89,7 +88,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     };
     $scope.GetAllMyFavorites=function(isOpen){
         $scope.URecipes_Collapse = isOpen;
-        //The Server request for Geting User info
+        //The Server request for Geting all favorites
         /*$http
         ({
         url: "http://83.254.221.239:9000/showMyRecipes",
@@ -113,7 +112,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     };
     $scope.GetAllRecipes=function(isOpen){
         $scope.URecipes_Collapse = isOpen;
-        //The Server request for Geting User info
+        //The Server request for Geting All Recipes
         $http
         ({
         url: "http://83.254.221.239:9000/ShowAll",
