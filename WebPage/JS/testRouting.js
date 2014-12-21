@@ -1,9 +1,12 @@
 var app = angular.module('app', []); 
+console.log("What?");
+
 //Define Routing for app
 //Uri /AddNewOrder -> template add_order.html and Controller AddOrderController
 //Uri /ShowOrders -> template show_orders.html and Controller AddOrderController
 app.config(['$routeProvider',
   function($routeProvider) {
+    console.log("hello");
     $routeProvider.
       when('/AddNewOrder', {
         templateUrl: '../Templates/temp.html',
@@ -20,7 +23,7 @@ app.config(['$routeProvider',
  
  
 app.controller('AddOrderController', function($scope) {
-     console.log("HELLO");
+     console.log("HELLO22");
     $scope.message = 'This is Add new order screen';
      
 });

@@ -1,10 +1,17 @@
 package com.FoodSocialNetwork.app.database.DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import com.FoodSocialNetwork.app.database.Recipe;
@@ -38,24 +45,53 @@ public class RecipeDAO {
 	}
 
 
-	public boolean createRecipe(Recipe r) {
+	public long createRecipe(final Recipe r) {
 		
-		String sql = "Insert into recipe(recipeTitle,instruction,time,category,creator,IMG) values(?,?,?,?,?,?)";
-		boolean returnValue = true;
-		Object[] params = { r.getRecipeTitle(), r.getInstruction(), r.getTime(), r.getCategory(), r.getCreator(), r.getIMG() };
-		
+		final String sql = "Insert into recipe(recipeTitle,instruction,time,category,creator,IMG) values(?,?,?,?,?,?)";
+		long returnValue = -1;
+		KeyHolder kh = new GeneratedKeyHolder();
 		try
 		{
-			jdbcOperations.update(sql, params);
+			
+			jdbcOperations.update(new PreparedStatementCreator() {           
+                @Override
+                public PreparedStatement createPreparedStatement(Connection connection)
+                        throws SQLException {
+                    PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    ps.setString(1, r.getRecipeTitle());
+                    ps.setString(2, r.getInstruction());
+                    ps.setLong(3, r.getTime());
+                    ps.setLong(4, r.getCategory());
+                    ps.setString(5, r.getCreator());
+                    ps.setString(6, r.getIMG());
+                    return ps;
+                }
+            }, kh);
+			returnValue = kh.getKey().longValue();
 		}
 		catch(Exception e)
 		{
-			returnValue = false;
+			returnValue = -1;
 		}
 		
 		return returnValue;
 	}
-
+	
+	public void updateRecipeInstructions(long id, String instructionsPath)
+	{
+		String sql = "Update recipe set instruction = ? where id = ?";
+		
+		Object[] params = {id , instructionsPath};
+		
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 
 	public Recipe getRecipe(long recipeID) {
 		Recipe returnValue = null;
@@ -80,7 +116,7 @@ public class RecipeDAO {
 	
 	public boolean deleteRecipe(long recipeID)
 	{
-		String sql = "Delete from Recipe where id = ?";
+		String sql = "Delete from recipe where id = ?";
 		Object[] params = {recipeID};
 		boolean returnValue = false;
 		
@@ -100,7 +136,7 @@ public class RecipeDAO {
 	
 	
 	public Recipe[] getAllRecipe(){
-		String sql = "Select * from Recipe";
+		String sql = "Select * from recipe";
 		Recipe[] returnValue = null;
 		try
 		{
@@ -111,11 +147,26 @@ public class RecipeDAO {
 		catch(Exception e){
 			System.out.println("Eror" + e.getMessage());
 		}
-		return returnValue;
-		
+		return returnValue;	
 	}
-	
+
+
+	public List<Recipe> getAllRecipeFromUser(String email) {
+		
+		
+		String sql = "Select * from recipe where creator = ?";
+		Object[] params = {email};
+		List<Recipe> recipes = null;
+		
+		try
+		{
+			recipes = jdbcOperations.query(sql, params,new RecipeMapper());
+		}
+		catch(Exception e)
+		{
+			System.out.println("ERROR WITH SQL CLAUSE");
+			System.out.println(e.getMessage());
+		}		
+		return recipes;
+	}	
 }
-
-
-	

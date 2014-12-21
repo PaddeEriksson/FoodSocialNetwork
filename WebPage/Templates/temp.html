@@ -1,2 +1,20 @@
-<!doctype html>
-Content	bla bla
+<html ng-app = "profileApp">
+<head>
+	<title>Title</title>
+	<script src="../ExternalLib/angular.min.js"></script>
+	<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+	<script src="../JS/testProfilePage.js"></script>
+</head>
+<body>
+	<h1>{{hello}}</h1>
+	<div ng-controller="profilePage">
+  		<label>Image: </label><br><img ng-src="http://localhost:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/>
+  		<br>
+		<label>Username: {{ username }}</label>
+		<br>
+		<label>Email: {{ email }}</label>
+		<br>
+		<label>Country: {{ country }}</label>
+	</div>
+</body>
+</html>

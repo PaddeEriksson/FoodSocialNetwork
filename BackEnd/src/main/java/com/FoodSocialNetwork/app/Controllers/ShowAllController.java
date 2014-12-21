@@ -41,7 +41,7 @@ public class ShowAllController {
 				
 			}
 			returnValue.setRecipes(filler);
-			
+			returnValue.setSuccess(true);
 		}
 		else
 		{

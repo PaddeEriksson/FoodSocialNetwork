@@ -34,7 +34,7 @@ public class TestCreateRecipeController {
 	public void testCreateRecipe()
 	{
 		Mockito.when(userDAO.getUserFromSession("session")).thenReturn(new User());
-		Mockito.when(recDAO.createRecipe(any(Recipe.class))).thenReturn(true);
+		Mockito.when(recDAO.createRecipe(any(Recipe.class))).thenReturn(0L);
 		
 		DefaultResponse  dr = crc.createRecipe("session", "title", 2L, "instruction", 2L, "image", new JSONArray(), "tool tool2".split(" "));
 		

@@ -64,6 +64,9 @@ public class ShowSingleRecipeController {
 					response.setRecipe(rec);
 					response.setSuccess(true);
 					
+					Ingredient[] in = ingredientDAO.getIngredients(recipeID);
+					response.setIngridients(in);
+					response.setUsername(rec.getCreator());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -79,12 +82,6 @@ public class ShowSingleRecipeController {
 			response.setSuccess(false);
 			response.setError("Invalid session");
 		}
-		
-		Ingredient[] in = new Ingredient[2];
-		in[0] = new Ingredient();
-		in[1] = new Ingredient();
-		
-		response.setIngridients(in);
 		
 		return response;
 	}

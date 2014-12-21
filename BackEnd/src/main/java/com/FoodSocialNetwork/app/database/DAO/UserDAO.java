@@ -89,5 +89,26 @@ public class UserDAO{
 		}
 		return user;
 	}
+
+	public User getUserFromEmail(String email) {
+		User user = null;
+		
+		if(email != null)
+		{	
+			String sql = "Select * from user where email = ?";
+			
+			Object[] params = { email };
+			
+			try
+			{
+				user = jdbcOperations.queryForObject(sql, params, new UserMapper());
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+		return user;		
+	}
 	
 }

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.FoodSocialNetwork.app.database.DAO.CommentDAO;
+import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
@@ -22,6 +24,12 @@ public class DeleteRecipeController {
 	
 	@Resource
 	private IngredientDAO ingredientDAO;
+	
+	@Resource
+	private CommentDAO commentDAO;
+	
+	@Resource
+	private FavoriteDAO favoriteDAO;
 	
 	public void setDAOs(UserDAO userDAO, RecipeDAO recDAO, IngredientDAO ingredientDAO)
 	{
@@ -42,6 +50,8 @@ public class DeleteRecipeController {
 			{				
 				recDAO.deleteRecipe(recipeID);
 				ingredientDAO.deleteIngredientsFromRecipe(recipeID);
+				commentDAO.deleteCommentsWithRecipeID(recipeID);
+				favoriteDAO.deleteFavoritesOfRecipeID(recipeID);
 				dr.setSuccess(true);
 			}
 			else

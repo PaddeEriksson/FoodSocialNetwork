@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.Ingredient;
 import com.FoodSocialNetwork.app.database.Recipe;
+import com.FoodSocialNetwork.app.database.Tool;
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
+import com.FoodSocialNetwork.app.database.DAO.ToolDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.*;
 
@@ -32,6 +34,9 @@ public class CreateRecipeController {
 	
 	@Resource
 	private IngredientDAO ingredientDAO;
+	
+	@Resource
+	private ToolDAO toolDAO;
 	
 	public void setDAOS(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingridientDAO)
 	{
@@ -67,20 +72,25 @@ public class CreateRecipeController {
 			r.setIMG("");
 			r.setCreator(user.getEmail());
 			r.setTime((int) time);
-			PrintWriter pw;
-			try {
-				File file = new File(title + ".txt");
-				pw = new PrintWriter(file);
-				pw.write(instruction);
-				pw.flush();
-				pw.close();
-				r.setInstruction(file.getAbsolutePath());
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(recipeDAO.createRecipe(r))
+
+			long recipeID = recipeDAO.createRecipe(r);
+			if(recipeID != -1)
 			{
+				//Write instructions to file
+				PrintWriter pw;
+				try {
+					File file = new File("recipe/" + title + recipeID + ".txt");
+					pw = new PrintWriter(file);
+					pw.write(instruction);
+					pw.flush();
+					pw.close();
+					r.setInstruction(file.getAbsolutePath());
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				recipeDAO.updateRecipeInstructions(recipeID, r.getInstruction());
+				//Create Ingredients
 				for(int i = 0; i < ingridients.length(); i++)
 				{
 					Ingredient ingridient = new Ingredient();
@@ -98,6 +108,7 @@ public class CreateRecipeController {
 						ingridient.setRecipeTitle(r.getRecipeTitle());
 						ingridient.setAmount((float) obj.getDouble("amount"));
 						ingridient.setAmountType(obj.getString("amountType"));
+						ingridient.setRecipeID(recipeID);
 						//TODO Create the ingridients
 						
 						ingredientDAO.createIngridient(ingridient);
@@ -106,6 +117,14 @@ public class CreateRecipeController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
+				//Create tools
+				for(int i = 0; i < tools.length; i++)
+				{
+					Tool t = new Tool();
+					t.setName(tools[i]);
+					t.setRecipeID(recipeID);
+					toolDAO.createTool(t);
 				}
 			}
 			else

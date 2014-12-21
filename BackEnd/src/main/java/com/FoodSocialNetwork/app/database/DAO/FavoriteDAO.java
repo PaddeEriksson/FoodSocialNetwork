@@ -10,4 +10,18 @@ public class FavoriteDAO {
 
 	@Resource
 	private JdbcOperations jdbcOperations;
+	
+	public void deleteFavoritesOfRecipeID(long recipeID)
+	{
+		String sql = "Delete from favorite where recipeID = ?";
+		Object[] params = {recipeID};
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 }
