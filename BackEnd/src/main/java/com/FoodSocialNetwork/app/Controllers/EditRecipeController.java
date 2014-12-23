@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.Ingredient;
+import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
@@ -28,15 +29,18 @@ public class EditRecipeController {
 	@RequestMapping("/editRecipe")
 	public DefaultResponse editRecipe(
 			@RequestParam(value = "sessionID") String session,
-			@RequestParam(value = "recipeTitle") String recipeTitle)
+			@RequestParam(value = "recipeID") long recipeID,
+			@RequestParam(value = "newTitle") String newRecipeTitle)
 	{
 		DefaultResponse dr = new DefaultResponse();
 		
 		
 		if(userDAO.getUserFromSession(session) != null)
 		{
-			if(recDAO.doesRecipeExist(recipeTitle))
+			if(recDAO.doesRecipeExist(recipeID))
 			{
+				recDAO.editRecipe("",new Recipe());
+				
 				
 			}
 			else

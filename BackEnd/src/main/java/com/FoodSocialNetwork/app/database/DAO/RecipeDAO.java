@@ -149,8 +149,30 @@ public class RecipeDAO {
 		}
 		return returnValue;	
 	}
+	
+	public boolean editRecipe(String oldTitle,Recipe recipe)
+	{
+		boolean returnValue = false;
+		
+		String sql = "Delete from recipe where recipeTitle = ?";
+		String sql2 = "Update recipe SET recipeTitle=?,instruction=?,time=? where recipeTitle = ?";
+		
+		Object[] params = {recipe.getRecipeTitle(),recipe.getInstruction(),recipe.getTime(),oldTitle};		
+		
+		try
+		{
+			jdbcOperations.update(sql2, params);
+			returnValue = true;
+		}
+		catch(Exception e)
+		{
+			
+		}
+		return returnValue;
+	}
+	
 
-
+	
 	public List<Recipe> getAllRecipeFromUser(String email) {
 		
 		
