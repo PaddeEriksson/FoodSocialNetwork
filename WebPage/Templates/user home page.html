@@ -10,6 +10,8 @@ User Home Page
 
 	<script src="../ExternalLib/angular.min.js"></script>
   <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
+  <script src="../JS/angular-file-upload.js"></script>
+
 	<script src="../JS/User_Info.js"></script>
   <script src="../JS/Bas_Home_Funcs.js"></script>
   <script src="../js/Post_recipe.js"></script>
@@ -27,8 +29,6 @@ User Home Page
   <!--The Modal For Creating Recipe-->
 
 
-
-<<<<<<< HEAD
    <!--The Toolbar-->
   <div ng-controller="ButtonsControles">
      <div class="input-group input-group-lg">
@@ -39,14 +39,6 @@ User Home Page
         <button class="btn" ng-click="GetUserInfo()">Settings</button>
         <button class="btn">Favorites</button>
         <buttpm class="btn" ng-include src="template.url"></bitton>
-=======
-  <div ng-controller="CollapseField">
-     <div class="input-group input-group-lg">
-      <div class="input-group-btn">
-        <button class="btn" ng-click="Home_Collapse = !Home_Collapse">Home</button>
-        <button class="btn" ng-click="URecipes_Collapse = !URecipes_Collapse">My Recipes</button>
-        <button class="btn" ng-click="logout()">Logout</button>
->>>>>>> Some changes in the backend. Get user infomation
       </div>
         <input type="text" class="form-control">
       <div class="input-group-btn">

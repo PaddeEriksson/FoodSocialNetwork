@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
-import com.FoodSocialNetwork.app.postRequest.CreateAccountRequest;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 @RestController

@@ -1,18 +1,25 @@
 package com.FoodSocialNetwork.app.Controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.Ingredient;
 import com.FoodSocialNetwork.app.database.Recipe;
+import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
@@ -84,5 +91,39 @@ public class ShowSingleRecipeController {
 		}
 		
 		return response;
+	}
+    @RequestMapping(value = "/recipePicture/{id}",
+            method = RequestMethod.GET,
+            headers="Accept=image/jpeg, image/jpg, image/png, image/gif")
+	public byte[] showUserPicture(@RequestParam(value = "sessionID") String session,
+								  @PathVariable(value = "id") long recipeID) throws IOException
+	{
+		//This will return picture of user
+    	byte[] returnValue = null;
+    	if(userDAO.getUserFromSession(session) != null)
+    	{
+    		Recipe rec = recipeDAO.getRecipe(recipeID);
+    		
+    		rec.getIMG();
+			String path = rec.getIMG();
+			if(path == null)
+			{
+				path = "/profilePictures/defaultprofile.jpg";
+			}
+			
+	        InputStream is = this.getClass().getResourceAsStream(path); 
+
+	        // Prepare buffered image.
+	        BufferedImage img = ImageIO.read(is);
+
+	        // Create a byte array output stream.
+	        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+	        // Write to output stream
+	        ImageIO.write(img, "jpg", bao);
+	        returnValue = bao.toByteArray();
+    	}
+
+        return returnValue;
 	}
 }

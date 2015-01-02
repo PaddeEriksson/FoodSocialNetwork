@@ -44,7 +44,7 @@ public class IngredientDAO {
 	{
 		boolean returnValue = false;
 		
-		String sql = "Delete from ingredient where id = ?";
+		String sql = "Delete from ingredient where recipeID = ?";
 		Object[] params = {recipeID};
 		
 		try

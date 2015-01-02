@@ -4,7 +4,7 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
 
   $scope.tempName = 'Units';
   $scope.ingredientsInfo = {name:'', isOptional: false, amount:'', amountType:''};
-  $scope.recipeInfo = {title:'', instruction:'', time: 0};
+  $scope.recipeInfo = {title:'', instruction:'', time: 0, image: ''};
   $scope.UinitsPr={
     Kg:'Kg',
     Mg:'Mg',
@@ -70,36 +70,65 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, RecepieN, $http) {
+Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, RecepieN, $http, FileUploader) {
   
   //prepare a Temporare Variable to combine information in the same object
   //in order to send it all in the same request
   $scope.recipeInfo=RecepieN;
   var temp = $scope.recipeInfo;
   temp.session = sessionStorage.whatever;
-  
+  temp.session = "tempSession" //Todo only used for some tests
+    
+  var tempUploader = new FileUploader();
+  tempUploader.url = "http://83.254.221.239:9000/createRecipe";
+
+  tempUploader.onBeforeUploadItem = function (item)
+  {
+    item.alias = "image";
+    item.formData.push(temp);
+  };
+
+  tempUploader.onSuccessItem = function(item, response, status, headers)
+  {
+    if (!response.success)
+    {
+      alert(response.error);
+    }
+    else
+    {
+      alert("Recipe Posted");
+    }
+  }
+
+  $scope.uploader = tempUploader;
   $scope.ok = function () {
-  temp.ingredients = JSON.stringify(ingredients);
-  	$http({
-      url: "http://83.254.221.239:9000/createRecipe",
+
+    temp.ingredients = JSON.stringify(ingredients);
+    if($scope.uploader.queue.length === 0)
+    {
+      //No file
+      $http({
+        url: "http://83.254.221.239:9000/createRecipe",
         method:"GET",
-        params: temp
+        params: temp 
         }).success(function(data){
 
-            if (!data.success)
-             {alert(data.error);
-             
-            }
-            else
-            {
-             alert("login successful");
-            }
-        	});
-          console.log(RecepieN);
-          console.log(ingredients[0]);
-        
-        };
-
+          if (!response.success)
+          {
+            alert(response.error);
+          }
+          else
+          {
+           alert("Recipe Posted");
+          }
+        });    
+    }
+    else
+    {
+      //With file
+      $scope.uploader.uploadAll();        
+    }
+  };
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };

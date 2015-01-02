@@ -9,6 +9,7 @@ NEW RECIPE
 
 <script src="../ExternalLib/angular.min.js"></script>
 <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
+<script src="../JS/angular-file-upload.js"></script>
 <script src="../JS/User_Info.js"></script>
 <script src="../JS/Post_recipe.js"></script>
 
@@ -58,7 +59,9 @@ NEW RECIPE
                 {{ingredient[0]}}
             </textarea><br>
             </li>
-            </div> 
+            </div>
+            <input type="file" nv-file-select uploader="uploader" ng-model='recipeInfo.image'/><br/>
+ 
             <div class="modal-footer" >
                 <button class="btn" ng-click="ok()">Post Recipe</button>
                 <button class="btn" ng-click="cancel()">Cancel</button>

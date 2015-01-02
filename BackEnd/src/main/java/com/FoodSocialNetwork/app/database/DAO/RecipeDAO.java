@@ -33,7 +33,7 @@ public class RecipeDAO {
 		
 		try
 		{
-			Recipe r = jdbcOperations.queryForObject(sql, params,new RecipeMapper());
+			jdbcOperations.queryForObject(sql, params,new RecipeMapper());
 			returnValue = true;
 		}
 		catch(Exception e)
@@ -81,7 +81,7 @@ public class RecipeDAO {
 	{
 		String sql = "Update recipe set instruction = ? where id = ?";
 		
-		Object[] params = {id , instructionsPath};
+		Object[] params = {instructionsPath, id };
 		
 		try
 		{
@@ -150,14 +150,14 @@ public class RecipeDAO {
 		return returnValue;	
 	}
 	
-	public boolean editRecipe(String oldTitle,Recipe recipe)
+	public boolean editRecipe(long recipeID,Recipe recipe)
 	{
 		boolean returnValue = false;
 		
 		String sql = "Delete from recipe where recipeTitle = ?";
-		String sql2 = "Update recipe SET recipeTitle=?,instruction=?,time=? where recipeTitle = ?";
+		String sql2 = "Update recipe SET recipeTitle=?,category=?,time=? where id = ?";
 		
-		Object[] params = {recipe.getRecipeTitle(),recipe.getInstruction(),recipe.getTime(),oldTitle};		
+		Object[] params = {recipe.getRecipeTitle(),recipe.getCategory(),recipe.getTime(),recipeID};		
 		
 		try
 		{
@@ -190,5 +190,40 @@ public class RecipeDAO {
 			System.out.println(e.getMessage());
 		}		
 		return recipes;
+	}
+
+
+	public void updateRecipeImage(Recipe r) {
+		String sql = "Update recipe set IMG = ? where id = ?";
+		
+		Object[] params = {r.getIMG() , r.getId()};
+		
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			
+		}		
+	}
+
+
+	public List<Recipe> searchRecipe(String serachString) {
+		
+		String sql = "Select * from Recipe where recipeTitle like %?%";
+		
+		Object[] params = {serachString};
+		List<Recipe> returnValue = null;
+		try
+		{
+			returnValue = jdbcOperations.query(sql, params,new RecipeMapper());
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return returnValue;
 	}	
 }

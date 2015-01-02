@@ -1,4 +1,4 @@
-var UserInfo = angular.module('UserInfo',['ui.bootstrap']);
+var UserInfo = angular.module('UserInfo',['ui.bootstrap', 'angularFileUpload']);
 
 
 

@@ -1,6 +1,42 @@
 var BasicFunctions = angular.module('UserInfo');
 
 
+BasicFunctions.factory('userProfileID', function()
+{
+    var savedData = {};
+    function set(data)
+    {
+        savedData = data;
+    }
+    function get()
+    {
+        return savedData;
+    }
+
+    return {
+        set: set,
+        get: get
+    }
+});
+
+BasicFunctions.factory('recipeID', function()
+{
+    var savedData = {};
+    function set(data)
+    {
+        savedData = data;
+    }
+    function get()
+    {
+        return savedData;
+    }
+
+    return {
+        set: set,
+        get: get
+    }
+});
+
 //other homepage that we will include with ng-include :D
 var templates =
 [ { name: 'temp.html', url: 'post recipe.html'}];

@@ -1,14 +1,17 @@
-<html ng-app = "profileApp">
+<html ng-app ='UserInfo'>
 <head>
 	<title>Title</title>
 	<script src="../ExternalLib/angular.min.js"></script>
-	<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+	<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
+	<script src="../JS/angular-file-upload.js"></script>
+	<script src="../JS/User_Info.js"></script>
+ 	<script src="../JS/Bas_Home_Funcs.js"></script>
 	<script src="../JS/testProfilePage.js"></script>
 </head>
 <body>
 	<h1>{{hello}}</h1>
 	<div ng-controller="profilePage">
-  		<label>Image: </label><br><img ng-src="http://localhost:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/>
+  		<label>Image: </label><br><img ng-src="http://localhost:8080/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/>
   		<br>
 		<label>Username: {{ username }}</label>
 		<br>
