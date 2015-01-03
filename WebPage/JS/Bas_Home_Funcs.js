@@ -19,24 +19,6 @@ BasicFunctions.factory('userProfileID', function()
     }
 });
 
-BasicFunctions.factory('recipeID', function()
-{
-    var savedData = {};
-    function set(data)
-    {
-        savedData = data;
-    }
-    function get()
-    {
-        return savedData;
-    }
-
-    return {
-        set: set,
-        get: get
-    }
-});
-
 //other homepage that we will include with ng-include :D
 var templates =
 [ { name: 'temp.html', url: 'post recipe.html'}];
@@ -45,13 +27,14 @@ var UserRcipes, Userinfo;
 //Controle for all buttons on UserHomePage
 BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
-	$scope.URecipes_Collapse = false;
+	$scope.URecipes_Collapse = true;
     $scope.AllUserRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
 
     var mySession={sessionID: ""};
     mySession.sessionID = sessionStorage.whatever;
+    $scope.session = sessionStorage.whatever;
 	$scope.logout = function(){
 	//The Server request for logout
     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
@@ -99,8 +82,9 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         });*/
     };
     $scope.GetAllMyRecipes=function(isOpen){
-        $scope.URecipes_Collapse = isOpen;
         //The Server request for Geting All user specific recipes
+        $scope.URecipes_Collapse = isOpen;
+
         $http
         ({
         url: "http://83.254.221.239:9000/showMyRecipes",
@@ -115,12 +99,12 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
             else
             {
-                console.log(data)
                 //Store MyRecipes
-                AllUserRecipes=data.recipe;
-                console.log(AllUserRecipes);
+                $scope.AllUserRecipes=data.recipes;
+                console.log($scope.AllUserRecipes);
             }
         });
+
     };
     $scope.GetAllMyFavorites=function(isOpen){
         $scope.URecipes_Collapse = isOpen;
@@ -145,6 +129,12 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 console.log(AllUserRecipes);
             }
         });*/
+    };
+    $scope.ShowSingleRecipe=function(recID)
+    {
+        var location = "showRecipeLayout.html"
+        sessionStorage.recipeID = recID;
+        window.location= location;
     };
     $scope.GetAllRecipes=function(isOpen){
         $scope.URecipes_Collapse = isOpen;

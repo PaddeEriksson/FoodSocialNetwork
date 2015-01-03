@@ -3,6 +3,7 @@ package com.FoodSocialNetwork.app.Controllers;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -109,19 +110,34 @@ public class ShowSingleRecipeController {
 			if(path == null)
 			{
 				path = "/profilePictures/defaultprofile.jpg";
+		        InputStream is = this.getClass().getResourceAsStream(path); 
+
+		        // Prepare buffered image.
+		        BufferedImage img = ImageIO.read(is);
+
+		        // Create a byte array output stream.
+		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+		        // Write to output stream
+		        ImageIO.write(img, "jpg", bao);
+		        returnValue = bao.toByteArray();
 			}
-			
-	        InputStream is = this.getClass().getResourceAsStream(path); 
+			else
+			{
+				FileInputStream fis = new FileInputStream(path);
+		        InputStream is = fis;
 
-	        // Prepare buffered image.
-	        BufferedImage img = ImageIO.read(is);
+		        // Prepare buffered image.
+		        BufferedImage img = ImageIO.read(is);
 
-	        // Create a byte array output stream.
-	        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+		        // Create a byte array output stream.
+		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
-	        // Write to output stream
-	        ImageIO.write(img, "jpg", bao);
-	        returnValue = bao.toByteArray();
+		        // Write to output stream
+		        ImageIO.write(img, "png", bao);
+		        returnValue = bao.toByteArray();
+			}
+
     	}
 
         return returnValue;

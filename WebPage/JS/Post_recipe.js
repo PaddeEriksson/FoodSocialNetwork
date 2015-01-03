@@ -77,7 +77,6 @@ Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, Rec
   $scope.recipeInfo=RecepieN;
   var temp = $scope.recipeInfo;
   temp.session = sessionStorage.whatever;
-  temp.session = "tempSession" //Todo only used for some tests
     
   var tempUploader = new FileUploader();
   tempUploader.url = "http://83.254.221.239:9000/createRecipe";
@@ -113,9 +112,9 @@ Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, Rec
         params: temp 
         }).success(function(data){
 
-          if (!response.success)
+          if (!data.success)
           {
-            alert(response.error);
+            alert(data.error);
           }
           else
           {

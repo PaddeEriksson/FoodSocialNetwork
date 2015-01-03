@@ -211,8 +211,8 @@ public class RecipeDAO {
 
 	public List<Recipe> searchRecipe(String serachString) {
 		
-		String sql = "Select * from Recipe where recipeTitle like %?%";
-		
+		String sql = "Select * from Recipe where recipeTitle like ?";
+		serachString = "%" + serachString + "%";
 		Object[] params = {serachString};
 		List<Recipe> returnValue = null;
 		try

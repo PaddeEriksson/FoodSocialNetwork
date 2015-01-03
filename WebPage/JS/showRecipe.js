@@ -1,17 +1,15 @@
 var profilePage = angular.module('UserInfo');
 
-profilePage.controller('recipePage',  function($scope, $http, recipeID){
+profilePage.controller('recipePage',  function($scope, $http){
 	//This sould be removed
 
 
-	sessionStorage.whatever = "2147f892-b4c2-485e-9866-ded50c6381e3";
-	recipeID.set(1);
-	$scope.recipeID = recipeID.get();
+	$scope.recipeID = sessionStorage.recipeID;
 	$scope.session = sessionStorage.whatever;
-	console.log($scope.username);
+	console.log($scope.recipeID);
 	//TODO update to server IP
 	$http({
-   		url: "http://localhost:8080/recipe/" + recipeID.get(), 
+   		url: "http://83.254.221.239:9000/recipe/" + $scope.recipeID, 
    		method: "GET",
    		params: {sessionID: sessionStorage.whatever},
  	}).success(function(data) {

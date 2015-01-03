@@ -54,20 +54,19 @@ User Home Page
     </div>
     <!--Show All User Recipes-->
       <div collapse="URecipes_Collapse">
-        <div class ="row singleRecipe">
-          <div class="col-xs-10"> Recipe name</div>
-          <div class="col-xs-4"> Picture</div>
-          <div class="col-xs-6">
-            <ul class="ListFormat">
-              <li>Ingridiants 
-              </li>
-              <li>
-                name blal blal
-              </li>
-            </ul>
-          </div>
-          <div class="col-xs-10">.Instructions</div>
-        </div> 
+        <ul class="ListFormat">
+          <li ng-repeat="recipe in AllUserRecipes">
+            <div class ="row singleRecipe">
+              <div class="col-xs-10">{{recipe.recipeTitle}}</div>
+              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipe.recipeID }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(recipe.recipeID)"/></div>
+              <div class="col-xs-6">
+              
+              </div>
+              <div class="col-xs-10">Created by: {{recipe.creator}}</div>
+              <div class="col-xs-15"><button class="btn">Delete</button></div>
+            </div>
+          </li>
+        </ul> 
       <!--Show All Favorites-->
     </div>
   </div>

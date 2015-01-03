@@ -44,7 +44,7 @@ public class SearchRecipeController {
 	public DefaultResponse searchRecipe(@RequestParam(value = "session") String session,
 							 @RequestParam(value = "SerachString") String serachString,
 							 @RequestParam(value = "Ingredients", required = false) String[] searchIngredeints,
-							 @RequestParam(value = "favorites", defaultValue = "") boolean favorite)
+							 @RequestParam(value = "favorites", required = false) boolean favorite)
 	{
 		DefaultResponse returnValue = null;
 		User user = userDAO.getUserFromSession(session);
@@ -54,7 +54,7 @@ public class SearchRecipeController {
 			//Get set of all with the search string
 			List<Recipe> result = recipeDAO.searchRecipe(serachString);
 			//Get set of all with each of the ingredients
-			
+			System.out.println(result);
 			//Get set of all with favorites
 			if(favorite)
 			{

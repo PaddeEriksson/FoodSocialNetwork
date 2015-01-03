@@ -11,7 +11,7 @@ profilePage.controller('profilePage',  function($scope, $http, userProfileID){
 	console.log($scope.username);
 	//TODO update to server IP
 	$http({
-   		url: "http://localhost:8080/profile/" + userProfileID.get(), 
+   		url: "http://193.11.186.43:9000/profile/" + userProfileID.get(), 
    		method: "GET",
    		params: {sessionID: sessionStorage.whatever},
  	}).success(function(data) {
