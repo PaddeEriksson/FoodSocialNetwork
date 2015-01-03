@@ -1,6 +1,6 @@
 <html ng-app ='UserInfo'>
 <head>
-	<title>Title</title>
+	<title>User Profile Page </title>
 	<script src="../ExternalLib/angular.min.js"></script>
 	<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
 	<script src="../JS/angular-file-upload.js"></script>
@@ -8,10 +8,12 @@
  	<script src="../JS/Bas_Home_Funcs.js"></script>
 	<script src="../JS/testProfilePage.js"></script>
 </head>
+<link rel="stylesheet" type="text/css" href="../Layouts/view layout.css">
 <body>
 	<h1>{{hello}}</h1>
+	<h2> Personal Information </h2>
 	<div ng-controller="profilePage">
-  		<label>Image: </label><br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/>
+  		<label>Profile Picture: </label><br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/>
   		<br>
 		<label>Username: {{ username }}</label>
 		<br>
