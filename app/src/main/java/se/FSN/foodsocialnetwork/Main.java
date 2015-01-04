@@ -20,7 +20,7 @@ public class Main extends Activity {
         newrecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PostRecipe.class);
+                Intent intent = new Intent(getApplicationContext(),PostRecipe.class);
                 startActivity(intent);
             }
         });

@@ -1,70 +1,137 @@
 package se.FSN.foodsocialnetwork;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import se.FSN.foodsocialnetwork.utils.AppController;
+import se.FSN.foodsocialnetwork.utils.UsefulFunctions;
 
 public class Login extends Activity {
 
-    /*TODO:
-    Add variables necessary to login. TextViews and Buttons as well as Strings.
-    Make the request to the server
-    Save the sessionID.
-     */
+
+    SharedPreferences preferences;
 
     //Variables
+    private String urlJsonObj = " http://83.254.221.239:9000/login";
     private String username, password;
-    TextView userText, passText;
+    private boolean login;
+    TextView mailText, passText;
+    CheckBox saveData;
+    private String sessionID, error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         //From here Start Coding
-        userText = (TextView) findViewById(R.id.emailInput);
+        //Access to the shared preference file.
+        preferences = getSharedPreferences(UsefulFunctions.PREFERENCES_KEY, Context.MODE_PRIVATE);
+
+        mailText = (EditText) findViewById(R.id.emailInput);
         passText = (TextView) findViewById(R.id.passInput);
+        saveData = (CheckBox) findViewById(R.id.saveLoginCheck);
 
         Button loginBtn = (Button) findViewById(R.id.loginBtn);
+        Button registerBtn = (Button) findViewById(R.id.registerBtn);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String temp = userText.getText().toString();
-                if (temp != "") {
+                String temp = mailText.getText().toString();
+                if (mailText.getText().length() > 0) {
                     username = temp;
                     temp = passText.getText().toString();
-                    if (temp != "") {
+                    if (passText.getText().length() > 0) {
                         password = temp;
-                        if (requestLogin(username, password) == true) {
-                            Intent intent = new Intent(getApplicationContext(), Main.class);
-                            startActivity(intent);
-                        }
+                        requestLogin(username, password);
+                    } else {
+                        //Toast.makeText(getApplicationContext(),"No password", Toast.LENGTH_SHORT);
+                        Log.d("ERROR", "NO PASS");
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "No user or Pass", Toast.LENGTH_SHORT).show();
+                    Log.d("ERROR", "No User");
+                }
+            }
+        });
 
-                    } else Log.i("ERROR", "NO PASS");
-                } else Log.i("ERROR", "No User");
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), createAccount.class);
+                startActivity(i);
+
             }
         });
 
     }
 
-    private boolean requestLogin(String user, String pass) {
-        boolean login = false;
-        JsonObjectRequest jObjReq = new JsonObjectRequest(Request.Method.GET, "URL", null, new Response.Listener<JSONObject>() {
+    private void requestLogin(String user, final String pass) {
+
+
+        //?email=myEmail@email.com&password=pass
+        String URL = urlJsonObj + "?" + UsefulFunctions.MAIL_KEY + "=" + username + "&" + UsefulFunctions.PASS_KEY + "=" + password;
+        JsonObjectRequest jObjReq = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                try {
+                    Log.d("URL " + Login.class.toString(), jsonObject.toString());
+                    error = jsonObject.getString(UsefulFunctions.ERROR_KEY);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    if (jsonObject.getBoolean(UsefulFunctions.SUC_KEY)) {
+                        login = jsonObject.getBoolean(UsefulFunctions.SUC_KEY);
+                        sessionID = jsonObject.getString(UsefulFunctions.SESSIONID_KEY);
+
+
+                        //Save the SessionId for further requests.
+                        editor.putString(UsefulFunctions.SESSIONID_KEY, sessionID);
+
+                        //Checkbox
+                        if (saveData.isChecked()) {
+                            // If the user want to save the login.
+                            //it will test the boolean on the splash screen.
+                            editor.putString(UsefulFunctions.MAIL_KEY, username);
+                            editor.putString(UsefulFunctions.PASS_KEY, password);
+                            editor.putBoolean(UsefulFunctions.LOGED_KEY, true);
+                        }
+
+                        editor.commit();
+                        Intent intent = new Intent(getApplicationContext(), Main.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(),
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -73,8 +140,8 @@ public class Login extends Activity {
 
             }
         });
+        AppController.getInstance().addToRequestQueue(jObjReq);
 
-        return login;
     }
 
 

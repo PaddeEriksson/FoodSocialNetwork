@@ -6,58 +6,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/containerLlay"
         android:padding="20dp"
-        android:layout_above="@+id/createAccountBtn"
+        android:layout_above="@+id/editAccountBtn"
         android:layout_alignParentTop="true">
 
         <TextView
-            style="@style/Titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UserName"
-            />
+            android:text="Edit Password"
+            style="@style/Titulo"/>
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Julio López"
-            android:id="@+id/userTxt"/>
+            android:hint="Enter new password."
+            android:id="@+id/editPasswordTxt"
+            />
+
         <TextView
-            style="@style/Titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
+            style="@style/Titulo"
+            android:text="Confirm Password"
             />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:id="@+id/passTxt"/>
-        <TextView
-            style="@style/Titulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mail"
+            android:hint="Re-enter the password."
+            android:id="@+id/confirmPasswordTxt"
             />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="japa@asde.se"
-            android:inputType="textEmailAddress"
-            android:id="@+id/mailTxt"/>
+
         <TextView
-            style="@style/Titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Country"
+            style="@style/Titulo"
+            android:text="Edit Country"
             />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerCountry"
+            android:id="@+id/editspinnerCountry"
+            android:layout_below="@+id/editCountry"
             />
-
     </LinearLayout>
 
     <Button
@@ -65,8 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="Create Account"
-        android:id="@+id/createAccountBtn"/>
-
+        android:text="Edit Account"
+        android:id="@+id/editAccountBtn"/>
 
 </RelativeLayout>
