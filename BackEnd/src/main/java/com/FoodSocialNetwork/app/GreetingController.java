@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.DatabaseHandler;
 import com.FoodSocialNetwork.app.database.User;
-import com.FoodSocialNetwork.app.database.UserDAO;
+import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 
@@ -93,7 +93,7 @@ public class GreetingController {
     @RequestMapping(value = "/test2",
             method = RequestMethod.GET,
             headers="Accept=image/jpeg, image/jpg, image/png, image/gif")
-    public byte[] testphoto() throws IOException {
+    @ResponseBody public byte[] testphoto() throws IOException {
     	
         InputStream is = this.getClass().getResourceAsStream("/test.png"); 
 

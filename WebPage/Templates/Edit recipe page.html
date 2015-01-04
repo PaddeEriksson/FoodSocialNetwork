@@ -1,0 +1,73 @@
+<html ng-app="UserInfo">
+<title>
+EDIT RECIPE
+</title>
+<head>
+<link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../Layouts/post recipe.css">
+<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+
+<script src="../ExternalLib/angular.min.js"></script>
+<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
+<script src="../JS/User_Info.js"></script>
+<script src="../JS/Post_recipe.js"></script>
+
+</head>
+<body>
+<div ng-controller="PostRecipe">
+    <script type="text/ng-template" id="postrecipe.html">
+        <div class="modal-header">
+            <h2> EDIT RECIPE </h2>
+            
+            <label> Title<br>
+            <input type="text" ng-model='recipeInfo.title'></input><br> <button>edit</button><br>
+            <label>Instruction<br> 
+            <textarea class="uploadtx" ng-model="recipeInfo.info"> </textarea><br> <button>edit</button><br>
+            <label>Time<br>
+            <input type="int" ng-model='recipeInfo.Time'><br><button>edit</button><br>
+
+            <ul class="ListFormat" ng-controller="PostRecipe">
+            <li>
+            <label>Ingredient<br>
+            <input class="small_Input" ng-model='ingredientsInfo.name' type="text"></input><button>edit</button><br>
+            </li>
+
+            <li><label>Amount:<br>
+            <input class="small_Input" type="number" step="0.5" ng-model='ingredientsInfo.amount' ></input><button>edit</button><br>
+            </li>
+            <li>
+            <label>Optional<br>
+            <input class="small_Input" type="checkbox" ng-click="ingredientsInfo.isOptional = !ingredientsInfo.isOptional"></input>
+            </li>
+            <li>
+            <label>Unit:<br>
+            <div class="btn-group" dropdown  >
+              <button type="button" class="btn dropdown-toggle" dropdown-toggle>{{tempName}}
+                <span class="caret"></span>
+              </button><button>edit</button><br>
+              <ul class="dropdown-menu" >
+              <!-- A forloop that chooses the names and the unites-->
+               <li ng-repeat="un in UinitsPr"> <a href ng-click="ChngBtnName(un)">{{un}}</a> </li>
+              </ul>
+            </div>
+            </li>
+
+            <li><br>
+            <button class="btn" ng-click="SveIng(ingredientsInfo)"> ADD </button><br>
+            <textarea>
+                {{ingredient[0]}}
+            </textarea><br>
+            </li>
+            </div> 
+            <div class="modal-footer" >
+                <button class="btn" ng-click="ok()">Post Recipe</button>
+                <button class="btn" ng-click="cancel()">Cancel</button>
+            </div>
+        </ul>
+    </script>
+    <button class="btn" ng-click="RecepieWO()">Edit Recipe</button>
+   </div> 
+</body>
+</html>
+
+    

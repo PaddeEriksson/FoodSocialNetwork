@@ -1,9 +1,11 @@
-package com.FoodSocialNetwork.app.database;
+package com.FoodSocialNetwork.app.database.Mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.FoodSocialNetwork.app.database.User;
 
 public class UserMapper implements RowMapper<User>{
 
@@ -18,5 +20,4 @@ public class UserMapper implements RowMapper<User>{
 		user.setSessionID(rs.getString("sessionID"));
 		return user;
 	}
-	
 }

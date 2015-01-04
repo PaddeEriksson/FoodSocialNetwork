@@ -1,15 +1,5 @@
  
-body.generalB{
-
-	background: rgb(255,204,102);
-	text-align: center; 
-}
- 
-h2.generalT{
-	text-align:center; 
-}
-
-div.AllRecepies{
+ div.AllRecepies{
 	
 	padding: 10px;
 	border: 5px solid;
@@ -18,6 +8,21 @@ div.AllRecepies{
 	width:960px;
 	margin:0 auto;
 	text-align:left;
+}
+div.col-xs-10{
+	border: 5px solid;
+	border-color: rgb(204, 153, 204);
+	background: white;
+}
+div.col-xs-4{
+	border: 5px solid;
+	border-color: rgb(204, 153, 204);
+	background: white;
+}
+div.col-xs-6{
+	border: 5px solid;
+	border-color: rgb(204, 153, 204);
+	background: white;	
 }
 table.recepie{
 	position: relative;
@@ -33,4 +38,8 @@ table.recepie{
 
 td {
 		border: 5px solid;
+}
+button.a{
+	background: rgb(204, 153, 204);
+
 }

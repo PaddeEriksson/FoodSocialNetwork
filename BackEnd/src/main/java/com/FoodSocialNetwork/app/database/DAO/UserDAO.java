@@ -1,18 +1,16 @@
-package com.FoodSocialNetwork.app.database;
-
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.util.UUID;
+package com.FoodSocialNetwork.app.database.DAO;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;
 
+import com.FoodSocialNetwork.app.database.User;
+import com.FoodSocialNetwork.app.database.Mapper.UserMapper;
+
 
 @Service
-public class UserDAO {
+public class UserDAO{
 	
 	@Resource
 	private JdbcOperations jdbcOperations;
@@ -48,6 +46,7 @@ public class UserDAO {
 		
 		try
 		{
+			jdbcOperations.query(sql, params, new UserMapper());
 			User returnUser = jdbcOperations.queryForObject(sql, params, new UserMapper());
 			returnValue = returnUser != null;
 		}
@@ -73,19 +72,43 @@ public class UserDAO {
 	{
 		User user = null;
 		
-		String sql = "Select * from user where sessionID = ?";
-		
-		Object[] params = { session };
-		
-		try
-		{
-			user = jdbcOperations.queryForObject(sql, params, new UserMapper());
-		}
-		catch(Exception e)
-		{
+		if(session != null)
+		{	
+			String sql = "Select * from user where sessionID = ?";
 			
+			Object[] params = { session };
+			
+			try
+			{
+				user = jdbcOperations.queryForObject(sql, params, new UserMapper());
+			}
+			catch(Exception e)
+			{
+				
+			}
 		}
 		return user;
+	}
+
+	public User getUserFromEmail(String email) {
+		User user = null;
+		
+		if(email != null)
+		{	
+			String sql = "Select * from user where email = ?";
+			
+			Object[] params = { email };
+			
+			try
+			{
+				user = jdbcOperations.queryForObject(sql, params, new UserMapper());
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+		return user;		
 	}
 	
 }
