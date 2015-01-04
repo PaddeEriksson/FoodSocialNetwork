@@ -41,7 +41,7 @@ public class SearchRecipeController {
 	private FavoriteDAO favoriteDAO;
 
 	@RequestMapping("/searchRecipe")
-	public DefaultResponse searchRecipe(@RequestParam(value = "session") String session,
+	public DefaultResponse searchRecipe(@RequestParam(value = "sessionID") String session,
 							 @RequestParam(value = "SerachString") String serachString,
 							 @RequestParam(value = "Ingredients", required = false) String[] searchIngredeints,
 							 @RequestParam(value = "favorites", required = false) boolean favorite)

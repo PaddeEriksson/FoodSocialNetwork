@@ -18,10 +18,10 @@ User Home Page
  
 </head>
 <body class="generalBG">
-  <div class="FSN_Head">
-    <h1>Welcome Back "Victoria" (UserName)</h1>
+  <div class="FSN_Head" ng-controller="testController">
+    <h1>Welcome Back {{userName}}</h1>
     <h2> 'Meat' your 'Pears' </h2>
-    <p>Hello "Victoria (User Name)", find what your friends have been up to here in the food social network. You can also upload a new recipe for them to try out. Dont forget to click on the 'submit' button after. Enjoy optical nutrition while going through the different recipes!
+    <p>Hello {{userName}}, find what your friends have been up to here in the food social network. You can also upload a new recipe for them to try out. Dont forget to click on the 'submit' button after. Enjoy optical nutrition while going through the different recipes!
     </p>
     <br>
 
@@ -37,7 +37,7 @@ User Home Page
         <button class="btn" ng-click="GetAllMyRecipes(URecipes_Collapse = !URecipes_Collapse)">My Recipes</button>
         <button class="btn" ng-click="logout()">Logout</button>
         <button class="btn" ng-click="GetUserInfo()">Settings</button>
-        <button class="btn">Favorites</button>
+        <button class="btn" ng-click="GetAllMyFavorites(ListRecipes = !ListRecipes); URecipes_Collapse = true">Favorites</button>
         <buttpm class="btn" ng-include src="template.url"></bitton>
       </div>
         <input type="text" class="form-control">
@@ -54,6 +54,22 @@ User Home Page
     </div>
     <!--Show All User Recipes-->
       <div collapse="URecipes_Collapse">
+        <ul class="ListFormat">
+          <li ng-repeat="recipe in AllUserRecipes">
+            <div class ="row singleRecipe">
+              <div class="col-xs-10">{{recipe.recipeTitle}}</div>
+              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipe.recipeID }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(recipe.recipeID)"/></div>
+              <div class="col-xs-6">
+              
+              </div>
+              <div class="col-xs-10">Created by: {{recipe.creator}}</div>
+              <div class="col-xs-15"><button class="btn">Delete</button></div>
+            </div>
+          </li>
+        </ul> 
+      <!--Show All Favorites-->
+    </div>
+      <div collapse="ListRecipes">
         <ul class="ListFormat">
           <li ng-repeat="recipe in AllUserRecipes">
             <div class ="row singleRecipe">

@@ -20,7 +20,7 @@ public class ShowAllController {
 	@Resource
 	private UserDAO userDAO;
 	
-	@RequestMapping("/ShowAll")
+	@RequestMapping("/showAll")
 	public ShowAllResponse showall(@RequestParam(value = "sessionID")String session) {
 		ShowAllResponse returnValue = new ShowAllResponse();
 		

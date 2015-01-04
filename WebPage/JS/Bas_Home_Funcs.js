@@ -24,6 +24,24 @@ var templates =
 [ { name: 'temp.html', url: 'post recipe.html'}];
 var UserRcipes, Userinfo;
 
+BasicFunctions.controller('testController', function($scope, $http) {
+    $http({
+        url: "http://83.254.221.239:9000/profile/"+ sessionStorage.email,
+        method: "GET",
+        params:{sessionID:sessionStorage.whatever}
+    }).success(function(data)
+    {
+        if(!data.success)
+        {
+
+        }
+        else
+        {
+            $scope.userName = data.username;
+        }
+    });
+});
+
 //Controle for all buttons on UserHomePage
 BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
@@ -31,13 +49,13 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.AllUserRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
+    console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
 
     var mySession={sessionID: ""};
     mySession.sessionID = sessionStorage.whatever;
     $scope.session = sessionStorage.whatever;
 	$scope.logout = function(){
 	//The Server request for logout
-    console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
 		$http({
       	url: "http://83.254.221.239:9000/logout",
         method:"GET",
@@ -108,6 +126,26 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     };
     $scope.GetAllMyFavorites=function(isOpen){
         $scope.URecipes_Collapse = isOpen;
+
+        $http
+        ({
+        url: "http://83.254.221.239:9000/searchRecipe",
+        method:"GET",
+        params: {sessionID:mySession.sessionID,favorites:true,SerachString:""} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                //Store MyRecipes
+                $scope.AllUserRecipes=data.recipes;
+                console.log($scope.AllUserRecipes);
+            }
+        });
         //The Server request for Geting all favorites
         /*$http
         ({

@@ -55,9 +55,9 @@ NEW RECIPE
 
             <li><br>
             <button class="btn" ng-click="SveIng(ingredientsInfo)"> ADD </button><br>
-            <textarea>
-                {{ingredient[0]}}
-            </textarea><br>
+            <label ng-repeat="ingred in ingredient">
+                {{ingred}}<br>
+            </label><br>
             </li>
             </div>
             <input type="file" nv-file-select uploader="uploader" ng-model='recipeInfo.image'/><br/>

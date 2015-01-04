@@ -36,7 +36,7 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
   $scope.SveIng = function(lol){
     var temp = { name: lol.name, amount:lol.amount, amountType:lol.amountType, isOptional:lol.isOptional};
     ingredients.push(temp);
-    //console.log(ingredients);
+    console.log(ingredients);
     console.log('GJ');
   };
 
@@ -76,7 +76,7 @@ Post_recipe.controller('Postrecipesmodal', function ($scope, $modalInstance, Rec
   //in order to send it all in the same request
   $scope.recipeInfo=RecepieN;
   var temp = $scope.recipeInfo;
-  temp.session = sessionStorage.whatever;
+  temp.sessionID = sessionStorage.whatever;
     
   var tempUploader = new FileUploader();
   tempUploader.url = "http://83.254.221.239:9000/createRecipe";

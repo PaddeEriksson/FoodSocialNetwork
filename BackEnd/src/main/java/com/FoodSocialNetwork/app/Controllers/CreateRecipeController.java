@@ -54,7 +54,7 @@ public class CreateRecipeController {
 	
 	@RequestMapping(value = "/createRecipe", method = RequestMethod.GET)
 	public DefaultResponse createRecipe(
-			@RequestParam(value = "session") String session,
+			@RequestParam(value = "sessionID") String session,
 			@RequestParam(value = "title") String title,
 			@RequestParam(value = "time") long time,
 			@RequestParam(value = "instruction") String instruction,
