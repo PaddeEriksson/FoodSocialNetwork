@@ -21,11 +21,13 @@ public class AddFavoriteController {
 	
 	@RequestMapping("/addFavorite")
 	public DefaultResponse addFavorite(@RequestParam(value = "sessionID") String session,
-			                           @RequestParam(value = "recipeID") long recipeID,
-			                           @RequestParam(value = "favorite") Favorite favorite)
+			                           @RequestParam(value = "recipeID") long recipeID)
+			                           
     {
 		DefaultResponse returnValue = new DefaultResponse();
-		
+		Favorite favorite = new Favorite();
+		favorite.setRecipeID(recipeID);;
+    	favorite.setUser(userDAO.getUserFromSession(session).getEmail());
 		
 		if(userDAO.getUserFromSession(session) != null){
 			
