@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;
 
 import com.FoodSocialNetwork.app.database.Favorite;
+import com.FoodSocialNetwork.app.database.Ingredient;
 import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.Mapper.FavoriteMapper;
@@ -47,6 +48,47 @@ public class FavoriteDAO {
 		{
 			
 		}
+		return returnValue;
+	}
+	
+	public boolean doesFavoriteExist(long recipeID)
+	{
+		boolean returnValue = false;
+		String sql = "Select * from favorite where  recipeID = ?";
+		
+		Object[] params = { recipeID };
+		
+		try
+		{
+			jdbcOperations.queryForObject(sql, params,new FavoriteMapper());
+			returnValue = true;
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return returnValue;
+	}
+	
+	public boolean addFavorite(Favorite favorite)
+	{
+		boolean returnValue = true;
+		
+	
+	    String sql = "Insert into favorite(recipeID,recipeTitle,user) values(?,?,?)";
+		
+		Object[] params = {favorite.getRecipeID(),favorite.getRecipeTitle(),favorite.getUser()};
+		
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			returnValue = false;
+		}
+	
 		return returnValue;
 	}
 }
