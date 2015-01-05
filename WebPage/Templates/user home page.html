@@ -34,15 +34,15 @@ User Home Page
      <div class="input-group input-group-lg">
       <div class="input-group-btn">
         <button class="btn" ng-click="GetAllRecipes()">Home</button>
-        <button class="btn" ng-click="GetAllMyRecipes(URecipes_Collapse = !URecipes_Collapse)">My Recipes</button>
+        <button class="btn" ng-click="GetAllMyRecipes()">My Recipes</button>
         <button class="btn" ng-click="logout()">Logout</button>
         <button class="btn" ng-click="GetUserInfo()">Settings</button>
-        <button class="btn" ng-click="GetAllMyFavorites(ListRecipes = !ListRecipes); URecipes_Collapse = true">Favorites</button>
+        <button class="btn" ng-click="GetAllMyFavorites(ListRecipes = !ListRecipes)">Favorites</button>
         <buttpm class="btn" ng-include src="template.url"></bitton>
       </div>
-        <input type="text" class="form-control">
+        <input type="text" ng-model = 'searchString' class="form-control">
       <div class="input-group-btn">
-        <button class="btn" >Search</button>
+        <button class="btn" ng-click="SearchRecipes(false,searchString)">Search</button>
       </div>
       </div>
       <div class="AllRecepies">
@@ -71,7 +71,7 @@ User Home Page
     </div>
       <div collapse="ListRecipes">
         <ul class="ListFormat">
-          <li ng-repeat="recipe in AllUserRecipes">
+          <li ng-repeat="recipe in AllFavoriteRecipes">
             <div class ="row singleRecipe">
               <div class="col-xs-10">{{recipe.recipeTitle}}</div>
               <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipe.recipeID }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(recipe.recipeID)"/></div>
@@ -79,12 +79,28 @@ User Home Page
               
               </div>
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
-              <div class="col-xs-15"><button class="btn">Delete</button></div>
+              <div class="col-xs-15"><button class="btn">Remove from favorites</button></div>
             </div>
           </li>
         </ul> 
       <!--Show All Favorites-->
     </div>
+      <div collapse="SearchRecipesList">
+        <ul class="ListFormat">
+          <li ng-repeat="recipe in AllSearchRecipes">
+            <div class ="row singleRecipe">
+              <div class="col-xs-10">{{recipe.recipeTitle}}</div>
+              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipe.recipeID }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(recipe.recipeID)"/></div>
+              <div class="col-xs-6">
+              
+              </div>
+              <div class="col-xs-10">Created by: {{recipe.creator}}</div>
+            </div>
+          </li>
+        </ul> 
+      <!--Show All Favorites-->
+    </div>
+
   </div>
 
 

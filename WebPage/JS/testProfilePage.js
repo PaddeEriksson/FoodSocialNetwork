@@ -1,21 +1,16 @@
 var profilePage = angular.module('UserInfo');
 
-profilePage.controller('profilePage',  function($scope, $http, userProfileID){
+profilePage.controller('profilePage',  function($scope, $http){
 	//This sould be removed
-	sessionStorage.whatever = "2147f892-b4c2-485e-9866-ded50c6381e3";
-	userProfileID.set("this");
-
-	console.log(userProfileID.get());
+	$scope.userprofile = {};
 	$scope.session = sessionStorage.whatever;
-	$scope.userprofile = userProfileID.get();
-	console.log($scope.username);
+	$scope.userprofile = sessionStorage.profileEmail;
 	//TODO update to server IP
 	$http({
-   		url: "http://193.11.186.43:9000/profile/" + userProfileID.get(), 
+   		url: "http://83.254.221.239:9000/profile/" + sessionStorage.profileEmail, 
    		method: "GET",
    		params: {sessionID: sessionStorage.whatever},
  	}).success(function(data) {
- 		console.log("working =ss " + data + " " + data.error);
  		$scope.email = data.email;
  		$scope.country = data.country;
  		$scope.username = data.username;

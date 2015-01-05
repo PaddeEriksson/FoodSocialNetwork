@@ -42,7 +42,7 @@ public class SearchRecipeController {
 
 	@RequestMapping("/searchRecipe")
 	public DefaultResponse searchRecipe(@RequestParam(value = "sessionID") String session,
-							 @RequestParam(value = "SerachString") String serachString,
+							 @RequestParam(value = "searchString") String serachString,
 							 @RequestParam(value = "Ingredients", required = false) String[] searchIngredeints,
 							 @RequestParam(value = "favorites", required = false) boolean favorite)
 	{

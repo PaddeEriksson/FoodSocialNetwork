@@ -150,7 +150,7 @@ public class CreateRecipeController {
 	
 	@RequestMapping(value = "/createRecipe", method = RequestMethod.POST)
 	public DefaultResponse createRecipeWithPicture(@RequestParam(value = "image", defaultValue = "") MultipartFile image,
-												   @RequestParam(value = "session") String session,
+												   @RequestParam(value = "sessionID") String session,
 												   @RequestParam(value = "title") String title,
 												   @RequestParam(value = "time") long time,
 												   @RequestParam(value = "instruction") String instruction,
@@ -263,6 +263,20 @@ public class CreateRecipeController {
 				bos.close();
 				returnValue = true;
 				rec.setIMG(f.getAbsolutePath());
+			}
+			else if(file.getContentType().equals("image/jpeg") ||  file.getContentType().equals("image/jpg"))
+			{
+				File f = new File("image/recipe" + rec.getId() + ".jpg");
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
+				bos.write(bytes);
+				bos.flush();
+				bos.close();
+				returnValue = true;
+				rec.setIMG(f.getAbsolutePath());
+			}
+			else
+			{
+				rec.setIMG(null);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

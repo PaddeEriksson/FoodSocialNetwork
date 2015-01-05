@@ -36,7 +36,6 @@ public class AddFavoriteController {
 				favoriteDAO.addFavorite(favorite);
 				returnValue.setSuccess(true);
 			}
-			
 			else
 			{
 				returnValue.setSuccess(false);

@@ -9,17 +9,20 @@
 	<script src="../JS/testProfilePage.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="../Layouts/view layout.css">
+<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+
 <body>
 	<h1>{{hello}}</h1>
 	<h2> Personal Information </h2>
+	<label>Email: {{ email }}</label>
 	<div ng-controller="profilePage">
-  		<br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="15%" height="35%"/>
+  		<label>Profile Picture: </label><br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/><br>
+  		<input type="file"></input><br><button class="btn">Upload new picture</button>
   		<br>
-		<label align="center">Username: {{ username }}</label>
+		<label >Username: &nbsp;</label><input type="text" ng-model="username"><button class="btn">Change Username</button></label>
 		<br>
-		<label>Email: {{ email }}</label>
 		<br>
-		<label>Country: {{ country }}</label>
+		<label>Country: &nbsp;</label> <input type="text" ng-model="country"><button class="btn">Change Country</label>
 	</div>
 </body>
 </html>

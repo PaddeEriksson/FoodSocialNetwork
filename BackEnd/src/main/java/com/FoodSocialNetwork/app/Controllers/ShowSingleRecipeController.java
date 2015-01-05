@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.FoodSocialNetwork.app.database.Comment;
 import com.FoodSocialNetwork.app.database.Ingredient;
 import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.User;
+import com.FoodSocialNetwork.app.database.DAO.CommentDAO;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
@@ -38,6 +40,9 @@ public class ShowSingleRecipeController {
 	
 	@Resource
 	private IngredientDAO ingredientDAO;
+	
+	@Resource
+	private CommentDAO commentDAO;
 	
 	public void setDAOS(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingredientDAO)
 	{
@@ -64,7 +69,7 @@ public class ShowSingleRecipeController {
 					
 					while(scan.hasNext())
 					{
-						tempIntructions += scan.nextLine();
+						tempIntructions += scan.nextLine() + "\n";
 					}
 					
 					rec.setInstruction(tempIntructions);
@@ -74,7 +79,13 @@ public class ShowSingleRecipeController {
 					
 					Ingredient[] in = ingredientDAO.getIngredients(recipeID);
 					response.setIngridients(in);
+					
+					Comment[] com = commentDAO.getCommentsFromRecipe(recipeID);
+					response.setComments(com);
+					
 					response.setUsername(rec.getCreator());
+					
+					
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -94,6 +105,7 @@ public class ShowSingleRecipeController {
 		return response;
 	}
     @RequestMapping(value = "/recipePicture/{id}",
+    		produces = "application/json; charset=utf-8",
             method = RequestMethod.GET,
             headers="Accept=image/jpeg, image/jpg, image/png, image/gif")
 	public byte[] showUserPicture(@RequestParam(value = "sessionID") String session,
@@ -109,8 +121,9 @@ public class ShowSingleRecipeController {
 			String path = rec.getIMG();
 			if(path == null)
 			{
-				path = "/profilePictures/defaultprofile.jpg";
-		        InputStream is = this.getClass().getResourceAsStream(path); 
+				path = "image/imageMissing.jpg";
+				FileInputStream fis = new FileInputStream(path);
+		        InputStream is = fis;
 
 		        // Prepare buffered image.
 		        BufferedImage img = ImageIO.read(is);
@@ -132,9 +145,13 @@ public class ShowSingleRecipeController {
 
 		        // Create a byte array output stream.
 		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
-
+		        String fileType = "png";
 		        // Write to output stream
-		        ImageIO.write(img, "png", bao);
+		        if(path.contains(".jpg") || path.contains(".jpeg"))
+		        {
+		        	fileType = "jpg";
+		        }
+		        ImageIO.write(img, fileType, bao);
 		        returnValue = bao.toByteArray();
 			}
 

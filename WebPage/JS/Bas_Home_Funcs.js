@@ -45,8 +45,13 @@ BasicFunctions.controller('testController', function($scope, $http) {
 //Controle for all buttons on UserHomePage
 BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
+    $scope.searchString = "";
 	$scope.URecipes_Collapse = true;
+    $scope.ListRecipes = true;
+    $scope.SearchRecipesList = true;
     $scope.AllUserRecipes={};
+    $scope.AllFavoriteRecipes={};
+    $scope.AllSearchRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
@@ -76,6 +81,10 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
     $scope.GetUserInfo = function()
     {
+        var location = "EditAccountLayout.html"
+        sessionStorage.profileEmail = sessionStorage.email;
+        window.location= location;
+
     	//The Server request for Geting User info
         /*console.log(sessionStorage.whatever);
 		$http
@@ -99,10 +108,12 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
         });*/
     };
-    $scope.GetAllMyRecipes=function(isOpen){
+    $scope.GetAllMyRecipes=function(){
         //The Server request for Geting All user specific recipes
-        $scope.URecipes_Collapse = isOpen;
-
+        $scope.URecipes_Collapse = true;
+        console.log("Test " + $scope.URecipes_Collapse);
+        $scope.ListRecipes = true;
+        $scope.SearchRecipesList = true;
         $http
         ({
         url: "http://83.254.221.239:9000/showMyRecipes",
@@ -120,18 +131,23 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 //Store MyRecipes
                 $scope.AllUserRecipes=data.recipes;
                 console.log($scope.AllUserRecipes);
+                $scope.URecipes_Collapse = false;
             }
         });
+        
 
     };
-    $scope.GetAllMyFavorites=function(isOpen){
-        $scope.URecipes_Collapse = isOpen;
-
+    $scope.SearchRecipes=function(isOpen,searchStrings){
+        //The Server request for Geting All user specific recipes
+        $scope.SearchRecipesList = true;
+        $scope.URecipes_Collapse = true;
+        $scope.ListRecipes = true;
+        console.log($scope.searchString);
         $http
         ({
         url: "http://83.254.221.239:9000/searchRecipe",
         method:"GET",
-        params: {sessionID:mySession.sessionID,favorites:true,SerachString:""} 
+        params: {sessionID:mySession.sessionID,searchString:$scope.searchString} 
         })
         .success(function(data)
         {
@@ -142,8 +158,35 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             else
             {
                 //Store MyRecipes
-                $scope.AllUserRecipes=data.recipes;
+                $scope.AllSearchRecipes=data.recipes;
+                console.log($scope.AllSearchRecipes);
+                $scope.SearchRecipesList = false;
+            }
+        });
+
+    };
+    $scope.GetAllMyFavorites=function(isOpen){
+        $scope.ListRecipes = true;
+        $scope.URecipes_Collapse = true;
+        $scope.SearchRecipesList = true;
+        $http
+        ({
+        url: "http://83.254.221.239:9000/searchRecipe",
+        method:"GET",
+        params: {sessionID:mySession.sessionID,favorites:true,searchString:""} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                //Store MyRecipes
+                $scope.AllFavoriteRecipes=data.recipes;
                 console.log($scope.AllUserRecipes);
+                $scope.ListRecipes = false;
             }
         });
         //The Server request for Geting all favorites
