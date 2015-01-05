@@ -16,7 +16,7 @@ public class CommentMapper implements RowMapper<Comment>{
 		comment.setTitle(rs.getString("title"));
 		comment.setUser(rs.getString("user"));
 		comment.setScore(rs.getInt("score"));
-		comment.setCommentText(rs.getString("commonText"));
+		comment.setCommentText(rs.getString("commentText"));
 		comment.setRecipeTitle(rs.getString("recipeTitle"));
 		return comment;
 	}

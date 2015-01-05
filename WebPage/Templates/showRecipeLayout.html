@@ -8,24 +8,43 @@
  	<script src="../JS/Bas_Home_Funcs.js"></script>
 	<script src="../JS/showRecipe.js"></script>
 </head>
+<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+
 <link rel="stylesheet" type="text/css" href="../Layouts/view layout.css">
 <body>
 	<h1>{{hello}}</h1>
 	<h2> RECIPE INFORMATION </h2>
+	<br>
 	<div ng-controller="recipePage">
+		<h2>{{ recipeTitle }}</h2>
+
   		<label>Image: </label><br><img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipeID }}?sessionID={{ session }}" width="25%" height="25%"/>
   		<br>
-		<label>Title: {{ recipeTitle }}</label>
-		<br>
 		<label>Creator: {{ username }}</label>
 		<br>
 		<label>Time: {{ time }}</label>
 		<br>
-		<textarea>Instructions: {{ instructions }}</textarea>
+		<label>Instructions</label><br>
+		<textarea readonly name="styled-textarea" id="styled">{{ instructions }}</textarea>
 		<br>
 		<label>Category: {{ category }}</label>
 		<br>
-		<label>Ingredients: {{ ingredients }}</label>
+		<label>Ingredients</label>
+		<ul>
+			<li ng-repeat="ingred in ingredients">
+				<label>{{ ingred.name }} &nbsp; {{ingred.amount}} {{ingred.amountType}}</label>
+			</li>
+		</ul>
+		<hr>
+		<textarea name="styled-textarea" ng-model="comment" id="styled2"></textarea><br>
+		<button class="btn" ng-click="PostComment()">Post Comment</button>
+		<input type="number" ng-model="rate" min="0" max="5"></input>
+		<hr>
+		<ul>
+			<li ng-repeat="com in comments">
+				<textarea readonly name="styled-textarea" id="styled2">{{com.commentText}}</textarea><label>{{com.score}}</labe>
+			</li>
+		</ul>
 	</div>
 </body>
 </html>

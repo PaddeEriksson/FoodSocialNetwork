@@ -25,6 +25,7 @@ import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.CommentDAO;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
 import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
+import com.FoodSocialNetwork.app.database.DAO.ToolDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 import com.FoodSocialNetwork.app.responce.ShowSingleRecipeResponse;
@@ -43,6 +44,9 @@ public class ShowSingleRecipeController {
 	
 	@Resource
 	private CommentDAO commentDAO;
+	
+	@Resource
+	private ToolDAO toolDAO;
 	
 	public void setDAOS(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingredientDAO)
 	{
@@ -82,6 +86,9 @@ public class ShowSingleRecipeController {
 					
 					Comment[] com = commentDAO.getCommentsFromRecipe(recipeID);
 					response.setComments(com);
+					
+					String[] tools = toolDAO.getToolsOfRecipe(recipeID);
+					response.setTools(tools);
 					
 					response.setUsername(rec.getCreator());
 					

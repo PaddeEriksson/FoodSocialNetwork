@@ -54,7 +54,6 @@ public class SearchRecipeController {
 			//Get set of all with the search string
 			List<Recipe> result = recipeDAO.searchRecipe(serachString);
 			//Get set of all with each of the ingredients
-			System.out.println(result);
 			//Get set of all with favorites
 			if(favorite)
 			{

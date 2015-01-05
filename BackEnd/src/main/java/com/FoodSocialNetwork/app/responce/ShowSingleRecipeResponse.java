@@ -10,6 +10,7 @@ public class ShowSingleRecipeResponse extends DefaultResponse{
 	private Comment[] comments;
 	private Recipe recipe;
 	private String username;
+	private String[] tools;
 	
 	public Ingredient[] getIngridients() {
 		return ingridients;
@@ -41,5 +42,13 @@ public class ShowSingleRecipeResponse extends DefaultResponse{
 
 	public void setComments(Comment[] comments) {
 		this.comments = comments;
+	}
+
+	public String[] getTools() {
+		return tools;
+	}
+
+	public void setTools(String[] tools) {
+		this.tools = tools;
 	}	
 }

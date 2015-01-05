@@ -10,6 +10,7 @@ import com.FoodSocialNetwork.app.database.Comment;
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.CommentDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
+import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 @RestController
 public class CreateRateAndCommentController {
@@ -22,26 +23,32 @@ public class CreateRateAndCommentController {
 	private CommentDAO commentDAO;
 	
 	@RequestMapping("/rateAndComment")
-	public void rateAndComment(@RequestParam (value = "sessionID") String session,
+	public DefaultResponse rateAndComment(@RequestParam (value = "sessionID") String session,
 							   @RequestParam (value = "recipeID") long recipeID,
-							   @RequestParam (value = "commentTitle") String commentTitle,
 							   @RequestParam (value = "comment") String comment,
 							   @RequestParam (value = "rate") int rate)
 	{
 		Comment com = new Comment();
-		
+		DefaultResponse dr = new DefaultResponse();
 		User user = userDAO.getUserFromSession(session);
 		if(user != null)
 		{
-			commentDAO.removeComment(com);
 			com.setCommentText(comment);
 			com.setRecipeID(recipeID);
-			com.setTitle(commentTitle);
 			com.setScore(rate);
 			com.setUser(user.getEmail());
+			
+			commentDAO.removeComment(com);
+
 			commentDAO.addComment(com);
+			dr.setSuccess(true);
 		}
-		
+		else
+		{
+			dr.setError("Invalid session");
+			dr.setSuccess(false);
+		}
+		return dr;
 	}
 	
 }

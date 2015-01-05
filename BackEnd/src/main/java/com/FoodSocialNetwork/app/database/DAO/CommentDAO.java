@@ -39,7 +39,7 @@ public class CommentDAO {
 		
 		String sql = "Insert into comment(title,user,score,commentText,recipeID) values(?,?,?,?,?)";
 		
-		Object[] params = { com.getTitle(),com.getUser(),com.getCommentText(),com.getRecipeID() };
+		Object[] params = { com.getTitle(),com.getUser(),com.getScore(),com.getCommentText(),com.getRecipeID() };
 		
 		try
 		{
@@ -69,7 +69,7 @@ public class CommentDAO {
 
 	public Comment[] getCommentsFromRecipe(long recipeID) {
 		
-		String sql = "Select * from ingredient where recipeID = ?";
+		String sql = "Select * from comment where recipeID = ?";
 		Object[] params = {recipeID};
 		
 		Comment[] returnValue = null;

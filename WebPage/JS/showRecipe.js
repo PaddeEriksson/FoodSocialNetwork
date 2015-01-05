@@ -20,5 +20,20 @@ profilePage.controller('recipePage',  function($scope, $http){
  		$scope.instructions = data.recipe.instruction;
  		$scope.category = data.recipe.category; //not in use
  		$scope.ingredients = data.ingridients;
+ 		$scope.comments = data.comments;
  	});
+
+
+
+ 	$scope.PostComment = function()
+ 	{
+ 		console.log("What");
+ 		console.log($scope.comment + " " + $scope.rate);
+ 		$http({
+   		url: "http://83.254.221.239:9000/rateAndComment", 
+   		method: "GET",
+   		params: {sessionID: sessionStorage.whatever,recipeID:$scope.recipeID,rate:$scope.rate,comment:$scope.comment},
+ 	}).success(function(data) {
+ 	});
+ 	};
 });
