@@ -8,8 +8,10 @@
  	<script src="../JS/Bas_Home_Funcs.js"></script>
 	<script src="../JS/showRecipe.js"></script>
 </head>
+<link rel="stylesheet" type="text/css" href="../Layouts/view layout.css">
 <body>
 	<h1>{{hello}}</h1>
+	<h2> RECIPE INFORMATION </h2>
 	<div ng-controller="recipePage">
   		<label>Image: </label><br><img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipeID }}?sessionID={{ session }}" width="25%" height="25%"/>
   		<br>
