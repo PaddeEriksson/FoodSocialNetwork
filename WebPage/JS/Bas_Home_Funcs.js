@@ -111,9 +111,10 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.GetAllMyRecipes=function(){
         //The Server request for Geting All user specific recipes
         $scope.URecipes_Collapse = true;
-        console.log("Test " + $scope.URecipes_Collapse);
         $scope.ListRecipes = true;
         $scope.SearchRecipesList = true;
+
+
         $http
         ({
         url: "http://83.254.221.239:9000/showMyRecipes",
@@ -130,7 +131,6 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             {
                 //Store MyRecipes
                 $scope.AllUserRecipes=data.recipes;
-                console.log($scope.AllUserRecipes);
                 $scope.URecipes_Collapse = false;
             }
         });
@@ -161,6 +161,10 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 $scope.AllSearchRecipes=data.recipes;
                 console.log($scope.AllSearchRecipes);
                 $scope.SearchRecipesList = false;
+=======
+                $scope.URecipes_Collapse = isOpen;
+
+>>>>>>> added delete recipe
             }
         });
 
@@ -216,6 +220,28 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         var location = "showRecipeLayout.html"
         sessionStorage.recipeID = recID;
         window.location= location;
+    };
+    $scope.DeleteRecipe=function(recID)
+    {
+        $http
+        ({
+        url: "http://83.254.221.239:9000/deleteRecipe",
+        method:"GET",
+        params: {sessionID:mySession.sessionID,recipeID:recID} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                //Store MyRecipes
+                alert("Recipe Deleted");
+                $scope.GetAllMyRecipes(false);
+            }
+        });
     };
     $scope.GetAllRecipes=function(isOpen){
         $scope.URecipes_Collapse = isOpen;

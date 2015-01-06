@@ -48,7 +48,7 @@ User Home Page
       <div class="AllRecepies">
       <ul>
       <!--Show all recipes-->
-      <li ng-repeat= "R in AllRecipes" >{{R.recipeTitle}}</li>
+      <li ng-repeat= "R in AllRecipes" >{{R.recipeTitle}}<br></li>
       bla bla bla 
       </ul>
     </div>
@@ -63,7 +63,7 @@ User Home Page
               
               </div>
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
-              <div class="col-xs-15"><button class="btn">Delete</button></div>
+              <div class="col-xs-15"><button class="btn" ng-click="DeleteRecipe(recipe.recipeID)">Delete</button></div>
             </div>
           </li>
         </ul> 
