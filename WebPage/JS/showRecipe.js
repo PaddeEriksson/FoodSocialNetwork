@@ -27,13 +27,29 @@ profilePage.controller('recipePage',  function($scope, $http){
 
  	$scope.PostComment = function()
  	{
- 		console.log("What");
- 		console.log($scope.comment + " " + $scope.rate);
  		$http({
    		url: "http://83.254.221.239:9000/rateAndComment", 
    		method: "GET",
    		params: {sessionID: sessionStorage.whatever,recipeID:$scope.recipeID,rate:$scope.rate,comment:$scope.comment},
  	}).success(function(data) {
+ 	});
+ 	};
+
+ 	 $scope.AddAsFavorite = function()
+ 	{
+ 		$http({
+   		url: "http://83.254.221.239:9000/addFavorite", 
+   		method: "GET",
+   		params: {sessionID: sessionStorage.whatever,recipeID:$scope.recipeID},
+ 	}).success(function(data) {
+ 		if(data.success)
+ 		{
+ 			alert("Favorite added");
+ 		}
+ 		else
+ 		{
+ 			console.log(data.error);
+ 		}
  	});
  	};
 });

@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import com.FoodSocialNetwork.app.database.Recipe;
+import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.Mapper.RecipeMapper;
 
 @Service
@@ -222,6 +223,25 @@ public class RecipeDAO {
 		catch(Exception e)
 		{
 			
+		}
+		
+		return returnValue;
+	}
+
+
+	public List<Recipe> getFavoriteRecipes(User user) {
+
+		String sql = "select id,recipe.recipeTitle,instruction,time,category,creator,IMG from recipe inner join favorite ON favorite.recipeID = recipe.id where favorite.user = ?";
+
+		Object[] params = {user.getEmail()};
+		List<Recipe> returnValue = null;
+		try
+		{
+			returnValue = jdbcOperations.query(sql, params,new RecipeMapper());
+		}
+		catch(Exception e)
+		{
+			System.out.println("ERROR" + e.getMessage());
 		}
 		
 		return returnValue;

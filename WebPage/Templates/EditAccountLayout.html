@@ -14,8 +14,9 @@
 <body>
 	<h1>{{hello}}</h1>
 	<h2> Personal Information </h2>
-	<label>Email: {{ email }}</label>
+
 	<div ng-controller="profilePage">
+		<label>Email: {{ email }}</label><br>
   		<label>Profile Picture: </label><br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/><br>
   		<input type="file"></input><br><button class="btn">Upload new picture</button>
   		<br>

@@ -1,19 +1,13 @@
 package com.FoodSocialNetwork.app.Controllers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.json.JSONArray;
-import org.springframework.boot.autoconfigure.condition.SearchStrategy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.FoodSocialNetwork.app.database.Favorite;
 import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
@@ -57,7 +51,8 @@ public class SearchRecipeController {
 			//Get set of all with favorites
 			if(favorite)
 			{
-				List<Favorite> favorites = favoriteDAO.getUsersFavorites(user);
+				List<Recipe> favorites = recipeDAO.getFavoriteRecipes(user);
+				
 				result.retainAll(favorites);
 			}
 			

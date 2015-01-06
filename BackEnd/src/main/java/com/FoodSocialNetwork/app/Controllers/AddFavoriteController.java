@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.Favorite;
+import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
@@ -29,9 +30,10 @@ public class AddFavoriteController {
 		favorite.setRecipeID(recipeID);;
     	favorite.setUser(userDAO.getUserFromSession(session).getEmail());
 		
-		if(userDAO.getUserFromSession(session) != null){
+    	User user = userDAO.getUserFromSession(session);
+		if(user != null){
 			
-			if(favoriteDAO.doesFavoriteExist(recipeID))
+			if(!favoriteDAO.doesFavoriteExist(recipeID,user.getEmail()))
 			{
 				favoriteDAO.addFavorite(favorite);
 				returnValue.setSuccess(true);

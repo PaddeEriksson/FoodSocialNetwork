@@ -17,7 +17,7 @@
 	<br>
 	<div ng-controller="recipePage">
 		<h2>{{ recipeTitle }}</h2>
-
+		<button class="btn" ng-click="AddAsFavorite()">Add as favorite</button><br>
   		<label>Image: </label><br><img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipeID }}?sessionID={{ session }}" width="25%" height="25%"/>
   		<br>
 		<label>Creator: {{ username }}</label>

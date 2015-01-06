@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
@@ -26,9 +27,10 @@ public class DeleteFavoriteController {
     {
 		DefaultResponse returnValue = new DefaultResponse();
 		
-		if(userDAO.getUserFromSession(session) != null)
+		User user = userDAO.getUserFromSession(session);
+		if(user != null)
 		{
-			if(favoriteDAO.doesFavoriteExist(recipeID))
+			if(favoriteDAO.doesFavoriteExist(recipeID,user.getEmail()))
 			{
 				favoriteDAO.deleteFavoritesOfRecipeID(recipeID);
 				returnValue.setSuccess(true);
@@ -40,12 +42,10 @@ public class DeleteFavoriteController {
 				returnValue.setError("You haven't added this recipe to your favorite!");
 			}
 		}
-		
-        
 		else
 		{
 			returnValue.setSuccess(false);
-			returnValue.setError("You have to login first!");
+			returnValue.setError("Invalid session");
 		}
 		
 		return returnValue;

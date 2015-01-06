@@ -1,7 +1,6 @@
 package com.FoodSocialNetwork.app.database;
 
 public class Recipe {
-
 	
 	private long id;
 	private String recipeTitle;
@@ -51,6 +50,22 @@ public class Recipe {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		boolean returnValue = false;
+		
+		if(o instanceof Recipe)
+		{
+			if(((Recipe) o).getId() == this.getId())
+			{
+				returnValue = true;
+			}
+		}
+
+		return returnValue;
 	}
 	
 }

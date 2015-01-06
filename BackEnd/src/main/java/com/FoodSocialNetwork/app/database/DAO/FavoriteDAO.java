@@ -51,12 +51,12 @@ public class FavoriteDAO {
 		return returnValue;
 	}
 	
-	public boolean doesFavoriteExist(long recipeID)
+	public boolean doesFavoriteExist(long recipeID,String userEmail)
 	{
 		boolean returnValue = false;
-		String sql = "Select * from favorite where  recipeID = ?";
+		String sql = "Select * from favorite where recipeID = ? AND user = ?";
 		
-		Object[] params = { recipeID };
+		Object[] params = { recipeID,userEmail };
 		
 		try
 		{
