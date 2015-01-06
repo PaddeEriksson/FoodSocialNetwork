@@ -58,3 +58,9 @@ Create TABLE comment(
 	recipeTitle VARCHAR(100),
 	primary KEY (user,recipeID)
 );
+
+Create TABLE friend(
+	follower VARCHAR(100),
+	followee VARCHAR(100),
+    primary KEY (follower,followee)
+);
