@@ -12,6 +12,8 @@ import java.util.Scanner;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -166,4 +168,60 @@ public class ShowSingleRecipeController {
 
         return returnValue;
 	}
+    @RequestMapping(value = "/recipePicture2/{id}",
+    		produces = "application/json; charset=utf-8",
+            method = RequestMethod.GET,
+            headers="Accept=image/jpeg, image/jpg, image/png, image/gif")
+	public ResponseEntity<byte[]> showUserPicture2(@RequestParam(value = "sessionID") String session,
+								  @PathVariable(value = "id") long recipeID) throws IOException
+	{
+		//This will return picture of user
+    	byte[] returnValue = null;
+    	if(userDAO.getUserFromSession(session) != null)
+    	{
+    		Recipe rec = recipeDAO.getRecipe(recipeID);
+    		
+    		rec.getIMG();
+			String path = rec.getIMG();
+			if(path == null)
+			{
+				path = "image/imageMissing.jpg";
+				FileInputStream fis = new FileInputStream(path);
+		        InputStream is = fis;
+
+		        // Prepare buffered image.
+		        BufferedImage img = ImageIO.read(is);
+
+		        // Create a byte array output stream.
+		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+		        // Write to output stream
+		        ImageIO.write(img, "jpg", bao);
+		        returnValue = bao.toByteArray();
+			}
+			else
+			{
+				FileInputStream fis = new FileInputStream(path);
+		        InputStream is = fis;
+
+		        // Prepare buffered image.
+		        BufferedImage img = ImageIO.read(is);
+
+		        // Create a byte array output stream.
+		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+		        String fileType = "png";
+		        // Write to output stream
+		        if(path.contains(".jpg") || path.contains(".jpeg"))
+		        {
+		        	fileType = "jpg";
+		        }
+		        ImageIO.write(img, fileType, bao);
+		        returnValue = bao.toByteArray();
+			}
+
+    	}
+
+        return new ResponseEntity<byte[]>(returnValue,HttpStatus.ACCEPTED);
+	}
+    
 }
