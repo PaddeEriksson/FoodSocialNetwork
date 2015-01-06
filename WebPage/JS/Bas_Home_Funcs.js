@@ -161,10 +161,6 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 $scope.AllSearchRecipes=data.recipes;
                 console.log($scope.AllSearchRecipes);
                 $scope.SearchRecipesList = false;
-=======
-                $scope.URecipes_Collapse = isOpen;
-
->>>>>>> added delete recipe
             }
         });
 
