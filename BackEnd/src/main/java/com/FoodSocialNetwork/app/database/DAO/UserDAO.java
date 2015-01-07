@@ -110,5 +110,11 @@ public class UserDAO{
 		}
 		return user;		
 	}
+
+	public void updateUser(User user) {
+		
+		String sql = "Update ON";
+		
+	}
 	
 }
