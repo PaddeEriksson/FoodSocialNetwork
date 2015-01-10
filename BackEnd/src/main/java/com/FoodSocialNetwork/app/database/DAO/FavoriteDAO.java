@@ -33,6 +33,20 @@ public class FavoriteDAO {
 			
 		}
 	}
+	
+	public void deleteAFavorite(long recipeID,String userEmail)
+	{
+		String sql = "Delete from favorite where recipeID = ? AND user = ?";
+		Object[] params = {recipeID, userEmail};
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 
 	public List<Favorite> getUsersFavorites(User user) {
 		

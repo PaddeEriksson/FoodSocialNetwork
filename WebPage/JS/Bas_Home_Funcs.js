@@ -239,6 +239,28 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
         });
     };
+
+    $scope.RemoveFromFavorite=function(recipeIDIN)
+    {
+        $http
+        ({
+            url: "http://83.254.221.239:9000/deleteFavorite",
+            mathod:"GET",
+            params: {sessionID:mySession.sessionID,recipeID:recipeIDIN}
+        }).success(function(data)
+        {
+            if(!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                alert("Removed from favorite");
+                $scope.GetAllMyFavorites(false);
+            }
+        });
+    };
+
     $scope.GetAllRecipes=function(isOpen){
         $scope.URecipes_Collapse = isOpen;
         //The Server request for Geting All Recipes

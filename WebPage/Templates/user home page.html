@@ -79,7 +79,7 @@ User Home Page
               
               </div>
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
-              <div class="col-xs-15"><button class="btn">Remove from favorites</button></div>
+              <div class="col-xs-15"><button class="btn" ng-click="RemoveFromFavorite(recipe.recipeID)">Remove from favorites</button></div>
             </div>
           </li>
         </ul> 

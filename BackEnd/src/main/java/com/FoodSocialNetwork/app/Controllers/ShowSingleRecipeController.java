@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.FoodSocialNetwork.app.database.Comment;
 import com.FoodSocialNetwork.app.database.Ingredient;
@@ -30,6 +31,7 @@ import com.FoodSocialNetwork.app.database.DAO.RecipeDAO;
 import com.FoodSocialNetwork.app.database.DAO.ToolDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
+import com.FoodSocialNetwork.app.responce.PictureResponce;
 import com.FoodSocialNetwork.app.responce.ShowSingleRecipeResponse;
 
 @RestController
@@ -170,9 +172,8 @@ public class ShowSingleRecipeController {
 	}
     @RequestMapping(value = "/recipePicture2/{id}",
     		produces = "application/json; charset=utf-8",
-            method = RequestMethod.GET,
-            headers="Accept=image/jpeg, image/jpg, image/png, image/gif")
-	public ResponseEntity<byte[]> showUserPicture2(@RequestParam(value = "sessionID") String session,
+            method = RequestMethod.GET)
+	public PictureResponce showUserPicture2(@RequestParam(value = "sessionID") String session,
 								  @PathVariable(value = "id") long recipeID) throws IOException
 	{
 		//This will return picture of user
@@ -220,8 +221,11 @@ public class ShowSingleRecipeController {
 			}
 
     	}
-
-        return new ResponseEntity<byte[]>(returnValue,HttpStatus.ACCEPTED);
+    	
+    	PictureResponce pr = new PictureResponce();
+    	pr.setImage(returnValue);
+    	pr.setSuccess(true);
+        return pr;
 	}
     
 }

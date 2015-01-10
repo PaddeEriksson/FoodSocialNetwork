@@ -32,7 +32,7 @@ public class DeleteFavoriteController {
 		{
 			if(favoriteDAO.doesFavoriteExist(recipeID,user.getEmail()))
 			{
-				favoriteDAO.deleteFavoritesOfRecipeID(recipeID);
+				favoriteDAO.deleteAFavorite(recipeID,user.getEmail());
 				returnValue.setSuccess(true);
 			}
 			
