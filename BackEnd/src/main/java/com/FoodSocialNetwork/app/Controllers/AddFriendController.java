@@ -35,7 +35,7 @@ public class AddFriendController {
 		User user = userDAO.getUserFromSession(session);
 		
 		if(user != null){
-			if(friendDAO.doesFriendExist(follower, followee)
+			if(!friendDAO.doesFriendExist(user.getEmail(), follower))
 			{
 				friendDAO.addFriend(friend);
 				returnValue.setSuccess(true);

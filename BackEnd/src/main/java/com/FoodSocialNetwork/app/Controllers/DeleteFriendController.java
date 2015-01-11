@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.FoodSocialNetwork.app.database.User;
 import com.FoodSocialNetwork.app.database.DAO.FriendDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
@@ -25,10 +26,11 @@ public class DeleteFriendController {
     {
 		DefaultResponse returnValue = new DefaultResponse();
 		
-		if(userDAO.getUserFromSession(session) != null){
-			if(friendDAO.doesFriendExist(follower, followee)){
+		User user = userDAO.getUserFromSession(session);
+		if(user != null){
+			if(friendDAO.doesFriendExist(user.getEmail(), follower)){
 				
-				friendDAO.deleteAFriend(follower, followee);
+				friendDAO.deleteAFriend(user.getEmail(), follower);
 				returnValue.setSuccess(true);
 			}
 			else
