@@ -1,5 +1,7 @@
 package com.FoodSocialNetwork.app.database.DAO;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.JdbcOperations;
@@ -13,6 +15,27 @@ public class FriendDAO {
 	
 	@Resource
 	private JdbcOperations jdbcOperations;
+	
+	public Friend[] getUsersFriends(String userEmail)
+	{
+		
+		String sql = "Select * from Friend where follower = ?";
+		
+		Object[] params = {userEmail};
+		
+		Friend[] returnValue = null;
+		try
+		{
+			List<Friend>  friends = jdbcOperations.query(sql, params,new FriendMapper());
+			returnValue = (Friend[]) friends.toArray();
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return returnValue;
+	}
 
 	public void deleteAFriend(String follower,String followee)
 	{

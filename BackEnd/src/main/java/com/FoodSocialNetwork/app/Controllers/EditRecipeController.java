@@ -39,12 +39,12 @@ public class EditRecipeController {
 	public DefaultResponse editRecipe(
 			@RequestParam(value = "sessionID") String session,
 			@RequestParam(value = "recipeID") long recipeID,
-			@RequestParam(value = "recipeTitle") String newRecipeTitle,
+			@RequestParam(value = "title") String newRecipeTitle,
 			@RequestParam(value = "instruction") String instructions,
 			@RequestParam(value = "time") long time,
-			@RequestParam(value = "category", defaultValue = "") long category,
+			@RequestParam(value = "category", defaultValue = "0") long category,
 			@RequestParam(value = "ingredients") JSONArray ingredients,
-			@RequestParam(value = "tools") String[] tools)
+			@RequestParam(value = "tools", defaultValue = "") String[] tools)
 	{
 		DefaultResponse dr = new DefaultResponse();
 		

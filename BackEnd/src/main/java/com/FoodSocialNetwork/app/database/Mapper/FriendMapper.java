@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.FoodSocialNetwork.app.database.Favorite;
 import com.FoodSocialNetwork.app.database.Friend;
 
 public class FriendMapper implements RowMapper<Friend>{

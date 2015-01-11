@@ -112,9 +112,44 @@ public class UserDAO{
 	}
 
 	public void updateUser(User user) {
+		String sql = "Update user set userName = ?, "
+				+ "						password = ?, "
+				+ "						country = ?, "
+				+ "						profilePicurePath = ?"
+				+ "						where email = ?";
 		
-		String sql = "Update ON";
+		Object[] params = {user.getUserName(), user.getPassword(), user.getCountry(), user.getProfilePicturePath(), user.getEmail() };
 		
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+	}
+
+	public User[] searchUser(String searchString) {
+		
+		
+		String sql = "Select * from user where email like ?";
+		searchString = "%" + searchString + "%";
+		
+		Object[] params = { searchString };
+		
+		User[] returnValue = null;
+		try
+		{
+			returnValue = (User[]) jdbcOperations.query(sql, params,new UserMapper()).toArray();
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return returnValue;
 	}
 	
 }
