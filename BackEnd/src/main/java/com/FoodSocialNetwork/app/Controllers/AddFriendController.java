@@ -7,41 +7,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.Favorite;
+import com.FoodSocialNetwork.app.database.Friend;
 import com.FoodSocialNetwork.app.database.User;
-import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
+import com.FoodSocialNetwork.app.database.DAO.FriendDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 @RestController
-public class AddFavoriteController {
-	
-	@Resource
-	private FavoriteDAO favoriteDAO;
+public class AddFriendController {
+
 	@Resource
 	private UserDAO userDAO;
 	
-	@RequestMapping("/addFavorite")
-	public DefaultResponse addFavorite(@RequestParam(value = "sessionID") String session,
-			                           @RequestParam(value = "recipeID") long recipeID)
-			                           
+	@Resource
+	private FriendDAO friendDAO;
+	
+	@RequestMapping("/addFriend")
+	public DefaultResponse addFriend(@RequestParam(value = "sessionID") String session,
+			                           @RequestParam(value = "follower") String follower
+			                         )
     {
 		DefaultResponse returnValue = new DefaultResponse();
-		Favorite favorite = new Favorite();
-		favorite.setRecipeID(recipeID);;
-    	favorite.setUser(userDAO.getUserFromSession(session).getEmail());
-    	
-    	User user = userDAO.getUserFromSession(session);
+		Friend friend = new Friend();
+		friend.setFollower(follower);
+    	friend.setFollowee(userDAO.getUserFromSession(session).getEmail());
+		
+		User user = userDAO.getUserFromSession(session);
+		
 		if(user != null){
-			
-			if(!favoriteDAO.doesFavoriteExist(recipeID,user.getEmail()))
+			if(friendDAO.doesFriendExist(follower, followee)
 			{
-				favoriteDAO.addFavorite(favorite);
+				friendDAO.addFriend(friend);
 				returnValue.setSuccess(true);
+				 
 			}
 			else
 			{
 				returnValue.setSuccess(false);
-				returnValue.setError("You have already added this to your favorite!");
+				returnValue.setError("You have already added this friend!");
 			}
 		}
 		
@@ -50,8 +53,7 @@ public class AddFavoriteController {
 			returnValue.setSuccess(false);
 			returnValue.setError("Please login first!");
 		}
-		
 		return returnValue;
-    }
 		
+    }
 }
