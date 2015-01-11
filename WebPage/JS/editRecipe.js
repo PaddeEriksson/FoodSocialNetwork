@@ -99,13 +99,16 @@ editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalIn
   $scope.recipeInfo=RecepieN;
   var temp = $scope.recipeInfo;
   temp.sessionID = sessionStorage.whatever;
-  temp.sessionID = "d20cc812-fa93-4cbd-be7b-11f6a76ba3e3"
-  temp.recipeID = 26;
+  temp.recipeID = sessionStorage.recipeID;
   temp.recipeTitle = "tempTitle";
+
+  $scope.sessionID = temp.sessionID;
+  $scope.recipeID = temp.recipeID;
+
   $http({
-    url: "http://83.254.221.239:9000/recipe/" + 26, //TODO
+    url: "http://83.254.221.239:9000/recipe/" + sessionStorage.recipeID, 
     method: "GET",
-    params: {sessionID: "d20cc812-fa93-4cbd-be7b-11f6a76ba3e3"}
+    params: {sessionID: temp.sessionID}
   }).success(function(data)
   {
     if(!data.success)
@@ -141,7 +144,7 @@ editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalIn
     }
     else
     {
-      alert("Recipe Posted");
+      alert("Recipe Edited");
     }
   }
 
@@ -165,7 +168,7 @@ editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalIn
           }
           else
           {
-           alert("Recipe Posted");
+           alert("Recipe Edited");
           }
         });    
     }

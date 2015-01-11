@@ -34,18 +34,27 @@ public class ShowMyFriendsController {
 		{
 			Friend[] friends = friendDAO.getUsersFriends(user.getEmail());
 			
-			dr = new ShowAllFriendsResponce();
-			dr.setSuccess(true);
-			ShowFriendListResponce[] temp = new ShowFriendListResponce[friends.length];
-			for(int i = 0; i < friends.length; i++)
+			if(friends != null)
 			{
-				User tempuser = userDAO.getUserFromEmail(friends[i].getFollowee());
-				temp[i] = new ShowFriendListResponce();
-				temp[i].setCountry(tempuser.getCountry());
-				temp[i].setEmail(tempuser.getEmail());
-				temp[i].setUsername(tempuser.getUserName());
+				dr = new ShowAllFriendsResponce();
+				dr.setSuccess(true);
+				ShowFriendListResponce[] temp = new ShowFriendListResponce[friends.length];
+				for(int i = 0; i < friends.length; i++)
+				{
+					User tempuser = userDAO.getUserFromEmail(friends[i].getFollowee());
+					temp[i] = new ShowFriendListResponce();
+					temp[i].setCountry(tempuser.getCountry());
+					temp[i].setEmail(tempuser.getEmail());
+					temp[i].setUsername(tempuser.getUserName());
+				}
+				((ShowAllFriendsResponce) dr).setFriends(temp);
 			}
-			((ShowAllFriendsResponce) dr).setFriends(temp);
+			else
+			{
+				dr = new DefaultResponse();
+				dr.setSuccess(false);
+				dr.setError("You have no friends");
+			}
 		}
 		else
 		{

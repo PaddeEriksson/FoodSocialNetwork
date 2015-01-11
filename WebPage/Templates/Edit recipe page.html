@@ -61,7 +61,7 @@ NEW RECIPE
             </li>
             </div>
             <input type="file" nv-file-select uploader="uploader" ng-model='recipeInfo.image'/><br/>
-            <img ng-src="http://83.254.221.239:9000/recipePicture/26?sessionID=d20cc812-fa93-4cbd-be7b-11f6a76ba3e3" width="25%" height="25%"/>
+            <img ng-src="http://83.254.221.239:9000/recipePicture/{{recipeID}}?sessionID={{sessionID}}" width="25%" height="25%"/>
             <div class="modal-footer" >
                 <button class="btn" ng-click="ok()">Edit Recipe</button>
                 <button class="btn" ng-click="cancel()">Cancel</button>

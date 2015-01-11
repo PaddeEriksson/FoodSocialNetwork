@@ -22,6 +22,11 @@ public class CreateRateAndCommentController {
 	@Resource
 	private CommentDAO commentDAO;
 	
+	public void setDAOs(UserDAO userDAO, CommentDAO comDAO) {
+		this.userDAO = userDAO;
+		this.commentDAO = comDAO;
+	}
+	
 	@RequestMapping("/rateAndComment")
 	public DefaultResponse rateAndComment(@RequestParam (value = "sessionID") String session,
 							   @RequestParam (value = "recipeID") long recipeID,
@@ -50,5 +55,7 @@ public class CreateRateAndCommentController {
 		}
 		return dr;
 	}
+
+
 	
 }

@@ -27,7 +27,8 @@ public class FriendDAO {
 		try
 		{
 			List<Friend>  friends = jdbcOperations.query(sql, params,new FriendMapper());
-			returnValue = (Friend[]) friends.toArray();
+			returnValue = new Friend[friends.size()];
+			friends.toArray(returnValue);
 		}
 		catch(Exception e)
 		{

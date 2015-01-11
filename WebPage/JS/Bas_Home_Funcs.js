@@ -22,6 +22,8 @@ BasicFunctions.factory('userProfileID', function()
 //other homepage that we will include with ng-include :D
 var templates =
 [ { name: 'temp.html', url: 'post recipe.html'}];
+var templates2 = 
+[ { name: 'temp2.html', url: 'Edit recipe page.html'}];
 var UserRcipes, Userinfo;
 
 BasicFunctions.controller('testController', function($scope, $http) {
@@ -54,6 +56,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.AllSearchRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
+    $scope.template2 = templates2[0];
     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
 
     var mySession={sessionID: ""};
@@ -238,6 +241,13 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 $scope.GetAllMyRecipes(false);
             }
         });
+    };
+
+    $scope.EditRecipe=function(recID)
+    {
+        var location = "Edit recipe page.html";
+        sessionStorage.recipeID = recID;
+        window.location = location;
     };
 
     $scope.RemoveFromFavorite=function(recipeIDIN)

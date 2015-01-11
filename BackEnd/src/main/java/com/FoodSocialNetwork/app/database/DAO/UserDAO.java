@@ -1,5 +1,7 @@
 package com.FoodSocialNetwork.app.database.DAO;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.JdbcOperations;
@@ -142,7 +144,9 @@ public class UserDAO{
 		User[] returnValue = null;
 		try
 		{
-			returnValue = (User[]) jdbcOperations.query(sql, params,new UserMapper()).toArray();
+			List<User> users = jdbcOperations.query(sql, params,new UserMapper());
+			returnValue = new User[users.size()];
+			users.toArray(returnValue);
 		}
 		catch(Exception e)
 		{
@@ -151,5 +155,4 @@ public class UserDAO{
 		
 		return returnValue;
 	}
-	
 }
