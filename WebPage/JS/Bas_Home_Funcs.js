@@ -57,7 +57,9 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.AllRecipes={};
 	$scope.template = templates[0];
     $scope.template2 = templates2[0];
-    console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
+    $scope.AddFriendReq ="dk@hotmail.com";
+    $scope.DeleteFriendReq ="dk@hotmail.com";
+     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
 
     var mySession={sessionID: ""};
     mySession.sessionID = sessionStorage.whatever;
@@ -271,12 +273,13 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         });
     };
 
-    $scope.GetAllRecipes=function(isOpen){
+    $scope.GetAllRecipes=function(isOpen)
+    {
         $scope.URecipes_Collapse = isOpen;
         //The Server request for Geting All Recipes
         $http
         ({
-        url: "http://83.254.221.239:9000/ShowAll",
+        url: "http://83.254.221.239:9000/showAll",
         method:"GET",
         params: {sessionID:mySession.sessionID} 
         })
@@ -293,6 +296,55 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 $scope.AllRecipes = data.recipes;
                 console.log($scope.AllRecipes);
             }
+        });
+    };
+
+    $scope.AddFriend=function()
+    {
+        
+        //The Server request for Geting All Recipes
+        $http
+        ({
+        url: "http://83.254.221.239:9000/addFriend",
+        method:"GET",
+        params: {sessionID:mySession.sessionID, follower:$scope.AddFriendReq} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                /*console.log(data)
+                //Store MyRecipes
+                $scope.AllMyFriends = data.recipes;
+                console.log($scope.AllRecipes);*/
+            }
+        });
+    };
+    $scope.RemoveFriend=function(){
+        //The Server request for Geting All Recipes
+        $http
+        ({
+        url: "http://83.254.221.239:9000/deleteFriend",
+        method:"GET",
+        params: {sessionID:mySession.sessionID, follower:$scope.AddFriendReq} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                /*console.log(data)
+                //Store MyRecipes
+                $scope.AllRecipes = data.recipes;
+                console.log($scope.AllRecipes);*/
+           }
         });
     };
 });
