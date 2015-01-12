@@ -103,7 +103,7 @@ User Home Page
           <li ng-repeat="friend in AllMyFriends">
             <div class ="row singleRecipe">
               <div class="col-xs-10">{{friend.email}}</div>
-              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture/{{ friend.email }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
+              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
               <div class="col-xs-6">   
               </div>
             </div>

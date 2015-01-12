@@ -109,7 +109,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         $scope.URecipes_Collapse = true;
         $scope.ListRecipes = true;
         $scope.SearchRecipesList = true;
-
+        $scope.MyFriends_Collapse = true;
 
         $http
         ({
@@ -138,6 +138,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         $scope.SearchRecipesList = true;
         $scope.URecipes_Collapse = true;
         $scope.ListRecipes = true;
+        $scope.MyFriends_Collapse = true;
         console.log($scope.searchString);
         $http
         ({
@@ -165,6 +166,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         $scope.ListRecipes = true;
         $scope.URecipes_Collapse = true;
         $scope.SearchRecipesList = true;
+        $scope.MyFriends_Collapse = true;
         $http
         ({
         url: "http://83.254.221.239:9000/searchRecipe",
