@@ -11,9 +11,11 @@ editRecipe.controller('EditRecipe', function ($rootScope,$scope, $modal, $log, $
   $scope.UinitsPr={
     Kg:'Kg',
     Mg:'Mg',
+    g:'g',
     tbsp:'tbsp',
     liters:'liters',
     ml:'ml',
+    dl:'dl',
     tsp:'tsp'
   };
 
@@ -22,6 +24,11 @@ editRecipe.controller('EditRecipe', function ($rootScope,$scope, $modal, $log, $
   $scope.status = {
     isopen: false
   };
+
+  $scope.removeING = function(index) {
+    ingredients.splice(index, 1);
+  };
+
   $scope.ChngBtnName = function(newName){
     $scope.tempName = newName;
     $scope.ingredientsInfo.amountType = newName;

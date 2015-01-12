@@ -8,9 +8,11 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
   $scope.UinitsPr={
     Kg:'Kg',
     Mg:'Mg',
+    g:'g',
     tbsp:'tbsp',
     liters:'liters',
     ml:'ml',
+    dl:'dl',
     tsp:'tsp'
   };
 

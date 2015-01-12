@@ -187,34 +187,15 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 $scope.ListRecipes = false;
             }
         });
-        //The Server request for Geting all favorites
-        /*$http
-        ({
-        url: "http://83.254.221.239:9000/showMyRecipes",
-        method:"GET",
-        params: {sessionID:mySession.sessionID} 
-        })
-        .success(function(data)
-        {
-            if (!data.success)
-            {
-                alert(data.error);
-            }
-            else
-            {
-                console.log(data)
-                //Store MyRecipes
-                AllUserRecipes=data.recipes;
-                console.log(AllUserRecipes);
-            }
-        });*/
     };
+
     $scope.ShowSingleRecipe=function(recID) 
     {
         var location = "showRecipeLayout.html"
         sessionStorage.recipeID = recID;
         window.location= location;
     };
+    
     $scope.DeleteRecipe=function(recID)
     {
         $http
