@@ -1,6 +1,8 @@
 var editRecipe = angular.module('UserInfo');
+
 var ingredients;
 var init = true;
+
 editRecipe.controller('EditRecipe', function ($rootScope,$scope, $modal, $log, $http) {
 
   $scope.tempName = 'Units';
