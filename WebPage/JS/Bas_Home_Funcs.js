@@ -22,6 +22,8 @@ BasicFunctions.factory('userProfileID', function()
 //other homepage that we will include with ng-include :D
 var templates =
 [ { name: 'temp.html', url: 'post recipe.html'}];
+var templates2 = 
+[ { name: 'temp2.html', url: 'Edit recipe page.html'}];
 var UserRcipes, Userinfo;
 
 BasicFunctions.controller('testController', function($scope, $http) {
@@ -57,10 +59,17 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.AllSearchRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
+
     $scope.AllMyFriends={};
     $scope.SearchAFriend="";
     $scope.AllUsersSearch={};
     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
+
+    $scope.template2 = templates2[0];
+    $scope.AddFriendReq ="dk@hotmail.com";
+    $scope.DeleteFriendReq ="dk@hotmail.com";
+     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
+
 
     var mySession={sessionID: ""};
     mySession.sessionID = sessionStorage.whatever;
@@ -117,9 +126,10 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.GetAllMyRecipes=function(){
         //The Server request for Geting All user specific recipes
         $scope.URecipes_Collapse = true;
-        console.log("Test " + $scope.URecipes_Collapse);
         $scope.ListRecipes = true;
         $scope.SearchRecipesList = true;
+
+
         $http
         ({
         url: "http://83.254.221.239:9000/showMyRecipes",
@@ -136,7 +146,6 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             {
                 //Store MyRecipes
                 $scope.AllUserRecipes=data.recipes;
-                console.log($scope.AllUserRecipes);
                 $scope.URecipes_Collapse = false;
             }
         });
@@ -223,12 +232,64 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         sessionStorage.recipeID = recID;
         window.location= location;
     };
-    $scope.GetAllRecipes=function(isOpen){
+    $scope.DeleteRecipe=function(recID)
+    {
+        $http
+        ({
+        url: "http://83.254.221.239:9000/deleteRecipe",
+        method:"GET",
+        params: {sessionID:mySession.sessionID,recipeID:recID} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                //Store MyRecipes
+                alert("Recipe Deleted");
+                $scope.GetAllMyRecipes(false);
+            }
+        });
+    };
+
+    $scope.EditRecipe=function(recID)
+    {
+        var location = "Edit recipe page.html";
+        sessionStorage.recipeID = recID;
+        window.location = location;
+    };
+
+    $scope.RemoveFromFavorite=function(recipeIDIN)
+    {
+        $http
+        ({
+            url: "http://83.254.221.239:9000/deleteFavorite",
+            mathod:"GET",
+            params: {sessionID:mySession.sessionID,recipeID:recipeIDIN}
+        }).success(function(data)
+        {
+            if(!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                alert("Removed from favorite");
+                $scope.GetAllMyFavorites(false);
+            }
+        });
+    };
+
+    $scope.GetAllRecipes=function(isOpen)
+    {
         $scope.URecipes_Collapse = isOpen;
         //The Server request for Geting All Recipes
         $http
         ({
-        url: "http://83.254.221.239:9000/ShowAll",
+        url: "http://83.254.221.239:9000/showAll",
         method:"GET",
         params: {sessionID:mySession.sessionID} 
         })
@@ -248,6 +309,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         });
     };
 
+<<<<<<< HEAD
      $scope.MyFriends=function(isOpen){
         $scope.MyFriends_Collapse = isOpen;
          $scope.ListRecipes = true;
@@ -259,6 +321,17 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         url: "http://83.254.221.239:9000/showMyFriends",
         method:"GET",
         params: {sessionID:mySession.sessionID} 
+=======
+    $scope.AddFriend=function()
+    {
+        
+        //The Server request for Geting All Recipes
+        $http
+        ({
+        url: "http://83.254.221.239:9000/addFriend",
+        method:"GET",
+        params: {sessionID:mySession.sessionID, follower:$scope.AddFriendReq} 
+>>>>>>> 41e50953530e9a543d15589dc7778fccd8fe5de2
         })
         .success(function(data)
         {
@@ -268,6 +341,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
             else
             {
+<<<<<<< HEAD
                 console.log(data)
                 //Store MyRecipes
                 $scope.AllMyFriends = data.friends;
@@ -289,6 +363,22 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         url: "http://83.254.221.239:9000/searchUser",
         method:"GET",
         params: {sessionID:mySession.sessionID, searchString:$scope.SearchAFriend} 
+=======
+                /*console.log(data)
+                //Store MyRecipes
+                $scope.AllMyFriends = data.recipes;
+                console.log($scope.AllRecipes);*/
+            }
+        });
+    };
+    $scope.RemoveFriend=function(){
+        //The Server request for Geting All Recipes
+        $http
+        ({
+        url: "http://83.254.221.239:9000/deleteFriend",
+        method:"GET",
+        params: {sessionID:mySession.sessionID, follower:$scope.AddFriendReq} 
+>>>>>>> 41e50953530e9a543d15589dc7778fccd8fe5de2
         })
         .success(function(data)
         {
@@ -298,11 +388,19 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
             else
             {
+<<<<<<< HEAD
                 //Store MyRecipes
                 $scope.AllUsersSearch=data.friends;
                 console.log($scope.AllUsersSearch);
                 $scope.SearchFriendList = false;
             }
+=======
+                /*console.log(data)
+                //Store MyRecipes
+                $scope.AllRecipes = data.recipes;
+                console.log($scope.AllRecipes);*/
+           }
+>>>>>>> 41e50953530e9a543d15589dc7778fccd8fe5de2
         });
     };
 });

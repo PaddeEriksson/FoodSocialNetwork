@@ -1,5 +1,7 @@
 package com.FoodSocialNetwork.app.database.DAO;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.jdbc.core.JdbcOperations;
@@ -110,5 +112,47 @@ public class UserDAO{
 		}
 		return user;		
 	}
-	
+
+	public void updateUser(User user) {
+		String sql = "Update user set userName = ?, "
+				+ "						password = ?, "
+				+ "						country = ?, "
+				+ "						profilePicurePath = ?"
+				+ "						where email = ?";
+		
+		Object[] params = {user.getUserName(), user.getPassword(), user.getCountry(), user.getProfilePicturePath(), user.getEmail() };
+		
+		try
+		{
+			jdbcOperations.update(sql,params);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+	}
+
+	public User[] searchUser(String searchString) {
+		
+		
+		String sql = "Select * from user where email like ?";
+		searchString = "%" + searchString + "%";
+		
+		Object[] params = { searchString };
+		
+		User[] returnValue = null;
+		try
+		{
+			List<User> users = jdbcOperations.query(sql, params,new UserMapper());
+			returnValue = new User[users.size()];
+			users.toArray(returnValue);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		return returnValue;
+	}
 }

@@ -20,21 +20,32 @@ public class AddFavoriteController {
 	@Resource
 	private UserDAO userDAO;
 	
+	
+	public void setDAOs(FavoriteDAO favDAO,UserDAO userDAO)
+	{
+		this.favoriteDAO = favDAO;
+		this.userDAO = userDAO;
+	}
+	
 	@RequestMapping("/addFavorite")
 	public DefaultResponse addFavorite(@RequestParam(value = "sessionID") String session,
 			                           @RequestParam(value = "recipeID") long recipeID)
 			                           
     {
 		DefaultResponse returnValue = new DefaultResponse();
-		Favorite favorite = new Favorite();
-		favorite.setRecipeID(recipeID);;
-    	favorite.setUser(userDAO.getUserFromSession(session).getEmail());
-		
+
     	User user = userDAO.getUserFromSession(session);
 		if(user != null){
 			
 			if(!favoriteDAO.doesFavoriteExist(recipeID,user.getEmail()))
 			{
+				
+				Favorite favorite = new Favorite();
+				favorite.setRecipeID(recipeID);;
+		    	favorite.setUser(user.getEmail());
+
+				
+				System.out.println("HERE?");
 				favoriteDAO.addFavorite(favorite);
 				returnValue.setSuccess(true);
 			}

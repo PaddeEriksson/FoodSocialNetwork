@@ -7,40 +7,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodSocialNetwork.app.database.User;
-import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
+import com.FoodSocialNetwork.app.database.DAO.FriendDAO;
 import com.FoodSocialNetwork.app.database.DAO.UserDAO;
 import com.FoodSocialNetwork.app.responce.DefaultResponse;
 
 @RestController
-public class DeleteFavoriteController {
-	
-	@Resource
-	private FavoriteDAO favoriteDAO;
-	
+public class DeleteFriendController {
+
 	@Resource
 	private UserDAO userDAO;
 	
-	@RequestMapping("/deleteFavorite")
+	@Resource
+	private FriendDAO friendDAO;
 	
-	public DefaultResponse deleteFavorite(@RequestParam(value = "sessionID") String session,
-			                              @RequestParam(value = "recipeID") long recipeID)
+	@RequestMapping("/deleteFriend")
+	public DefaultResponse addFriend(@RequestParam(value = "sessionID") String session,
+                                     @RequestParam(value = "follower") String follower)
     {
 		DefaultResponse returnValue = new DefaultResponse();
 		
 		User user = userDAO.getUserFromSession(session);
-		if(user != null)
-		{
-			if(favoriteDAO.doesFavoriteExist(recipeID,user.getEmail()))
-			{
-				favoriteDAO.deleteAFavorite(recipeID,user.getEmail());
+		if(user != null){
+			if(friendDAO.doesFriendExist(user.getEmail(), follower)){
+				
+				friendDAO.deleteAFriend(user.getEmail(), follower);
 				returnValue.setSuccess(true);
 			}
-			
 			else
 			{
 				returnValue.setSuccess(false);
-				returnValue.setError("You haven't added this recipe to your favorite!");
+				returnValue.setError("You should added it first then remove it!");
 			}
+			
 		}
 		else
 		{
@@ -49,5 +47,6 @@ public class DeleteFavoriteController {
 		}
 		
 		return returnValue;
+		
     }
 }

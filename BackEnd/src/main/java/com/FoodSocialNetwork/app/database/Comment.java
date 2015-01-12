@@ -2,14 +2,13 @@ package com.FoodSocialNetwork.app.database;
 
 public class Comment {
 
-	
-	
 	private String title;
 	private String user;
 	private int score;
 	private String commentText;
 	private long recipeID;
 	private String recipeTitle;
+	
 	public String getTitle() {
 		return title;
 	}

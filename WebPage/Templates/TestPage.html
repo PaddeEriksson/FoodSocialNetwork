@@ -1,52 +1,52 @@
 <!doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html>
+<html ng-app ='myModule' >
 <title>
-  SocialFoodNetwork
+SocialFoodNetwork
 </title>
 
-<head >
-	<h2 class ="generalT">WebApplication</h2>
+<head>
+	<h2>WebApplication</h2>
+	<link rel="stylesheet" type="text/css" href="../Layouts/learning.css">
+  <link rel="stylesheet" type="text/css" href= "../dist/css/bootstrap.min.css">
 
-  <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href= "../Layouts/CreateRecepie.css">
-  <link rel="stylesheet" type="text/css" href= "../Layouts/Basic_Layout.css">
-
-	<script src="../ExternalLib/angular.min.js"></script>
-  <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
+	<script src="../JS/angular.min.js"></script>
+  <script src="../JS/ui-bootstrap-tpls-0.12.0.min.js"></script>
 	<script src="../JS/TestBS.js"></script>
+
  
+
 </head>
-<body class = "generalB">
+<body>
+  <div ng-controller="AccordionDemoCtrl">
+  <p>
+    <button class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
+    <button class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
+  </p>
 
-<button class="a">wohooo
-</button>
-
-<div class ="AllRecepies">
-  <div class="row">
-    <div class="col-xs-10">.col-xs-9</div>
-    <div class="col-xs-4">.col-xs-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
-    <div class="col-xs-6">.col-xs-6<br>Subsequent columns continue along the new line.</div>
-
+  <label class="checkbox">
+    <input type="checkbox" ng-model="oneAtATime">
+    Open only one at a time
+  </label>
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      This content is straight in the template.
+    </accordion-group>
+    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+      {{group.content}}
+    </accordion-group>
+    <accordion-group heading="Dynamic Body Content">
+      <p>The body of the accordion group grows to fit the contents</p>
+        <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+        <div ng-repeat="item in items">{{item}}</div>
+    </accordion-group>
+    <accordion-group is-open="status.open">
+        <accordion-heading>
+            I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+        </accordion-heading>
+        This is just some content to illustrate fancy headings.
+    </accordion-group>
+  </accordion>
 </div>
-
-
-<div ng-controller="DropdownCtrl"><!-- Single button -->
-<div class="btn-group" dropdown>
-      <button type="button" class="btn btn-danger">Action</button>
-      <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
-        <span class="caret"></span>
-        <span class="sr-only">Split button!</span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div>
-</div>
-
 </body>
 </html>

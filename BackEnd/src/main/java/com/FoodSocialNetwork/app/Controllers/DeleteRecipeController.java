@@ -1,11 +1,14 @@
 package com.FoodSocialNetwork.app.Controllers;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.FoodSocialNetwork.app.database.Recipe;
 import com.FoodSocialNetwork.app.database.DAO.CommentDAO;
 import com.FoodSocialNetwork.app.database.DAO.FavoriteDAO;
 import com.FoodSocialNetwork.app.database.DAO.IngredientDAO;
@@ -47,7 +50,18 @@ public class DeleteRecipeController {
 		if(userDAO.getUserFromSession(session) != null)
 		{
 			if(recDAO.doesRecipeExist(recipeID))
-			{				
+			{	
+				Recipe rec = recDAO.getRecipe(recipeID);
+				if(rec.getIMG() != null)
+				{
+					File f = new File(rec.getIMG());
+					f.delete();
+				}
+				if(rec.getInstruction() != null)
+				{
+					File f = new File(rec.getInstruction());
+					f.delete();
+				}
 				recDAO.deleteRecipe(recipeID);
 				ingredientDAO.deleteIngredientsFromRecipe(recipeID);
 				commentDAO.deleteCommentsWithRecipeID(recipeID);

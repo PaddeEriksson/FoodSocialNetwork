@@ -50,7 +50,7 @@ User Home Page
       <div class="AllRecepies">
       <ul>
       <!--Show all recipes-->
-      <li ng-repeat= "R in AllRecipes" >{{R.recipeTitle}}</li>
+      <li ng-repeat= "R in AllRecipes" >{{R.recipeTitle}}<br></li>
       bla bla bla 
       </ul>
     </div>
@@ -65,7 +65,10 @@ User Home Page
               
               </div>
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
-              <div class="col-xs-15"><button class="btn">Delete</button></div>
+              <div class="col-xs-15"><button class="btn" ng-click="DeleteRecipe(recipe.recipeID)">Delete</button>
+                <button class="btn" ng-click="EditRecipe(recipe.recipeID)">Edit</button>
+                <buttpm class="btn" ng-include src="template2.url"></bitton>
+                </div>
             </div>
           </li>
         </ul> 
@@ -81,7 +84,7 @@ User Home Page
               
               </div>
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
-              <div class="col-xs-15"><button class="btn">Remove from favorites</button></div>
+              <div class="col-xs-15"><button class="btn" ng-click="RemoveFromFavorite(recipe.recipeID)">Remove from favorites</button></div>
             </div>
           </li>
         </ul> 
@@ -102,6 +105,7 @@ User Home Page
         </ul> 
       <!--Show All Favorites-->
     </div>
+<<<<<<< HEAD
    
 
       <div collapse="MyFriends_Collapse">
@@ -133,7 +137,10 @@ User Home Page
         </ul> 
         </div>
       </div>
-   
+
+    <button ng-click = "AddFriend()">Add Buddy </button> 
+    <button ng-click = "RemoveFriend()">remove Buddy </button> 
+
   </div>
 
 
