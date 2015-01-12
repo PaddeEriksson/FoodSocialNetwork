@@ -43,9 +43,7 @@ public class AddFavoriteController {
 				Favorite favorite = new Favorite();
 				favorite.setRecipeID(recipeID);;
 		    	favorite.setUser(user.getEmail());
-
 				
-				System.out.println("HERE?");
 				favoriteDAO.addFavorite(favorite);
 				returnValue.setSuccess(true);
 			}

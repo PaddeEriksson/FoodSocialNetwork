@@ -19,7 +19,7 @@ public class FriendDAO {
 	public Friend[] getUsersFriends(String userEmail)
 	{
 		
-		String sql = "Select * from Friend where follower = ?";
+		String sql = "Select * from friend where follower = ?";
 		
 		Object[] params = {userEmail};
 		
