@@ -19,6 +19,12 @@ Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
   $scope.status = {
     isopen: false
   };
+
+  $scope.removeING = function(index) {
+    ingredients.splice(index, 1);
+  };
+
+
   $scope.ChngBtnName = function(newName){
     $scope.tempName = newName;
     $scope.ingredientsInfo.amountType = newName;

@@ -27,16 +27,13 @@ User Home Page
     <br>
 
   </div>
-  <!--The Modal For Creating Recipe-->
-
 
    <!--The Toolbar-->
   <div ng-controller="ButtonsControles">
      <div class="input-group input-group-lg">
       <div class="input-group-btn">
-        <button class="btn" ng-click="GetAllRecipes()">Home</button>
-        <button class="btn" ng-click="GetAllMyRecipes()">My Recipes</button>
         <button class="btn" ng-click="logout()">Logout</button>
+        <button class="btn" ng-click="GetAllMyRecipes()">My Recipes</button>
         <button class="btn" ng-click="GetUserInfo()">Settings</button>
         <button class="btn" ng-click="GetAllMyFavorites(ListRecipes = !ListRecipes)">Favorites</button>
         <button class="btn" ng-click="MyFriends(MyFriends_Collapse = !MyFriends_Collapse)">My Friends</button>
@@ -47,32 +44,27 @@ User Home Page
         <button class="btn" ng-click="SearchRecipes(false,searchString)">Search</button>
       </div>
       </div>
-      <div class="AllRecepies">
-      <ul>
-      <!--Show all recipes-->
-      <li ng-repeat= "R in AllRecipes" >{{R.recipeTitle}}<br></li>
-      bla bla bla 
-      </ul>
-    </div>
+
     <!--Show All User Recipes-->
-      <div collapse="URecipes_Collapse">
+      <div collapse="URecipes_Collapse" >
         <ul class="ListFormat">
           <li ng-repeat="recipe in AllUserRecipes">
             <div class ="row singleRecipe">
               <div class="col-xs-10">{{recipe.recipeTitle}}</div>
               <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/recipePicture/{{ recipe.recipeID }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(recipe.recipeID)"/></div>
-              <div class="col-xs-6">
               
-              </div>
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
-              <div class="col-xs-15"><button class="btn" ng-click="DeleteRecipe(recipe.recipeID)">Delete</button>
+              <div class="col-xs-15">
+                <button class="btn" ng-click="DeleteRecipe(recipe.recipeID)">Delete</button>
                 <button class="btn" ng-click="EditRecipe(recipe.recipeID)">Edit</button>
-                </div>
+                <!--button class="btn" ng-include src="template2.url"--><!--/button-->
+              </div>
             </div>
           </li>
         </ul> 
       <!--Show All Favorites-->
-    </div>
+      </div>
+
       <div collapse="ListRecipes">
         <ul class="ListFormat">
           <li ng-repeat="recipe in AllFavoriteRecipes">
@@ -89,6 +81,7 @@ User Home Page
         </ul> 
       <!--Show All Favorites-->
     </div>
+
       <div collapse="SearchRecipesList">
         <ul class="ListFormat">
           <li ng-repeat="recipe in AllSearchRecipes">
@@ -104,9 +97,7 @@ User Home Page
         </ul> 
       <!--Show All Favorites-->
     </div>
-<<<<<<< HEAD
    
-
       <div collapse="MyFriends_Collapse">
         <ul class="ListFormat">
           <li ng-repeat="friend in AllMyFriends">
@@ -120,16 +111,18 @@ User Home Page
         </ul> 
       <!--Show All Favorites-->
     </div>
-      <div class='searchfriend' > 
+
+    <!--Find Friends-->
+    <div class='searchfriend' > 
         <input type="text" ng-model = 'SearchAFriend' class="form-control">
         <button class="btn" ng-click ="SearchFriends(false)"> Search Friends</button> 
         <p>  <div collapse="SearchFriendList">
         <ul class="ListFormat">
           <li ng-repeat="friend in AllUsersSearch">
             <div class ="">
-              <div class="col-xs-10"></div>
-              <div class="col-xs-4"> {{friend.email}} <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
-              <div class="col-xs-6">
+              <div class="col-xs-10"> {{friend.email}} <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
+              <div class="col-xs-10">
+              <button class="btn" ng-click = "AddFriend(friend.email)">Add a Buddy </button> 
               </div>
             </div>
           </li>
@@ -137,7 +130,7 @@ User Home Page
         </div>
       </div>
 
-    <button ng-click = "AddFriend()">Add Buddy </button> 
+    
     <button ng-click = "RemoveFriend()">remove Buddy </button> 
 
   </div>

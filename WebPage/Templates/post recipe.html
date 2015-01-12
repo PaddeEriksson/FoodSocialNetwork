@@ -56,7 +56,8 @@ NEW RECIPE
             <li><br>
             <button class="btn" ng-click="SveIng(ingredientsInfo)"> ADD </button><br>
             <label ng-repeat="ingred in ingredient">
-                {{ingred}}<br>
+               <button type="button" ng-click="removeING(ingred)">Delete ingredient</button>
+               {{ingred.name}} {{ingred.amount}} {{ingred.isOptional}} {{ingred.amountType}}<br>
             </label><br>
             </li>
             </div>

@@ -1,5 +1,8 @@
 <html ng-app ='UserInfo'>
 <head>
+	 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../Layouts/view layout.css">
+	<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
 	<title>User Profile Page </title>
 	<script src="../ExternalLib/angular.min.js"></script>
 	<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
@@ -8,9 +11,13 @@
  	<script src="../JS/Bas_Home_Funcs.js"></script>
 	<script src="../JS/testProfilePage.js"></script>
 </head>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../Layouts/view layout.css">
 <link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+=======
+
+>>>>>>> small changes
 
 <body>
 	<h1>{{hello}}</h1>
@@ -18,13 +25,21 @@
 
 	<div ng-controller="profilePage">
 		<label>Email: {{ email }}</label><br>
-  		<label>Profile Picture: </label><br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/><br>
-  		<input type="file"></input><br><button class="btn">Upload new picture</button>
+  		<label>Profile Picture: </label>
   		<br>
-		<label >Username: &nbsp;</label><input type="text" ng-model="username"><button class="btn">Change Username</button></label>
+  		<img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/><br>
+  		<input class="btn " type="file"> </input><br>
+
+  		<button class="btn"> Upload new picture </button>
+  		<br>
+		<label >Username: &nbsp;</label>
+		<input type="text" ng-model="username"></input>
+		<button class="btn">Change Username</button>
 		<br>
 		<br>
-		<label>Country: &nbsp;</label> <input type="text" ng-model="country"><button class="btn">Change Country</label>
+		<label>Country: &nbsp;</label>
+		<input type="text" ng-model="country">
+		<button class="btn">Change Country</label>
 	</div>
 </body>
 </html>
