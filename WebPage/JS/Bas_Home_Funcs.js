@@ -373,6 +373,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             else
             {
                 alert("You just added a firnd");
+                $scope.MyFriends($scope.MyFriends_Collapse);
             }
         });
     };
@@ -393,8 +394,9 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
             else
             {
-                alert("You just toped following"+ usetinfo);
-           }
+                alert("You stop following "+ usetinfo);
+                $scope.MyFriends($scope.MyFriends_Collapse);
+            }
         });
     };
 

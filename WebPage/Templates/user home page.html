@@ -105,11 +105,12 @@ User Home Page
               <div class="col-xs-10">{{friend.email}}</div>
               <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
               <div class="col-xs-6">   
+               <button class="btn" ng-click = "RemoveFriend(friend.email)">remove Buddy </button>    
+
               </div>
             </div>
           </li>
         </ul> 
-      <!--Show All Favorites-->
     </div>
 
     <!--Find Friends-->
@@ -131,7 +132,7 @@ User Home Page
       </div>
 
     
-    <button ng-click = "RemoveFriend()">remove Buddy </button> 
+   
 
   </div>
 
