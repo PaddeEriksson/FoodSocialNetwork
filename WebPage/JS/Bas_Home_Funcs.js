@@ -49,11 +49,17 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 	$scope.URecipes_Collapse = true;
     $scope.ListRecipes = true;
     $scope.SearchRecipesList = true;
+    $scope.MyFriends_Collapse=true;
+    $scope.SearchFriendList = true;
+
     $scope.AllUserRecipes={};
     $scope.AllFavoriteRecipes={};
     $scope.AllSearchRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
+    $scope.AllMyFriends={};
+    $scope.SearchAFriend="";
+    $scope.AllUsersSearch={};
     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
 
     var mySession={sessionID: ""};
@@ -211,7 +217,7 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
         });*/
     };
-    $scope.ShowSingleRecipe=function(recID)
+    $scope.ShowSingleRecipe=function(recID) 
     {
         var location = "showRecipeLayout.html"
         sessionStorage.recipeID = recID;
@@ -238,6 +244,64 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
                 //Store MyRecipes
                 $scope.AllRecipes = data.recipes;
                 console.log($scope.AllRecipes);
+            }
+        });
+    };
+
+     $scope.MyFriends=function(isOpen){
+        $scope.MyFriends_Collapse = isOpen;
+         $scope.ListRecipes = true;
+        $scope.URecipes_Collapse = true;
+        $scope.SearchRecipesList = true;
+        //The Server request for Geting All Recipes
+        $http
+        ({
+        url: "http://83.254.221.239:9000/showMyFriends",
+        method:"GET",
+        params: {sessionID:mySession.sessionID} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                console.log(data)
+                //Store MyRecipes
+                $scope.AllMyFriends = data.friends;
+                console.log($scope.AllMyFriends[0].email);
+                $scope.MyFriends_Collapse = false;
+            }
+        });
+    };
+
+     $scope.SearchFriends=function(isOpen){
+        //The Server request for Geting All user specific recipes
+        $scope.SearchRecipesList = true;
+        $scope.URecipes_Collapse = true;
+        $scope.ListRecipes = true;
+        $scope.SearchFriendList = true;
+        console.log($scope.SearchAFriend);
+        $http
+        ({
+        url: "http://83.254.221.239:9000/searchUser",
+        method:"GET",
+        params: {sessionID:mySession.sessionID, searchString:$scope.SearchAFriend} 
+        })
+        .success(function(data)
+        {
+            if (!data.success)
+            {
+                alert(data.error);
+            }
+            else
+            {
+                //Store MyRecipes
+                $scope.AllUsersSearch=data.friends;
+                console.log($scope.AllUsersSearch);
+                $scope.SearchFriendList = false;
             }
         });
     };

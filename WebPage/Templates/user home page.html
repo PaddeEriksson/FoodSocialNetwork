@@ -7,6 +7,7 @@ User Home Page
 </title>
   <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+ 
 
 	<script src="../ExternalLib/angular.min.js"></script>
   <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
@@ -38,6 +39,7 @@ User Home Page
         <button class="btn" ng-click="logout()">Logout</button>
         <button class="btn" ng-click="GetUserInfo()">Settings</button>
         <button class="btn" ng-click="GetAllMyFavorites(ListRecipes = !ListRecipes)">Favorites</button>
+        <button class="btn" ng-click="MyFriends(MyFriends_Collapse = !MyFriends_Collapse)">My Friends</button>
         <buttpm class="btn" ng-include src="template.url"></bitton>
       </div>
         <input type="text" ng-model = 'searchString' class="form-control">
@@ -100,7 +102,38 @@ User Home Page
         </ul> 
       <!--Show All Favorites-->
     </div>
+   
 
+      <div collapse="MyFriends_Collapse">
+        <ul class="ListFormat">
+          <li ng-repeat="friend in AllMyFriends">
+            <div class ="row singleRecipe">
+              <div class="col-xs-10">{{friend.email}}</div>
+              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture/{{ friend.email }}?sessionID={{ session }}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
+              <div class="col-xs-6">   
+              </div>
+            </div>
+          </li>
+        </ul> 
+      <!--Show All Favorites-->
+    </div>
+      <div class='searchfriend' > 
+        <input type="text" ng-model = 'SearchAFriend' class="form-control">
+        <button class="btn" ng-click ="SearchFriends(false)"> Search Friends</button> 
+        <p>  <div collapse="SearchFriendList">
+        <ul class="ListFormat">
+          <li ng-repeat="friend in AllUsersSearch">
+            <div class ="">
+              <div class="col-xs-10"></div>
+              <div class="col-xs-4"> {{friend.email}} <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
+              <div class="col-xs-6">
+              </div>
+            </div>
+          </li>
+        </ul> 
+        </div>
+      </div>
+   
   </div>
 
 

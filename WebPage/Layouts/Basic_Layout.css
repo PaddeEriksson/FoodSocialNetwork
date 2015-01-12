@@ -100,3 +100,17 @@ li.Buttons{
 	outline: 0px auto -webkit-focus-ring-color;
 	outline-offset: 0px;
 }
+
+div.searchfriend{
+	position: absolute;
+	right:0px;
+	top: 0px;
+	width: 200px;
+}
+
+div.searchafriend{
+	position: absolute;
+	right:0px;
+	top: 0px;
+	width: 200px;
+}

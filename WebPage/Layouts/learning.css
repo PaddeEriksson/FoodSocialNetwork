@@ -25,3 +25,17 @@ div.createaccount{
      background-color: ;
 }
 h3.modaltitle{color:red; font-size: 44px}
+
+div.searchfriend{
+	position: absolute;
+	right:0px;
+	top: 0px;
+	width: 200px;
+}
+
+div.searchafriend{
+	position: absolute;
+	right:0px;
+	top: 0px;
+	width: 200px;
+}
