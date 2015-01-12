@@ -21,9 +21,8 @@ BasicFunctions.factory('userProfileID', function()
 
 //other homepage that we will include with ng-include :D
 var templates =
-[ { name: 'temp.html', url: 'post recipe.html'}];
-var templates2 = 
-[ { name: 'temp2.html', url: 'Edit recipe page.html'}];
+[ { name: 'temp.html', url: 'post recipe.html'},
+{ name: 'temp.html', url: 'Edit recipe page.html'}];
 var UserRcipes, Userinfo;
 
 BasicFunctions.controller('testController', function($scope, $http) {
@@ -59,10 +58,14 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
     $scope.AllSearchRecipes={};
     $scope.AllRecipes={};
 	$scope.template = templates[0];
+<<<<<<< HEAD
 
     $scope.AllMyFriends={};
     $scope.SearchAFriend="";
     $scope.AllUsersSearch={};
+=======
+    $scope.template2 = templates[1];
+>>>>>>> bug fix
     console.log("http://83.254.221.239:9000/profile/"+ sessionStorage.email);
 
     $scope.template2 = templates2[0];

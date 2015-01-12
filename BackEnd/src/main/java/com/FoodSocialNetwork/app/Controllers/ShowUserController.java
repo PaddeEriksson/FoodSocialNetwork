@@ -63,16 +63,17 @@ public class ShowUserController {
 		return returnValue;
 	}
 	
-    @RequestMapping(value = "/userPicture/{email}",
+    @RequestMapping(value = "/userPicture",
             method = RequestMethod.GET,
             headers="Accept=image/jpeg, image/jpg, image/png, image/gif")
 	public byte[] showUserPicture(@RequestParam(value = "sessionID") String session,
-								  @PathVariable(value = "email") String email) throws IOException
+								  @RequestParam(value = "email") String email) throws IOException
 	{
 		//This will return picture of user
     	byte[] returnValue = null;
     	if(userDAO.getUserFromSession(session) != null)
     	{
+    		
     		User user = userDAO.getUserFromEmail(email);
     		if(user != null)
     		{
@@ -94,6 +95,7 @@ public class ShowUserController {
     	        ImageIO.write(img, "jpg", bao);
     	        returnValue = bao.toByteArray();
     		}
+
     	}
 
         return returnValue;

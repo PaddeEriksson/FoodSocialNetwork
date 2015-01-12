@@ -29,8 +29,8 @@ public class AddFriendController {
     {
 		DefaultResponse returnValue = new DefaultResponse();
 		Friend friend = new Friend();
-		friend.setFollower(follower);
-    	friend.setFollowee(userDAO.getUserFromSession(session).getEmail());
+		friend.setFollowee(follower);
+    	friend.setFollower(userDAO.getUserFromSession(session).getEmail());
 		
 		User user = userDAO.getUserFromSession(session);
 		
