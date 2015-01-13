@@ -23,6 +23,7 @@ BasicFunctions.factory('userProfileID', function()
 var templates =
 [ { name: 'temp.html', url: 'post recipe.html'},
 { name: 'temp2.html', url: 'Edit recipe page.html'}];
+
 var UserRcipes, Userinfo;
 
 BasicFunctions.controller('testController', function($scope, $http) {
@@ -98,9 +99,10 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         window.location= location;
     };
 
-    $scope.GoToFriends = function(){
-        var location = "EditAccountLayout.html"
-        sessionStorage.profileEmail = sessionStorage.email;
+    $scope.ShowUserProfile = function(email, username){
+        var location = "user profile.html"
+        sessionStorage.FriendEmail = email;
+        sessionStorage.FriendUsername = username;
         window.location= location;
     };
 
@@ -379,5 +381,6 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
             }
         });
     };
+
 
 });

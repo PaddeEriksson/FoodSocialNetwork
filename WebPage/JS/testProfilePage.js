@@ -5,6 +5,9 @@ profilePage.controller('profilePage',  function($scope, $http, $timeout){
 	$scope.userprofile = {};
 	$scope.session = sessionStorage.whatever;
 	$scope.userprofile = sessionStorage.profileEmail;
+	
+	$scope.FrInfo = { Username: sessionStorage.FriendUsername, Email:sessionStorage.FriendEmail, 
+						Country:'sessionStorage.FriendCountry'};
 	//TODO update to server IP
 	$scope.init=function()
 	{

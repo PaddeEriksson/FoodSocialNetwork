@@ -14,13 +14,13 @@
 	<h1>{{hello}}</h1>
 	<h2> Personal Information </h2>
 	<div ng-controller="profilePage">
-  		<label>Profile Picture: </label><br><img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/>
+  		              <div class="col-xs-10"><img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{FrInfo.Email}}" width="25%" height="auto"/></div>
   		<br>
-		<label>Username: {{ username }}</label>
+		<label>Username: {{ FrInfo.Username }}</label>
 		<br>
-		<label>Email: {{ email }}</label>
+		<label>Email: {{FrInfo.Email}}</label>
 		<br>
-		<label>Country: {{ country }}</label>
+		<label>Country: {{ FrInfo.Country }}</label>
 	</div>
 </body>
 </html>
