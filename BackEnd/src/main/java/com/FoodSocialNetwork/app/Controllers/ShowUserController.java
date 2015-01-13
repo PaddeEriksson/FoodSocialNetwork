@@ -2,6 +2,7 @@ package com.FoodSocialNetwork.app.Controllers;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -77,24 +78,48 @@ public class ShowUserController {
     		User user = userDAO.getUserFromEmail(email);
     		if(user != null)
     		{
+    	      
     			String path = user.getProfilePicturePath();
-    			if(user.getProfilePicturePath() == null)
+    			if(path == null)
     			{
-    				path = "/profilePictures/defaultprofile.jpg";
+    				path = "image/imageMissing.jpg";
+    				FileInputStream fis = new FileInputStream(path);
+    		        InputStream is = fis;
+
+    		        // Prepare buffered image.
+    		        BufferedImage img = ImageIO.read(is);
+
+    		        // Create a byte array output stream.
+    		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+    		        // Write to output stream
+    		        ImageIO.write(img, "jpg", bao);
+    		        returnValue = bao.toByteArray();
     			}
-    			
-    	        InputStream is = this.getClass().getResourceAsStream(path); 
+    			else
+    			{
+    				FileInputStream fis = new FileInputStream(path);
+    		        InputStream is = fis;
 
-    	        // Prepare buffered image.
-    	        BufferedImage img = ImageIO.read(is);
+    		        // Prepare buffered image.
+    		        BufferedImage img = ImageIO.read(is);
 
-    	        // Create a byte array output stream.
-    	        ByteArrayOutputStream bao = new ByteArrayOutputStream();
-
-    	        // Write to output stream
-    	        ImageIO.write(img, "jpg", bao);
-    	        returnValue = bao.toByteArray();
+    		        // Create a byte array output stream.
+    		        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+    		        String fileType = "png";
+    		        // Write to output stream
+    		        if(path.contains(".jpg") || path.contains(".jpeg"))
+    		        {
+    		        	fileType = "jpg";
+    		        }
+    		        ImageIO.write(img, fileType, bao);
+    		        returnValue = bao.toByteArray();
+    			}
+    	        
     		}
+    		
+    		
+    		
 
     	}
 

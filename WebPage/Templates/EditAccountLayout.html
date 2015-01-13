@@ -11,7 +11,7 @@
 	<script src="../JS/angular-file-upload.js"></script>
 	<script src="../JS/User_Info.js"></script>
  	<script src="../JS/Bas_Home_Funcs.js"></script>
-	<script src="../JS/testProfilePage.js"></script>
+	<script src="../JS/editAccount.js"></script>
 </head>
 
 
@@ -21,18 +21,18 @@
 	<h1>{{hello}}</h1>
 	<h2> Personal Information </h2>
 
-	<div ng-controller="profilePage">
+	<div ng-controller="EditAccount">
 		<label>Email: {{ email }}</label><br>
   		<label>Profile Picture: </label>
   		<br>
-  		<img ng-src="http://83.254.221.239:9000/userPicture/{{ userprofile }}?sessionID={{ session }}" width="25%" height="25%"/><br>
-  		<input class="btn " type="file"> </input><br>
+  		<img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{userprofile}}" width="25%" height="25%"/><br>
+  		<input class="btn " type="file" nv-file-select uploader="uploader" ng-model='image'> </input><br>
 
-  		<button class="btn"> Upload new picture </button>
+  		<button class="btn" ng-click="UploadProfilePicture()" > Upload new picture </button>
   		<br>
 		<label >Username: &nbsp;</label>
 		<input type="text" ng-model="username"></input>
-		<button class="btn">Change Username</button>
+		<button class="btn" ng-click="ChangeUsername(username)">Change Username</button>
 		<br>
 		<br>
 		<label>Country: &nbsp;</label>
