@@ -103,7 +103,7 @@ User Home Page
           <li ng-repeat="friend in AllMyFriends">
             <div class ="row singleRecipe">
               <div class="col-xs-10">{{friend.email}}</div>
-              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowUserProfile(friend.email)"/></div>
+              <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="Auto"  ng-click="ShowUserProfile(friend.email, friend.username, friend.country)"/></div>
               <div class="col-xs-6">   
                <button class="btn" ng-click = "RemoveFriend(friend.email)">Unfollow </button>    
 
@@ -121,7 +121,7 @@ User Home Page
         <ul class="ListFormat">
           <li ng-repeat="friend in AllUsersSearch">
             <div class ="">
-              <div class="col-xs-10"> {{friend.email}} <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowUserProfile(friend.email, friend.username)"/></div>
+              <div class="col-xs-10"> {{friend.email}} <img class="PictureSmall" ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="auto" ng-click="ShowUserProfile(friend.email, friend.username, friend.country)"/></div>
               <div class="col-xs-10">
               <button class="btn" ng-click = "AddFriend(friend.email)">Follow </button> <hr>
               </div>

@@ -7,7 +7,7 @@ profilePage.controller('profilePage',  function($scope, $http, $timeout){
 	$scope.userprofile = sessionStorage.profileEmail;
 	
 	$scope.FrInfo = { Username: sessionStorage.FriendUsername, Email:sessionStorage.FriendEmail, 
-						Country:'sessionStorage.FriendCountry'};
+						Country:sessionStorage.FriendCountry};
 	//TODO update to server IP
 	$scope.init=function()
 	{

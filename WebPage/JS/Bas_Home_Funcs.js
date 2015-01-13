@@ -99,10 +99,11 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
         window.location= location;
     };
 
-    $scope.ShowUserProfile = function(email, username){
+    $scope.ShowUserProfile = function(email, username, country){
         var location = "user profile.html"
         sessionStorage.FriendEmail = email;
         sessionStorage.FriendUsername = username;
+        sessionStorage.FriendCountry = country;
         window.location= location;
     };
 

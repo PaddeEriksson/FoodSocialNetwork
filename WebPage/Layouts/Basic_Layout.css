@@ -3,7 +3,10 @@ body.generalBG{
 	background: rgb(255,204,102);
 	text-align: center; 
 }
- 
+img.PictureSmall{
+	height: 75px;
+	width: auto;
+};
 h2.generalT{
 	text-align:center; 
 }
