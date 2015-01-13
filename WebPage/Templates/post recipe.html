@@ -55,10 +55,10 @@ NEW RECIPE
 
             <li><br>
             <button class="btn" ng-click="SveIng(ingredientsInfo)"> ADD </button><br>
-            <label ng-repeat="ingred in ingredient">
-               <button type="button" ng-click="removeING(ingred)">Delete ingredient</button>
-               {{ingred.name}} {{ingred.amount}} {{ingred.isOptional}} {{ingred.amountType}}
-            </label><br>
+            <ul class="ListFormat" ng-repeat="ingred in ingredient">
+               <li><button class="btn" type="button" ng-click="removeING(ingred)">Delete ingredient</button>
+               {{ingred.name}} {{ingred.amount}} {{ingred.isOptional}} {{ingred.amountType}}</li>
+            </ul>
             </li>
             </div>
             <input type="file" nv-file-select uploader="uploader" ng-model='recipeInfo.image'><br>
@@ -69,7 +69,7 @@ NEW RECIPE
             </div>
         </ul>
     </script>
-    <button class="btn" ng-click="RecepieWO()">Upload Recipe</button>
+    <lable ng-click="RecepieWO()"> Upload Recipe </lable>
    </div> 
 </body>
 </html>

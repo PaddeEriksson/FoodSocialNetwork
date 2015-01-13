@@ -1,5 +1,7 @@
 var Post_recipe = angular.module('UserInfo');
+
 var ingredients;
+
 Post_recipe.controller('PostRecipe', function ($scope, $modal, $log, $http) {
 
   $scope.tempName = 'Units';

@@ -1,0 +1,44 @@
+
+<!doctype html PUBLIC>
+
+<html ng-app ='UserInfo'>
+<title>
+  SocialFoodNetworkLogin
+</title>
+<head>
+<a ng-href="#/{{myPathVariable}}"/></a>
+<link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
+
+<script src="../ExternalLib/angular.min.js"></script>
+<script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
+<script src="../JS/angular-file-upload.js"></script>
+
+<script src="../JS/User_Info.js"></script>
+<script src="../JS/Create.js"></script>
+
+
+</head>
+<body class="generalBG">
+
+<div ng-controller="SetUserInfo">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+          <h3 class="modal-title">Welcome :) !</h3>
+          <P> Please login your credentials to proceed to your  user homepage </P>
+        </div>
+        <div class="modal-body">
+          <ul>
+            Username <input type='text' ng-model = 'setInfo.email'>
+            Password <input type= 'password' ng-model = 'setInfo.password'>
+          </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" ng-click="login()">Login</button>
+            <button class="btn" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <button class="btn" ng-click="open()">Login</button>
+</div>
+</body>
+</html>

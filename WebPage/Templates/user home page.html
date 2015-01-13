@@ -7,7 +7,7 @@ User Home Page
 </title>
   <link rel="stylesheet" type="text/css" href= "../ExternalLib/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../Layouts/Basic_Layout.css">
- 
+
 
 	<script src="../ExternalLib/angular.min.js"></script>
   <script src="../ExternalLib/ui-bootstrap-tpls-0.12.0.js"></script>
@@ -16,6 +16,7 @@ User Home Page
 	<script src="../JS/User_Info.js"></script>
   <script src="../JS/Bas_Home_Funcs.js"></script>
   <script src="../js/Post_recipe.js"></script>
+  <script src="../js/editRecipe.js"></script>
  
 </head>
 <body class="generalBG">
@@ -56,8 +57,7 @@ User Home Page
               <div class="col-xs-10">Created by: {{recipe.creator}}</div>
               <div class="col-xs-15">
                 <button class="btn" ng-click="DeleteRecipe(recipe.recipeID)">Delete</button>
-                <button class="btn" ng-click="EditRecipe(recipe.recipeID)">Edit</button>
-                <!--button class="btn" ng-include src="template2.url"--><!--/button-->
+                <button class="btn" ng-click="EditRecipe(recipe.recipeID)" ng-include src="'Edit recipe page.html'" ></button>
               </div>
             </div>
           </li>
@@ -105,7 +105,7 @@ User Home Page
               <div class="col-xs-10">{{friend.email}}</div>
               <div class="col-xs-4"> <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
               <div class="col-xs-6">   
-               <button class="btn" ng-click = "RemoveFriend(friend.email)">remove Buddy </button>    
+               <button class="btn" ng-click = "RemoveFriend(friend.email)">Unfollow </button>    
 
               </div>
             </div>
@@ -123,7 +123,7 @@ User Home Page
             <div class ="">
               <div class="col-xs-10"> {{friend.email}} <img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{friend.email}}" width="75px" height="75px" ng-click="ShowSingleRecipe(friend.email)"/></div>
               <div class="col-xs-10">
-              <button class="btn" ng-click = "AddFriend(friend.email)">Add a Buddy </button> <hr>
+              <button class="btn" ng-click = "AddFriend(friend.email)">Follow </button> <hr>
               </div>
             </div>
           </li>

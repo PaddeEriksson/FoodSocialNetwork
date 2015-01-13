@@ -3,7 +3,7 @@ var editRecipe = angular.module('UserInfo');
 var ingredients;
 var init = true;
 
-editRecipe.controller('EditRecipe', function ($rootScope,$scope, $modal, $log, $http) {
+editRecipe.controller('EditRecipe', function ($rootScope, $scope, $modal, $log, $http) {
 
   $scope.tempName = 'Units';
   $scope.ingredientsInfo = {name:'', isOptional: false, amount:'', amountType:''};
@@ -87,22 +87,15 @@ editRecipe.controller('EditRecipe', function ($rootScope,$scope, $modal, $log, $
 
     function () {
       $log.info('Modal dismissed at: ' + new Date());
+      init=true;
     });
   }; 
 
 });
 
 
-editRecipe.controller('EditRecipe1', function ($rootScope,$scope, $modal, $log, $http) {
-
-});  
-
-
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
 
 editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalInstance, RecepieN, $http, FileUploader) {
-  
   //prepare a Temporare Variable to combine information in the same object
   //in order to send it all in the same request
   $scope.recipeInfo=RecepieN;
@@ -130,7 +123,6 @@ editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalIn
       $scope.recipeInfo.title = data.recipe.recipeTitle;
       $scope.recipeInfo.instruction = data.recipe.instruction;
       $scope.recipeInfo.time = data.recipe.time;
-      console.log(data.ingridients[0]);
       $rootScope.$emit('SveIng2',data.ingridients);
 
     }

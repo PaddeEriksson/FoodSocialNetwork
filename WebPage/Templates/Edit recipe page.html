@@ -1,4 +1,4 @@
-<html ng-app="UserInfo">
+<html ng-app="UserInfo" >
 <title>
 NEW RECIPE
 </title>
@@ -15,10 +15,11 @@ NEW RECIPE
 
 </head>
 <body>
+    
 <div ng-controller="EditRecipe">
     <script type="text/ng-template" id="editrecipe.html">
         <div class="modal-header">
-            <h2> UPLOAD RECIPE </h2>
+            <h2> EDIT RECIPE </h2>
             
             <label> Title<br>
             <input type="text" ng-model='recipeInfo.title'></input><br>
@@ -55,10 +56,10 @@ NEW RECIPE
 
             <li><br>
             <button class="btn" ng-click="SveIng(ingredientsInfo)"> ADD </button><br>
-            <label ng-repeat="ingred in ingredient">
-               <button type="button" ng-click="removeING(ingred)">Delete ingredient</button>
-               {{ingred.name}} {{ingred.amount}} {{ingred.isOptional}} {{ingred.amountType}}<br>
-            </label><br>
+            <ul class="ListFormat" ng-repeat="ingred in ingredient">
+               <li><button class="btn" type="button" ng-click="removeING(ingred)">Delete ingredient</button>
+               {{ingred.name}} {{ingred.amount}} {{ingred.isOptional}} {{ingred.amountType}}</li>
+            </ul>
             </li>
             </div>
             <input type="file" nv-file-select uploader="uploader" ng-model='recipeInfo.image'/><br/>
@@ -69,7 +70,7 @@ NEW RECIPE
             </div>
         </ul>
     </script>
-    <button class="btn" ng-click="RecepieWO()">Edit Recipe</button>
+    <div ng-click="RecepieWO()">Edit </div>
    </div> 
 </body>
 </html>

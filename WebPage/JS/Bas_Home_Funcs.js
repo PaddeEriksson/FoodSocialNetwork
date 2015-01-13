@@ -221,9 +221,8 @@ BasicFunctions.controller('ButtonsControles', function($scope, $http) {
 
     $scope.EditRecipe=function(recID)
     {
-        var location = "Edit recipe page.html";
         sessionStorage.recipeID = recID;
-        window.location = location;
+        
     };
 
     $scope.RemoveFromFavorite=function(recipeIDIN)
