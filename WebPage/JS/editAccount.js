@@ -55,9 +55,9 @@ editRecipe.controller('EditAccount', function ($rootScope,$scope, $modal, $log, 
   $scope.init=function()
   {
     $http({
-        url: "http://83.254.221.239:9000/profile/" + sessionStorage.profileEmail, 
+        url: "http://83.254.221.239:9000/profile/", 
         method: "GET",
-        params: {sessionID: sessionStorage.whatever},
+        params: {sessionID: sessionStorage.whatever, email:sessionStorage.profileEmail},
     }).success(function(data) {
       $scope.email = data.email;
       $scope.country = data.country;

@@ -29,9 +29,9 @@ public class ShowUserController {
 	@Resource
 	private UserDAO userDAO;
 	
-	@RequestMapping(value = "/profile/{email}")
+	@RequestMapping(value = "/profile")
 	public DefaultResponse showUser(@RequestParam(value = "sessionID") String session,
-						 @PathVariable(value = "email") String email)
+									@RequestParam(value = "email") String email)
 	{
 		//This should give name, email and country
 		DefaultResponse returnValue = null;
