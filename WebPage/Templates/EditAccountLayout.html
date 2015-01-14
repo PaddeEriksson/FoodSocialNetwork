@@ -17,7 +17,7 @@
 
 
 
-<body>
+<body calss="generalBG">
 	<h1>{{hello}}</h1>
 	<h2> Personal Information </h2>
 
@@ -25,8 +25,7 @@
 		<label>Email: {{ email }}</label><br>
   		<label>Profile Picture: </label>
   		<br>
-  		<img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{userprofile}}" 
-  		width="25%" height="auto"/><br>
+  		<img ng-src="http://83.254.221.239:9000/userPicture?sessionID={{ session }}&email={{userprofile}}" width="25%" height="auto"/><br>
   		<input class="btn " type="file" nv-file-select uploader="uploader" ng-model='image'> </input><br>
 
   		<button class="btn" ng-click="UploadProfilePicture()" > Upload new picture </button>
@@ -36,9 +35,13 @@
 		<button class="btn" ng-click="ChangeUsername(username)">Change Username</button>
 		<br>
 		<br>
+		<div calss ="row">
+		<div calss="col-xs-6">
 		<label>Country: &nbsp;</label>
-		<input type="text" ng-model="country">
+		<select class="form-control-small" ng-model="items.country" ng-options="opt for opt in options.hstep"></select>
 		<button class="btn">Change Country</label>
+		</div>
+	</div>
 	</div>
 </body>
 </html>

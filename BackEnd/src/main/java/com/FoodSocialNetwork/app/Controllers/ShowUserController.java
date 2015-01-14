@@ -82,7 +82,7 @@ public class ShowUserController {
     			String path = user.getProfilePicturePath();
     			if(path == null)
     			{
-    				path = "image/imageMissing.jpg";
+    				path = "profilePictures/defaultprofile.jpg";
     				FileInputStream fis = new FileInputStream(path);
     		        InputStream is = fis;
 
