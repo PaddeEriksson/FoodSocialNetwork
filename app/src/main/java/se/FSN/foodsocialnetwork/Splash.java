@@ -26,7 +26,7 @@ import se.FSN.foodsocialnetwork.utils.AppController;
 import se.FSN.foodsocialnetwork.utils.UsefulFunctions;
 
 public class Splash extends Activity {
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2500;
     Animation fadeOut;
     RelativeLayout splashLay;
     SharedPreferences preferences;
@@ -37,8 +37,11 @@ public class Splash extends Activity {
         setContentView(R.layout.activity_splash);
         preferences = getSharedPreferences(UsefulFunctions.PREFERENCES_KEY, Context.MODE_PRIVATE);
 
+        getActionBar().hide();
+
 
         splashLay = (RelativeLayout) findViewById(R.id.splashRlt);
+        requestLogin();
 
         fadeOut = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.fadeout);
@@ -46,7 +49,7 @@ public class Splash extends Activity {
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                //nothing
+                //Nothing
             }
 
             @Override
@@ -56,7 +59,6 @@ public class Splash extends Activity {
                 Intent i;
                 if (preferences.getBoolean(UsefulFunctions.LOGED_KEY, false)) {
                     i = new Intent(getApplicationContext(), Main.class);
-                    requestLogin();
                 } else {
                     i = new Intent(Splash.this, Login.class);
 

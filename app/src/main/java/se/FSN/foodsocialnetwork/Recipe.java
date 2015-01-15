@@ -6,17 +6,25 @@ import java.util.ArrayList;
  * This class will be used to provide Recipe Objects to the ListView after parsing the Json.
  */
 public class Recipe {
+    private String ID;
     private String title;
-    private String imageurl;
+    private String creator;
+    private String imageUrl;
     private int time;
-    private ArrayList<String> ingredients;
+    private ArrayList<Ingredient> ingredients;
     private ArrayList<String> tools;
     private String description;
     private ArrayList<String> categories;
 
-    public Recipe(String name, String image, int time, ArrayList<String> ingredients, ArrayList<String> tools, String description, ArrayList<String> categories) {
+    public Recipe() {
+    }
+
+
+    public Recipe(String ID, String name, String creator, String image, int time, ArrayList<Ingredient> ingredients, ArrayList<String> tools, String description, ArrayList<String> categories) {
+        this.setID(ID);
         this.setTitle(name);
-        this.setImageurl(image);
+        this.setCreator(creator);
+        this.setImageUrl(image);
         this.setTime(time);
         this.setIngredients(ingredients);
         this.setTools(tools);
@@ -32,28 +40,12 @@ public class Recipe {
         this.title = title;
     }
 
-    public String getImageurl() {
-        return imageurl;
-    }
-
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
-    }
-
     public int getTime() {
         return time;
     }
 
     public void setTime(int time) {
         this.time = time;
-    }
-
-    public ArrayList<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
     }
 
     public ArrayList<String> getTools() {
@@ -78,5 +70,38 @@ public class Recipe {
 
     public void setCategories(ArrayList<String> categories) {
         this.categories = categories;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

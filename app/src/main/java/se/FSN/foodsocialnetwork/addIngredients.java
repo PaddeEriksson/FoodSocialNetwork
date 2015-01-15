@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +27,11 @@ public class addIngredients extends Activity {
     private Spinner unitTypeSpn;
     private Button addBtn, saveBtn;
     private ListView thingsList;
-    private ArrayList<String> things = new ArrayList<String>();
     private AddIngredientsAdapter adapter;
     private ArrayAdapter<String> toolAdapter;
     private List<Ingredient> ingredientsList = new ArrayList<Ingredient>();
     private List<String> toolsList = new ArrayList<String>();
     private String title, quantity, inputType;
-    private String optional = "mandatory";
     private CheckBox isOptionalCheck;
 
 
@@ -79,19 +79,14 @@ public class addIngredients extends Activity {
             addBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                /*
-                TODO:
-                Test empty input
-                 */
 
                     if (addThings.getText().toString() != "") {
-
 
                         title = addThings.getText().toString();
 
                         toolsList.add(title);
                         addThings.setText("");
-                        adapter.notifyDataSetChanged();
+                        toolAdapter.notifyDataSetChanged();
 
                     }
                 }
@@ -110,10 +105,6 @@ public class addIngredients extends Activity {
             addBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                /*
-                TODO:
-                Test empty input
-                 */
 
                     if (addThings.getText().toString() != "") {
 
@@ -160,18 +151,39 @@ public class addIngredients extends Activity {
                 finish();
             }
         });
-        /*
-        TODO:
-        on click en lista nos dice que hay que hacer click largo para eliminar el item
-        On long click para eliminar.
-         */
+
+        //OnItemClick Function
+        thingsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Long Click for delete", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //OnLongItemClick Function
+        thingsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (type == 0) {
+                    //Tools
+                    toolsList.remove(position);
+                    toolAdapter.notifyDataSetChanged();
+                } else {
+                    ingredientsList.remove(position);
+                    adapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.add_ingredients, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
 
     }

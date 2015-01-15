@@ -11,44 +11,52 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import se.FSN.foodsocialnetwork.utils.AppController;
 
 /**
- * This will provide data to the ListView. It will render the row layout we have made pre-filling the appropriate information
+ * Created by JulioLopez on 14/1/15.
  */
-public class ListAdapter extends BaseAdapter {
+public class FriendAdapter extends BaseAdapter {
+
     private Activity activity;
     private LayoutInflater inflater;
-    private List<Recipe> recipeItems;
+    private List<Friend> friendItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public ListAdapter(Activity activity, List<Recipe> recipeItems) {
+    private ArrayList<String> myFriendsIds = new ArrayList<>();
+
+
+    public FriendAdapter(Activity activity, List<Friend> friendsItems) {
         this.activity = activity;
-        this.recipeItems = recipeItems;
+        this.friendItems = friendsItems;
+
     }
 
-    public void swapItems(List<Recipe> items) {
-        this.recipeItems = items;
+    public void swapItems(List<Friend> items) {
+        this.friendItems = items;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return recipeItems.size();
+        return friendItems.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return recipeItems.get(position);
+        return friendItems.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        Recipe r = recipeItems.get(position);
-        Long id = Long.valueOf(r.getID());
+        return position;
+        /*Friend f = friendItems.get(position);
+        Long id = Long.valueOf(f.getID());
         return id;
+        */
     }
 
     @Override
@@ -57,42 +65,41 @@ public class ListAdapter extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_pattern, null);
+            convertView = inflater.inflate(R.layout.friend_adapter, null);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.image);
-        TextView title = (TextView) convertView.findViewById(R.id.recipeTitle);
-        TextView category = (TextView) convertView.findViewById(R.id.category);
-        TextView difficult = (TextView) convertView.findViewById(R.id.difficult);
+                .findViewById(R.id.image_friend);
+
+        TextView titleTxt = (TextView) convertView.findViewById(R.id.name_friend);
+        TextView mailTxt = (TextView) convertView.findViewById(R.id.mail_friend);
+        TextView countryTxt = (TextView) convertView.findViewById(R.id.country_friends);
 
         // getting movie data for the row
-        Recipe r = recipeItems.get(position);
+        Friend f = friendItems.get(position);
 
         // thumbnail image
-        String imageUrl = r.getImageUrl();
+        String imageUrl = f.getImgUrl();
+        //Log.i("IMAGEURL",imageUrl);
         thumbNail.setImageUrl(imageUrl, imageLoader);
+        //thumbNail.setImageUrl("http://www.online-image-editor.com//styles/2014/images/example_image.png", imageLoader);
 
 
         // title
-        title.setText(r.getTitle());
+        titleTxt.setText(f.getUsername());
 
-        // difficult
-        //category.setText(String.valueOf(r.getTime()));
+        // Mail
+        mailTxt.setText(f.getEmail());
 
-        // Category
-        /*String catStr = "";
-        for (String str : r.getCategories()) {
-            catStr += str + ", ";
-        }
-        catStr = catStr.length() > 0 ? catStr.substring(0,
-                catStr.length() - 2) : catStr;
-        category.setText(catStr);
-        */
+        // Country
+        countryTxt.setText(f.getCountry());
+
+        convertView.setTag(f.getEmail());
 
 
         return convertView;
     }
-}
 
+
+}

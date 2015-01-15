@@ -50,6 +50,8 @@ public class createAccount extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
+        getActionBar().hide();
+
 
         userTxt = (TextView) findViewById(R.id.userTxt);
         final TextView passTxt = (TextView) findViewById(R.id.passTxt);
@@ -164,6 +166,8 @@ public class createAccount extends Activity {
                         sessionID = jsonObject.getString(UsefulFunctions.SESSIONID_KEY);
                         //Save the SessionId for further requests.
                         editor.putString(UsefulFunctions.SESSIONID_KEY, sessionID);
+                        //Save the user for further requests
+                        editor.putString(UsefulFunctions.MAIL_KEY, mail);
                         editor.commit();
                     }
                 } catch (JSONException e) {
