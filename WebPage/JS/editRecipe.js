@@ -107,6 +107,8 @@ editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalIn
   $scope.sessionID = temp.sessionID;
   $scope.recipeID = temp.recipeID;
 
+  setTimeout(function()
+  {
   $http({
     url: "http://83.254.221.239:9000/recipe/" + sessionStorage.recipeID, 
     method: "GET",
@@ -127,7 +129,7 @@ editRecipe.controller('Editrecipesmodal', function ($rootScope, $scope, $modalIn
 
     }
   });
-
+  }, 100);
   var tempUploader = new FileUploader();
   tempUploader.url = "http://83.254.221.239:9000/editRecipe";
 

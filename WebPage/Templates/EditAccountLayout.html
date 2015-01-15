@@ -37,9 +37,13 @@
 		<br>
 		<div calss ="row">
 		<div calss="col-xs-6">
-		<label>Country: &nbsp;</label>
-		<select class="form-control-small" ng-model="items.country" ng-options="opt for opt in options.hstep"></select>
-		<button class="btn">Change Country</label>
+		<label>Country: {{country}} </label>
+		<select class="form-control-small" ng-model="countrySelect" ng-options="opt for opt in options.hstep"></select>
+		<button class="btn" ng-click="ChangeCountry()">Change Country</button>
+		<br>
+		<label>Password: </label>
+		<input type="text" ng-model="newPassword"></text>
+		<button class="btn" ng-click="changePassword(newPassword)">Change password</button>
 		</div>
 	</div>
 	</div>

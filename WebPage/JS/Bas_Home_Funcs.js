@@ -28,9 +28,9 @@ var UserRcipes, Userinfo;
 
 BasicFunctions.controller('testController', function($scope, $http) {
     $http({
-        url: "http://83.254.221.239:9000/profile/"+ sessionStorage.email,
+        url: "http://83.254.221.239:9000/profile/",
         method: "GET",
-        params:{sessionID:sessionStorage.whatever}
+        params:{sessionID:sessionStorage.whatever,email:sessionStorage.email}
     }).success(function(data)
     {
         if(!data.success)

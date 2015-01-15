@@ -9,6 +9,7 @@ editRecipe.controller('EditAccount', function ($rootScope,$scope, $modal, $log, 
   $scope.userprofile = {};
   $scope.session = sessionStorage.whatever;
   $scope.userprofile = sessionStorage.profileEmail;
+  $scope.countrySelect = {};
 
   $scope.options = {
     hstep: ["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola",
@@ -137,4 +138,27 @@ editRecipe.controller('EditAccount', function ($rootScope,$scope, $modal, $log, 
     });
     
   };
+
+  $scope.ChangeCountry = function()
+  {
+
+    $http({
+      url: "http://83.254.221.239:9000/editCountry",
+      method: "GET",
+      params: {sessionID: sessionStorage.whatever, country:$scope.countrySelect }
+    }).success(function(data){
+    });
+  };
+
+  $scope.changePassword= function(newPassword)
+  {
+
+    $http({
+      url: "http://83.254.221.239:9000/editPassword",
+      method: "GET",
+      params: {sessionID: sessionStorage.whatever, password:newPassword}
+    }).success(function(data){
+    });
+  };
+
 });
